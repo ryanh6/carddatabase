@@ -1,0 +1,22 @@
+August 22nd, 2024
+- Search For The Following:
+    - Code
+    - Name (Link)
+    - Series
+    - Rarity
+
+    - Name
+    - Card Type
+    - Grade
+    - Skill
+    - Imaginary Gift
+    - Special Icon
+    - Trigger
+    - Power
+    - Critical
+    - Shield
+    - Nation
+    - Clan
+    - Race
+
+    - Artist
