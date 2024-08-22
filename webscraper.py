@@ -1,53 +1,48 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights"
+def cleanText(givenString):
+    givenString = givenString.strip()
+    givenString = givenString.strip("\n")
 
-result = requests.get(url)
-#print(result.text)
+    return givenString
 
-wikiPage = BeautifulSoup(result.text, "html.parser")
-#print(wikiPage.prettify())
+def findTableSibling(tableItem):
+    parent = tableItem.parent
+    sibling = parent.find_next_sibling("td")
+    item = cleanText(sibling.get_text())
 
-table = wikiPage.find_all("table")[0]
+    return item
 
-rows = table.find_all("tr")
+def extractInfo(data, keyword):
+    category = data.find(string = keyword)
 
-del rows[0]
-
-for i in rows:
-    code = i.find_all("td")[0]
-    name = i.find_all("td")[1]
-    link = name.find("a")
-    #print("https://cardfight.fandom.com" + link.get("href"))
-    print(code.string + " | " + name.string + " | ", end='')
-
-    subUrl = "https://cardfight.fandom.com" + link.get("href")
-    subResult = requests.get(subUrl)
-    cardPage = BeautifulSoup(subResult.text, "html.parser")
-
-    infoString = ""
-    info = cardPage.find("div", {"class": "info-main"})
-    #print(info)
-
-    type = info.find(string="Card Type")
-    #Found the Clan row, tooks its parent's parent's child (aka sibling), found the a link, then the string associated with the a link
-    if (type != None):    
-        typeInfo = (((type.parent).parent).find_all("td")[1]).find("a")
-        infoString += typeInfo.string + " | "
+    if (category != None):
+        relevantData = findTableSibling(category)
     else:
-        infoString += "Normal Unit" + " | "
+        relevantData = "None"
 
-    clan = info.find(string="Clan")
-    #Found the Clan row, tooks its parent's parent's child (aka sibling), found the a link, then the string associated with the a link
-    clanInfo = (((clan.parent).parent).find_all("td")[1]).find("a")
-    infoString += clanInfo.string + " | "
+    return relevantData
+    
 
-    race = info.find(string="Race")
-    #Found the Clan row, tooks its parent's parent's child (aka sibling), found the a link, then the string associated with the a link
-    raceInfo = (((race.parent).parent).find_all("td")[1]).find("a")
-    infoString += raceInfo.string + " | "
+def readCardInfo(pageURL):
+    result = requests.get(pageURL)
+    cardPage = BeautifulSoup(result.text, "html.parser")
+
+    infoString = "| "
+    mainInfo = cardPage.find("div", {"class": "info-main"})
+
+    infoString += extractInfo(mainInfo, "Name") + " | "
+    infoString += extractInfo(mainInfo, "Card Type") + " | "
+    infoString += extractInfo(mainInfo, "Imaginary Gift") + " | "
+    infoString += extractInfo(mainInfo, "Special Icon") + " | "
+    infoString += extractInfo(mainInfo, "Power") + " | "
+    infoString += extractInfo(mainInfo, "Critical") + " | "
+    infoString += extractInfo(mainInfo, "Shield") + " | "
+    infoString += extractInfo(mainInfo, "Nation") + " | "
+    infoString += extractInfo(mainInfo, "Clan") + " | "
+    infoString += extractInfo(mainInfo, "Race") + " | "
 
     print(infoString)
 
-#print(rows.prettify())
+readCardInfo("https://cardfight.fandom.com/wiki/Hades_Hypnotist_(V_Series)")  
