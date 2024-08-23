@@ -33,3 +33,16 @@ print(parent)
 strong = parent.find("strong")
 print(strong.string)
 
+
+def extractGiftMarker(data, array):
+    category = data.find(string = keyword)
+
+    if (category != None):
+        relevantData = findTableSibling(category)
+
+        #if (keyword == "Imaginary Gift"):
+            #marker = relevantData.find("a")
+            #relevantData = marker.get("title")
+            #relevantData = relevantData.split("/", 1)[1]
+        #else:
+            #relevantData = cleanText(relevantData.get_text())

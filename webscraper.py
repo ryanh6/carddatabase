@@ -11,46 +11,61 @@ def cleanText(givenString):
 def findTableSibling(tableItem):
     parent = tableItem.parent
     sibling = parent.find_next_sibling("td")
+    item = cleanText(sibling.get_text())
 
-    return sibling
+    return item
 
-def extractInfo(data, keyword, array):
+def extractGradeSkill(data, array):
+    category = data.find(string = "Grade / Skill")
+
+    if (category != None):
+        parent = category.parent
+        relevantData = parent.find_next_sibling("td")
+
+        attributes = relevantData.getText()
+        attributes = attributes.split("/", 1)
+
+        for item in attributes:
+            item = item.strip()
+            item = item.strip("\n")
+            array.append(item)
+
+        return
+    else:
+        relevantData = "None"
+    
+    array.append(relevantData)
+    array.append(relevantData)
+
+def extractGiftMarker(data):
+    category = data.find(string = "Imaginary Gift")
+
+    if (category != None):
+        parent = category.parent
+        relevantData = parent.find_next_sibling("td")
+        
+        marker = relevantData.find("a")
+        relevantData = marker.get("title")
+        relevantData = relevantData.split("/", 1)[1]
+    else:
+        relevantData = "None"
+    
+    return relevantData
+
+def extractInfo(data, keyword):
     category = data.find(string = keyword)
 
     if (category != None):
         relevantData = findTableSibling(category)
-
-        if (keyword == "Grade / Skill"):
-            attributes = relevantData.get_text()
-            attributes = attributes.split("/", 1)
-
-            for item in attributes:
-                item = item.strip()
-                item = item.strip("\n")
-                array.append(item)
-            return
-
-        elif (keyword == "Imaginary Gift"):
-            marker = relevantData.find("a")
-            relevantData = marker.get("title")
-            relevantData = relevantData.split("/", 1)[1]
-        else:
-            relevantData = cleanText(relevantData.get_text())
-
     else:
-        if (keyword == "Card Type"):
-            relevantData = "Normal Unit"
-        else:
-            relevantData = "None"
+        relevantData = "None"
     
-    array.append(relevantData)
+    return relevantData
 
 def printArray(array):
     print("|", end = "")
-
     for item in array:
         print(" " + item + " |", end = "")
-    
     print("")
 
 def readCardInfo(pageURL):
@@ -63,7 +78,18 @@ def readCardInfo(pageURL):
     mainInfo = cardPage.find("div", {"class": "info-main"})
 
     for word in keywords:
-        extractInfo(mainInfo, word, dataArray)
+        if (word == "Card Type"):
+            cardType = extractInfo(mainInfo, word)
+            if (cardType == "None"):
+                dataArray.append("Normal Unit")
+            else:
+                dataArray.append(cardType)
+        elif (word == "Grade / Skill"):
+            extractGradeSkill(mainInfo, dataArray)
+        elif (word == "Imaginary Gift"):
+            dataArray.append(extractGiftMarker(mainInfo))
+        else:
+            dataArray.append(extractInfo(mainInfo, word))
 
     printArray(dataArray)
 
