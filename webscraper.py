@@ -69,8 +69,8 @@ def printArray(array):
     print("")
 
 def readCardInfo(pageURL):
-    result = requests.get(pageURL)
-    cardPage = BeautifulSoup(result.text, "html.parser")
+    cardResult = requests.get(pageURL)
+    cardPage = BeautifulSoup(cardResult.text, "html.parser")
 
     dataArray = []
     keywords = ["Name", "Card Type", "Grade / Skill", "Imaginary Gift", "Special Icon",
@@ -80,27 +80,36 @@ def readCardInfo(pageURL):
     for word in keywords:
         if (word == "Card Type"):
             cardType = extractInfo(mainInfo, word)
+
             if (cardType == "None"):
                 dataArray.append("Normal Unit")
             else:
                 dataArray.append(cardType)
+
         elif (word == "Grade / Skill"):
             extractGradeSkill(mainInfo, dataArray)
+
         elif (word == "Imaginary Gift"):
             dataArray.append(extractGiftMarker(mainInfo))
+
         else:
             dataArray.append(extractInfo(mainInfo, word))
 
-    printArray(dataArray)
+    print(dataArray)
+
+def readSetInfo(pageURL):
+    setResult = requests.get(pageURL)
+    setPage = BeautifulSoup(setResult.text, "html.parser")
+
+    setInfo = setPage.find("table")
+    cardList = setInfo.find_all("tr")
+    del cardList[0]
+
+    for card in cardList:
+        name = card.find_all("td")[1]
+        link = name.find("a")
+        cardPageURL = "https://cardfight.fandom.com" + link.get("href")
+        readCardInfo(cardPageURL)
 
 
-
-
-
-readCardInfo("https://cardfight.fandom.com/wiki/Battleraizer") 
-readCardInfo("https://cardfight.fandom.com/wiki/Light_Element,_Agleam")
-readCardInfo("https://cardfight.fandom.com/wiki/Hades_Hypnotist_(V_Series)")
-readCardInfo("https://cardfight.fandom.com/wiki/Interdimensional_Beast,_Metallica_Phoenix_(V_Series)")
-readCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")  
-readCardInfo("https://cardfight.fandom.com/wiki/Extreme_Satellite_Weaponry,_Euryanthe")
-readCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Protection,_Alden")
+readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
