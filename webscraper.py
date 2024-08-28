@@ -62,12 +62,6 @@ def extractInfo(data, keyword):
     
     return relevantData
 
-def printArray(array):
-    print("|", end = "")
-    for item in array:
-        print(" " + item + " |", end = "")
-    print("")
-
 def readCardInfo(pageURL):
     cardResult = requests.get(pageURL)
     cardPage = BeautifulSoup(cardResult.text, "html.parser")
@@ -95,7 +89,7 @@ def readCardInfo(pageURL):
         else:
             dataArray.append(extractInfo(mainInfo, word))
 
-    print(dataArray)
+    return dataArray
 
 def readSetInfo(pageURL):
     setResult = requests.get(pageURL)
@@ -109,7 +103,9 @@ def readSetInfo(pageURL):
         name = card.find_all("td")[1]
         link = name.find("a")
         cardPageURL = "https://cardfight.fandom.com" + link.get("href")
-        readCardInfo(cardPageURL)
+
+        cardInfo = readCardInfo(cardPageURL)
+        print(cardInfo)
 
 
 readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
