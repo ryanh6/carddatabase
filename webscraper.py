@@ -1,6 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 
+def buildImageLink(name):
+    noSpace = name.replace(" ", "_")
+    noCom = noSpace.replace(",", "%2C")
+
+    link = "https://cardfight.fandom.com/wiki/Card_Gallery:" + noSpace + "?file=" + noCom + "_%28Full_Art%29.png"
+    return link
+
 def cleanText(givenString):
     givenString = givenString.split("/", 1)[0]
     givenString = givenString.strip()
@@ -61,13 +68,6 @@ def extractInfo(data, keyword):
         relevantData = "None"
     
     return relevantData
-
-def buildImageLink(name):
-    noSpace = name.replace(" ", "_")
-    noCom = noSpace.replace(",", "%2C")
-
-    link = "https://cardfight.fandom.com/wiki/Card_Gallery:" + noSpace + "?file=" + noCom + "_%28Full_Art%29.png"
-    return link
 
 def readCardInfo(pageURL):
     cardResult = requests.get(pageURL)
@@ -140,7 +140,7 @@ def readSetInfo(pageURL):
 
         print(cardData)
 
-#readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
-#readSetInfo("https://cardfight.fandom.com/wiki/Trial_Deck_1:_Blaster_Blade")
+readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+readSetInfo("https://cardfight.fandom.com/wiki/Trial_Deck_1:_Blaster_Blade")
 
-buildImageLink("Blaster Blade")
+#buildImageLink("Blaster Blade")
