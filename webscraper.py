@@ -62,6 +62,13 @@ def extractInfo(data, keyword):
     
     return relevantData
 
+def buildImageLink(name):
+    noSpace = name.replace(" ", "_")
+    noCom = noSpace.replace(",", "%2C")
+
+    link = "https://cardfight.fandom.com/wiki/Card_Gallery:" + noSpace + "?file=" + noCom + "_%28Full_Art%29.png"
+    return link
+
 def readCardInfo(pageURL):
     cardResult = requests.get(pageURL)
     cardPage = BeautifulSoup(cardResult.text, "html.parser")
@@ -98,10 +105,7 @@ def readSetInfo(pageURL):
     setInfo = setPage.find("table")
     cardList = setInfo.find_all("tr")
 
-    keyHeaders = ["Card No.", "Code", "Name", "Rarity"]
-
     headers = []
-    cardData = []
 
     count = 0
     for item in cardList[0].find_all("th"):
@@ -136,5 +140,7 @@ def readSetInfo(pageURL):
 
         print(cardData)
 
-readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
-readSetInfo("https://cardfight.fandom.com/wiki/Trial_Deck_1:_Blaster_Blade")
+#readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+#readSetInfo("https://cardfight.fandom.com/wiki/Trial_Deck_1:_Blaster_Blade")
+
+buildImageLink("Blaster Blade")
