@@ -20,3 +20,13 @@ August 22nd, 2024
     - Race
 
     - Artist
+
+Sept 4, 2024: Test Case Ideas
+- Normal Unit
+- Trigger Unit
+- G Unit
+- G Guardian
+- Sentinel
+- Gift Marker
+- Persona Ride
+- Order
