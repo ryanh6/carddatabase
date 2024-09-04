@@ -2,5 +2,8 @@ Learn Web Scraping with Python
 - https://www.youtube.com/watch?v=gRLHr664tXA&t=749s
 - https://www.youtube.com/watch?v=lOzyQgv71_4
 
-Learning Pandas To Make Tables
+Learning Pandas To Make Tables (NEVER ENDED UP USING)
 - https://www.w3schools.com/python/pandas/default.asp
+
+Learning How To Process Excel Files in Python
+- https://www.datacamp.com/tutorial/python-excel-tutorial
