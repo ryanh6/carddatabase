@@ -21,11 +21,10 @@ def readCardInfo(pageURL):
     cardRequest = requests.get(pageURL)
     cardPage = BeautifulSoup(cardRequest.text, "html.parser")
 
-    keyProperties = ["Name", "Card Type", "Grade / Skill", "Imaginary Gift",
-                     "Special Icon", "Trigger Effect", "Power", "Critical",
-                     "Shield", "Nation", "Clan", "Race"]
-    
     cardInformation = cardPage.find("div", {"class": "info-main"})
+    cardTable = pd.read_html(StringIO(str(cardInformation)))[0]
+
+    print(cardTable.to_string())
 
 def readSetInfo(pageURL):
     setRequest = requests.get(pageURL)
@@ -36,4 +35,5 @@ def readSetInfo(pageURL):
 
     print(setTable.to_string())
 
-readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+readCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+#readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
