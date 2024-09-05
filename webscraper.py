@@ -24,7 +24,20 @@ def readCardInfo(pageURL):
     cardInformation = cardPage.find("div", {"class": "info-main"})
     cardTable = pd.read_html(StringIO(str(cardInformation)))[0]
 
-    print(cardTable.to_string())
+    dictionary = {keyword: table.iloc[0, 1] for keyword, table in cardTable.groupby(0)}
+    print(dictionary)
+
+    print(dictionary.get("Name"))
+    print(dictionary.get("Grade / Skill"))
+    print(dictionary.get("Imaginary Gift"))
+    print(dictionary.get("Power"))
+    print(dictionary.get("Critical"))
+    print(dictionary.get("Shield"))
+    print(dictionary.get("Nation"))
+    print(dictionary.get("Trigger Effect"))
+    print(dictionary.get("Clan"))
+    print(dictionary.get("Race"))
+    print(dictionary.get("Illust"))
 
 def readSetInfo(pageURL):
     setRequest = requests.get(pageURL)
