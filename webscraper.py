@@ -43,6 +43,20 @@ def writeHeaders():
 
     database.save("cfvdatabase.xlsx")
 
+def clearDatabase():
+    database = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = database.active
+
+    sheetName = currentPage.title
+    print(sheetName)
+
+    database.remove(database[sheetName])
+
+    database.create_sheet(sheetName)
+    writeHeaders()
+
+    database.save("cfvdatabase.xlsx")
+
 def readCardInfo(pageURL):
     cardRequest = requests.get(pageURL)
     cardPage = BeautifulSoup(cardRequest.text, "html.parser")
@@ -81,4 +95,4 @@ def readSetInfo(pageURL):
 readCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 readCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
-writeHeaders()
+clearDatabase()
