@@ -18,6 +18,13 @@ def fullImageLink(name):
     generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName + "?file=" + formattedName + "_%28Full_Art%29.png"
     return generatedLink
 
+def verifyLink(pageURL):
+    pageRequest = requests.get(pageURL)
+    print(pageRequest.url)
+    #page = BeautifulSoup(pageRequest.text, "html.parser")
+
+    #allLinks = page.find("div", {"class": "info-main"})
+
 def writeHeaders():
     database = openpyxl.load_workbook("cfvdatabase.xlsx")
     currentPage = database.active
@@ -43,20 +50,6 @@ def writeHeaders():
 
     database.save("cfvdatabase.xlsx")
 
-def clearDatabase():
-    database = openpyxl.load_workbook("cfvdatabase.xlsx")
-    currentPage = database.active
-
-    sheetName = currentPage.title
-    print(sheetName)
-
-    database.remove(database[sheetName])
-
-    database.create_sheet(sheetName)
-    writeHeaders()
-
-    database.save("cfvdatabase.xlsx")
-
 def readCardInfo(pageURL):
     cardRequest = requests.get(pageURL)
     cardPage = BeautifulSoup(cardRequest.text, "html.parser")
@@ -65,23 +58,23 @@ def readCardInfo(pageURL):
     cardTable = pd.read_html(StringIO(str(cardInformation)))[0]
 
     dictionary = {keyword: table.iloc[0, 1] for keyword, table in cardTable.groupby(0)}
-    #print(dictionary)
+    print(dictionary)
 
-    database = openpyxl.load_workbook("cfvdatabase.xlsx")
-    currentPage = database.active
+    #database = openpyxl.load_workbook("cfvdatabase.xlsx")
+    #currentPage = database.active
 
-    headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
+    #headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
     
-    dataArray = []
-    for keyword in headers:
-        dataArray.append(str(dictionary.get(keyword)))
+    #dataArray = []
+    #for keyword in headers:
+        #dataArray.append(str(dictionary.get(keyword)))
     
-    cardTuple = tuple(dataArray)
+    #cardTuple = tuple(dataArray)
     #print(headers)
     #print(cardTuple)
-    currentPage.append(cardTuple)
+    #currentPage.append(cardTuple)
 
-    database.save("cfvdatabase.xlsx")
+    #database.save("cfvdatabase.xlsx")
 
 def readSetInfo(pageURL):
     setRequest = requests.get(pageURL)
@@ -92,7 +85,10 @@ def readSetInfo(pageURL):
 
     print(setTable.to_string())
 
-readCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-readCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+#readCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+#readCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
-clearDatabase()
+#writeHeaders()
+
+oldLink = fullImageLink("Destined One of Scales, Aelquilibra")
+newLink = verifyLink(oldLink)
