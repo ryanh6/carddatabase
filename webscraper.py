@@ -10,6 +10,7 @@ from io import StringIO
 import pandas as pd
 import requests
 import openpyxl
+from openpyxl.utils import get_column_letter
 
 def fullImageLink(name):
     condensedName = name.replace(" ", "_")
@@ -17,6 +18,27 @@ def fullImageLink(name):
 
     generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName + "?file=" + formattedName + "_%28Full_Art%29.png"
     return generatedLink
+
+def formatDatabase():
+    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = spreadsheet.active
+
+    for i in range(0, currentPage.max_column):
+        maxLength = 0
+        columnIndex = get_column_letter(i + 1)
+
+        for j in range(0, currentPage.max_row):
+            wordLength = len(str(currentPage.cell(row = j + 1, column = i + 1).value))
+
+            if (wordLength > maxLength):
+                maxLength = wordLength
+
+        currentPage.column_dimensions[columnIndex].width = (maxLength + 5)
+
+    spreadsheet.save("cfvdatabase.xlsx")
+
+def clearDatabase():
+    createDatabase()
 
 def addHeaders(spreadsheet):
     currentPage = spreadsheet.active
@@ -71,8 +93,8 @@ def readSetInfo(pageURL):
 
     print(setTable.to_string())
 
+createDatabase()
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
-
-#createDatabase()
+formatDatabase()

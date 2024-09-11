@@ -7,3 +7,4 @@ Learning Pandas To Make Tables
 
 Learning How To Process Excel Files in Python
 - https://www.datacamp.com/tutorial/python-excel-tutorial
+- https://www.geeksforgeeks.org/python-adjusting-rows-and-columns-of-an-excel-file-using-openpyxl-module/
