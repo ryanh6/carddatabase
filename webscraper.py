@@ -35,7 +35,22 @@ def createDatabase():
 
     spreadsheet.save("cfvdatabase.xlsx")
 
-def readCardInfo(pageURL):
+def writeCardInfo(dictionary):
+    dataArray = []
+
+    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = spreadsheet.active
+
+    headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
+
+    for keyword in headers:
+        dataArray.append(str(dictionary.get(keyword)))
+
+    currentPage.append(tuple(dataArray))
+
+    spreadsheet.save("cfvdatabase.xlsx")
+
+def retrieveCardInfo(pageURL):
     cardRequest = requests.get(pageURL)
     cardPage = BeautifulSoup(cardRequest.text, "html.parser")
 
@@ -44,6 +59,8 @@ def readCardInfo(pageURL):
 
     dictionary = {keyword: table.iloc[0, 1] for keyword, table in cardTable.groupby(0)}
     print(dictionary)
+
+    writeCardInfo(dictionary)
 
 def readSetInfo(pageURL):
     setRequest = requests.get(pageURL)
@@ -54,8 +71,8 @@ def readSetInfo(pageURL):
 
     print(setTable.to_string())
 
-readCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-#readCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 
-createDatabase()
+#createDatabase()
