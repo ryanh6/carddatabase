@@ -79,10 +79,18 @@ def retrieveCardInfo(pageURL):
     cardInformation = cardPage.find("div", {"class": "info-main"})
     cardTable = pd.read_html(StringIO(str(cardInformation)))[0]
 
+    effectInformation = cardPage.find("table", {"class": "effect"})
+    effectTable = pd.read_html(StringIO(str(effectInformation)))[0]
+
+    print(effectTable)
+
+    #cardTable = pd.concat([cardTable, effectTable])
+    #print(cardTable)
+
     dictionary = {keyword: table.iloc[0, 1] for keyword, table in cardTable.groupby(0)}
     #print(dictionary)
 
-    writeCardInfo(dictionary)
+    #writeCardInfo(dictionary)
 
 def readSetInfo(pageURL):
     setRequest = requests.get(pageURL)
@@ -98,5 +106,3 @@ retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 #formatDatabase()
-link = fullImageLink("Blaster Blade")
-print(link)
