@@ -19,6 +19,15 @@ def fullImageLink(name):
     generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName + "?file=" + formattedName + "_%28Full_Art%29.png"
     return generatedLink
 
+def verifyLink(pageURL):
+    pageRequest = requests.get(pageURL)
+    page = BeautifulSoup(pageRequest.text, "html.parser")
+
+    body = page.find_all("img")
+
+    for image in body:
+        print("HERE: " + str(image))
+
 # def formatDatabase():
 #     spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
 #     currentPage = spreadsheet.active
@@ -80,7 +89,6 @@ def retrieveSpecialInfo(page, keyword):
 
     return dictionary[0]
 
-
 def retrieveCardInfo(pageURL):
     cardRequest = requests.get(pageURL)
     cardPage = BeautifulSoup(cardRequest.text, "html.parser")
@@ -96,6 +104,8 @@ def retrieveCardInfo(pageURL):
     dictionary.update(effectInformation)
     dictionary.update(setInformation)
 
+    #print(dictionary)
+
     #writeCardInfo(dictionary)
 
 # def readSetInfo(pageURL):
@@ -109,5 +119,13 @@ def retrieveCardInfo(pageURL):
 
 createDatabase()
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+
+#link = fullImageLink("Blaster Blade")
+#print(link)
+
+verifyLink("https://cardfight.fandom.com/wiki/Card_Gallery:Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+#verifyLink(link)
+
+"https://static.wikia.nocookie.net/cardfight/images/4/4c/V-BT09-002EN-VR_%28Sample%29.png/revision/latest/?cb=20201008182248"
