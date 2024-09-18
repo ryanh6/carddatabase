@@ -47,8 +47,10 @@ Sept 10th, 2024: Excel File Function
 - Excel Sheet is always there
 
 September 13th, 2024
-- Add card sets, card effect and full image link to the dictionary
+- Add card sets, card effect and full image link to the dictionary (DONE)
 - make the clean data version of the information
 - finish format of the excel spreadsheet
 - read all cards links from a set, website
 - no duplicates
+- ability to sort by a header (which makes each excel page be a category of the header)
+    - ex: sort by clan = each excel sheet is all cards from a clan, the clan column no longers appears on the sheet

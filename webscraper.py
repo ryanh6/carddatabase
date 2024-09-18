@@ -29,43 +29,27 @@ def rebuildLink(oldLink):
 
     return newString
 
-def getImageLink(name):
-    condensedName = name.replace(" ", "_")
+def createImageLink(pageURL):
+    images = ""
 
-    if (name.find("(V_Series)")):
-        name = name.replace(" (V_Series)", "")
-        ending = "_%28Full_Art-V%29.png"
-    else:
-        ending = "_%28Full_Art%29.png"
+    cardName = pageURL.split("/")[-1]
+    generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
 
-    formattedName = condensedName.replace(",", "%2C") + ending
-
-    generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName
-    
-    print(generatedLink)
-    print(formattedName)
-    
     pageRequest = requests.get(generatedLink)
     page = BeautifulSoup(pageRequest.text, "html.parser")
 
-    imageLink = page.find("img", {"data-src": re.compile(formattedName)})
+    imageLink = page.find_all("img", {"data-src": re.compile("_%28Full_Art(.*?)%29.png")})
     
-    if (imageLink == None):
-        return "None"
+    for image in imageLink:
+        smallImage = image.get("data-src")
+        fullImage = rebuildLink(smallImage)
+        images += fullImage + ", "
 
-    smallImage = imageLink.get("data-src")
-    fullImage = rebuildLink(smallImage)
+    if (images == ""):
+        return "No Full Arts"
 
-    return fullImage
-
-# def verifyLink(pageURL):
-#     pageRequest = requests.get(pageURL)
-#     page = BeautifulSoup(pageRequest.text, "html.parser")
-
-#     body = page.find_all("img")
-
-#     for image in body:
-#         print("HERE: " + str(image))
+    images = images[0:-2]
+    return images
 
 # def formatDatabase():
 #     spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
@@ -94,7 +78,8 @@ def addHeaders(spreadsheet):
     headers = ["Name", "Card Type", "Grade / Skill", "Imaginary Gift", 
                "Special Icon", "Trigger Effect", "Power", "Shield", 
                "Critical", "Nation", "Clan", "Race", "Format", "Illust", 
-               "Design / Illust", "Card Set(s)", "Card Effect(s)"]
+               "Design / Illust", "Full Art Link(s)", "Card Set(s)", 
+               "Card Effect(s)"]
     
     for i in range(0, len(headers)):
         currentPage.cell(row = 1, column = i + 1).value = headers[i]
@@ -137,11 +122,13 @@ def retrieveCardInfo(pageURL):
 
     effectInformation = retrieveSpecialInfo(cardPage, "effect")
     setInformation = retrieveSpecialInfo(cardPage, "sets")
+    fullArts = createImageLink(pageURL)
 
     dictionary = {keyword: table.iloc[0, 1] for keyword, table in cardTable.groupby(0)}
 
     dictionary.update(effectInformation)
     dictionary.update(setInformation)
+    dictionary.update({"Full Art Link(s)": fullArts})
 
     print(dictionary)
 
@@ -156,15 +143,10 @@ def retrieveCardInfo(pageURL):
 
 #     print(setTable.to_string())
 
-#createDatabase()
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+createDatabase()
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 
-link = getImageLink("Incandescent Lion, Blond Ezel (V Series)")
-print(link)
-
-#verifyLink("https://cardfight.fandom.com/wiki/Card_Gallery:Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-#verifyLink(link)
-
-#"https://static.wikia.nocookie.net/cardfight/images/4/4c/V-BT09-002EN-VR_%28Sample%29.png/revision/latest/?cb=20201008182248"
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
