@@ -10,23 +10,55 @@ from io import StringIO
 import pandas as pd
 import requests
 import openpyxl
+import re
 from openpyxl.utils import get_column_letter
 
-def fullImageLink(name):
+def rebuildLink(oldLink):
+    newString = ""
+
+    finalBit = oldLink.split("?")[-1]
+
+    splitString = oldLink.split("/")
+    for section in splitString:
+        if (section == "scale-to-width-down"):
+            break
+        else:
+            newString += section + "/"
+
+    newString += "?" + finalBit
+
+    return newString
+
+def getImageLink(name):
     condensedName = name.replace(" ", "_")
-    formattedName = condensedName.replace(",", "%2C")
+    formattedName = condensedName.replace(",", "%2C") + "_%28Full_Art%29.png"
 
-    generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName + "?file=" + formattedName + "_%28Full_Art%29.png"
-    return generatedLink
-
-def verifyLink(pageURL):
-    pageRequest = requests.get(pageURL)
+    generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName
+    
+    #print(generatedLink)
+    #print(formattedName)
+    
+    pageRequest = requests.get(generatedLink)
     page = BeautifulSoup(pageRequest.text, "html.parser")
 
-    body = page.find_all("img")
+    imageLink = page.find("img", {"data-src": re.compile(formattedName)})
+    
+    if (imageLink == None):
+        return "None"
 
-    for image in body:
-        print("HERE: " + str(image))
+    smallImage = imageLink.get("data-src")
+    fullImage = rebuildLink(smallImage)
+
+    return fullImage
+
+# def verifyLink(pageURL):
+#     pageRequest = requests.get(pageURL)
+#     page = BeautifulSoup(pageRequest.text, "html.parser")
+
+#     body = page.find_all("img")
+
+#     for image in body:
+#         print("HERE: " + str(image))
 
 # def formatDatabase():
 #     spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
@@ -117,13 +149,13 @@ def retrieveCardInfo(pageURL):
 
 #     print(setTable.to_string())
 
-createDatabase()
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+#createDatabase()
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 
-#link = fullImageLink("Blaster Blade")
-#print(link)
+link = getImageLink("Incandescent Lion, Blond Ezel")
+print(link)
 
 #verifyLink("https://cardfight.fandom.com/wiki/Card_Gallery:Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #verifyLink(link)
