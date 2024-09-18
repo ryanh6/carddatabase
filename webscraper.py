@@ -66,20 +66,20 @@ def createDatabase():
 
     spreadsheet.save("cfvdatabase.xlsx")
 
-# def writeCardInfo(dictionary):
-#     dataArray = []
+def writeCardInfo(dictionary):
+    dataArray = []
 
-#     spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
-#     currentPage = spreadsheet.active
+    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = spreadsheet.active
 
-#     headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
+    headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
 
-#     for keyword in headers:
-#         dataArray.append(str(dictionary.get(keyword)))
+    for keyword in headers:
+        dataArray.append(str(dictionary.get(keyword)))
 
-#     currentPage.append(tuple(dataArray))
+    currentPage.append(tuple(dataArray))
 
-#     spreadsheet.save("cfvdatabase.xlsx")
+    spreadsheet.save("cfvdatabase.xlsx")
 
 def retrieveSpecialInfo(page, keyword):
     data = page.find("table", {"class": keyword})
@@ -104,9 +104,9 @@ def retrieveCardInfo(pageURL):
     dictionary.update(effectInformation)
     dictionary.update(setInformation)
 
-    #print(dictionary)
+    print(dictionary)
 
-    #writeCardInfo(dictionary)
+    writeCardInfo(dictionary)
 
 # def readSetInfo(pageURL):
 #     setRequest = requests.get(pageURL)
@@ -125,7 +125,7 @@ retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fo
 #link = fullImageLink("Blaster Blade")
 #print(link)
 
-verifyLink("https://cardfight.fandom.com/wiki/Card_Gallery:Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+#verifyLink("https://cardfight.fandom.com/wiki/Card_Gallery:Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #verifyLink(link)
 
-"https://static.wikia.nocookie.net/cardfight/images/4/4c/V-BT09-002EN-VR_%28Sample%29.png/revision/latest/?cb=20201008182248"
+#"https://static.wikia.nocookie.net/cardfight/images/4/4c/V-BT09-002EN-VR_%28Sample%29.png/revision/latest/?cb=20201008182248"
