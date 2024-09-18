@@ -165,21 +165,27 @@ def retrieveCardInfo(pageURL):
     # Send dictionary to function to write into excel spreadsheet
     writeCardInfo(dictionary)
 
-# def readSetInfo(pageURL):
-#     setRequest = requests.get(pageURL)
-#     setPage = BeautifulSoup(setRequest.text, "html.parser")
+def readSetInfo(pageURL):
+    setRequest = requests.get(pageURL)
+    setPage = BeautifulSoup(setRequest.text, "html.parser")
 
-#     setList = setPage.find("table")
-#     setTable = pd.read_html(StringIO(str(setList)))[0]
+    setList = setPage.find("table")
+    #setTable = pd.read_html(StringIO(str(setList)))[0]
 
-#     print(setTable.to_string())
+    links = setList.find_all("a")
+    
+    for thing in links:
+        linkslinks = thing.get("href")
+        print(linkslinks)
+
+    #print(setTable.to_string())
 
 
 # MY TESTS BEYOND HERE
 createDatabase()
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-#readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
