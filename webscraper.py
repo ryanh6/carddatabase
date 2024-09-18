@@ -31,12 +31,19 @@ def rebuildLink(oldLink):
 
 def getImageLink(name):
     condensedName = name.replace(" ", "_")
-    formattedName = condensedName.replace(",", "%2C") + "_%28Full_Art%29.png"
+
+    if (name.find("(V_Series)")):
+        name = name.replace(" (V_Series)", "")
+        ending = "_%28Full_Art-V%29.png"
+    else:
+        ending = "_%28Full_Art%29.png"
+
+    formattedName = condensedName.replace(",", "%2C") + ending
 
     generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + condensedName
     
-    #print(generatedLink)
-    #print(formattedName)
+    print(generatedLink)
+    print(formattedName)
     
     pageRequest = requests.get(generatedLink)
     page = BeautifulSoup(pageRequest.text, "html.parser")
@@ -154,7 +161,7 @@ def retrieveCardInfo(pageURL):
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 
-link = getImageLink("Incandescent Lion, Blond Ezel")
+link = getImageLink("Incandescent Lion, Blond Ezel (V Series)")
 print(link)
 
 #verifyLink("https://cardfight.fandom.com/wiki/Card_Gallery:Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
