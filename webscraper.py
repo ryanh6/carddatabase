@@ -132,6 +132,10 @@ def writeCardInfo(dictionary):
 def retrieveSpecialInfo(page, keyword):
     # Find a table based on a given keyword
     data = page.find("table", {"class": keyword})
+
+    if (data == None):
+        return ({"Card Effect(s)": "None"})
+
     table = pd.read_html(StringIO(str(data)))[0]
 
     # Create a mini dictionary based on the table
@@ -170,22 +174,37 @@ def readSetInfo(pageURL):
     setPage = BeautifulSoup(setRequest.text, "html.parser")
 
     setList = setPage.find("table")
+
+    rows = setList.find_all("tr")
+    rows = rows[1:]
+
+    for entry in rows:
+        info = entry.find_all("td")
+        link = (info[1].find("a"))
+        sourceLink = link.get("href")
+
+        newLink = "https://cardfight.fandom.com" + sourceLink
+        print(newLink)
+        retrieveCardInfo(newLink)
+
     #setTable = pd.read_html(StringIO(str(setList)))[0]
 
-    links = setList.find_all("a")
+    # links = setList.find_all("a")
     
-    for thing in links:
-        linkslinks = thing.get("href")
-        print(linkslinks)
+    # for thing in links:
+    #     linkslinks = thing.get("href")
+    #     print(linkslinks)
 
-    #print(setTable.to_string())
+    #print(setTable)
 
 
 # MY TESTS BEYOND HERE
 createDatabase()
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_15:_Infinite_Rebirth")
 
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
+
+#retrieveCardInfo("https://cardfight.fandom.com/wiki/Demonic_Dragon_Mage,_Apalala")
