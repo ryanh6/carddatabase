@@ -149,6 +149,16 @@ def retrieveCardInfo(pageURL):
     cardRequest = requests.get(pageURL)
     cardPage = BeautifulSoup(cardRequest.text, "html.parser")
 
+    categories = cardPage.find("div", {"class": "page-header__categories"})
+
+    if (categories == None):
+        return
+
+    tag = categories.find(string = "Cards")
+
+    if (tag == None):
+        return
+
     # Extract the main table of card information on the page
     cardInformation = cardPage.find("div", {"class": "info-main"})
     cardTable = pd.read_html(StringIO(str(cardInformation)))[0]
@@ -202,7 +212,8 @@ def readSetInfo(pageURL):
 createDatabase()
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_15:_Infinite_Rebirth")
+#readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_15:_Infinite_Rebirth")
+readSetInfo("https://cardfight.fandom.com/wiki/V_Booster_Set_01:_Unite!_Team_Q4")
 
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
