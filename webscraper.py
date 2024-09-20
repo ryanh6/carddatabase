@@ -209,13 +209,22 @@ def readSetInfo(pageURL):
 
 
 # MY TESTS BEYOND HERE
-createDatabase()
+#createDatabase()
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
 #readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_15:_Infinite_Rebirth")
-readSetInfo("https://cardfight.fandom.com/wiki/V_Booster_Set_01:_Unite!_Team_Q4")
+#readSetInfo("https://cardfight.fandom.com/wiki/V_Booster_Set_01:_Unite!_Team_Q4")
 
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
 
 #retrieveCardInfo("https://cardfight.fandom.com/wiki/Demonic_Dragon_Mage,_Apalala")
+
+while (True):
+    command = ""
+    command = (input("Enter a Command: ")).upper()
+
+    if (command == "EXIT"):
+        break
+    else:
+        print("Not a valid command")
