@@ -48,7 +48,7 @@ Sept 10th, 2024: Excel File Function
 
 September 13th, 2024
 - Add card sets, card effect and full image link to the dictionary (DONE)
-- make the clean data version of the information
+- make the clean data version of the information (DONE)
 - finish format of the excel spreadsheet
 - read all cards links from a set, website
 - no duplicates

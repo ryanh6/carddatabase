@@ -13,6 +13,15 @@ import openpyxl
 import re
 from openpyxl.utils import get_column_letter
 
+def removeDuplicates(array):
+    newArray = []
+
+    for item in array:
+        if (item not in newArray):
+            newArray.append(item)
+
+    return newArray
+
 # Rebuilds the image link to remove shrinked size
 def rebuildLink(oldLink):
     newString = ""
@@ -89,11 +98,11 @@ def addHeaders(spreadsheet):
     currentPage = spreadsheet.active
 
     # List of all headers to be added
-    headers = ["Name", "Card Type", "Grade / Skill", "Imaginary Gift", 
-               "Special Icon", "Trigger Effect", "Power", "Shield", 
-               "Critical", "Nation", "Clan", "Race", "Format", "Illust", 
-               "Design / Illust", "Full Art Link(s)", "Card Set(s)", 
-               "Card Effect(s)"]
+    headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", 
+               "Imaginary Gift", "Special Icon", "Trigger Effect", 
+               "Power", "Shield", "Critical", "Nation", "Clan", 
+               "Race", "Format", "Artist", "Full Art Link(s)", 
+               "Card Set(s)", "Rarity", "Card Effect(s)"]
     
     # Add each header found in the array
     for i in range(0, len(headers)):
@@ -105,7 +114,123 @@ def createDatabase():
     spreadsheet = openpyxl.Workbook()
     addHeaders(spreadsheet)
 
+    # Rename the current page of the spreadsheet
+    currentPage = spreadsheet.active
+    currentPage.title = "All Cards"
+
     spreadsheet.save("cfvdatabase.xlsx")
+
+def filterRarity(array):
+    rarityString = ""
+    rarityOrder = ['C', 'R', 'RR', 'RRR']
+
+    # Find the Main Highest Rarity of the Card
+    for rare in rarityOrder:
+        for item in array:
+            if (item == rare):
+                rarityString = item
+
+    # Find any other Rarities
+    for item in array:
+        toRemove = False
+        for rare in rarityOrder:
+            if (item == rare):
+                toRemove = True
+        
+        # If we find Special Rarity, add to List
+        if (toRemove == False):
+            if (rarityString == ""):
+                rarityString += item
+            else:
+                rarityString += "+" + item
+    
+    # Return our list of Rarities
+    if (rarityString == ""):
+        return "-"
+    return rarityString
+
+# Cleans the Data of the Dictionary before reading into Excel
+def editDictionary(dictionary):
+    # Each Clan has different Imaginary Gift, use that to assign Gift
+    clanAccel = ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
+                  "Narukami", "Nova Grappler", "Pale Moon", "Tachikaze"]
+    clanForce = ["Bermuda Triangle", "Dimension Police", "Gear Chronicle",
+                 "Genesis", "Kagero", "Link Joker", "Neo Nectar", 
+                 "Royal Paladin", "Shadow Paladin", "Spike Brothers"]
+    clanProtect = ["Angel Feathers", "Dark Irregulars", "Granblue",
+                   "Megacolony", "Nubatama", "Oracle Think Tank"]
+
+    # Any unspecified Card Types are Normal Units
+    if (dictionary.get("Card Type") == None):
+        dictionary.update({"Card Type": "Normal Unit"})
+
+    # Split the Grade and Skill component into different sections
+    gradeSkill = dictionary.get("Grade / Skill")
+    splitGrade = gradeSkill.split("/")
+    if (len(splitGrade) > 1):
+        dictionary.update({"Grade": splitGrade[0].strip()})
+        dictionary.update({"Skill": splitGrade[1].strip()})
+    else:
+        dictionary.update({"Grade": splitGrade[0].strip()})
+
+    # Check for correct Imaginary Gift based on Clan
+    if (dictionary.get("Imaginary Gift") != None):
+        for clan in clanAccel:
+            if (dictionary.get("Clan") == clan):
+                dictionary.update({"Imaginary Gift": "Accel"})
+        for clan in clanForce:
+            if (dictionary.get("Clan") == clan):
+                dictionary.update({"Imaginary Gift": "Force"})
+        for clan in clanProtect:
+            if (dictionary.get("Clan") == clan):
+                dictionary.update({"Imaginary Gift": "Protect"})
+
+    # Remove Power from Trigger Effect
+    triggerEffect = dictionary.get("Trigger Effect")
+    if (triggerEffect != None):
+        splitTrigger = triggerEffect.split(" ")[0]
+        dictionary.update({"Trigger Effect": splitTrigger})
+
+    # Combine Illust and Design / Illust under Artist Keyword
+    if (dictionary.get("Illust") == None):
+        dictionary.update({"Artist": dictionary.get("Design / Illust")})
+    else:
+        dictionary.update({"Artist": dictionary.get("Illust")})
+
+    # Regex to search all Codes of Card Sets
+    allSets = dictionary.get("Card Set(s)")
+    pattern = re.compile(r"(?:[A-Za-z]+-)?\b\w{2}\d{2}/[A-Za-z]*\d{2,3}\b(?![A-Za-z])|(?:[A-Za-z]+-)?\b\w{2}\d{2}/[A-Za-z]*S\d{2}\b(?![A-Za-z])")
+    setCodes = pattern.findall(allSets)
+
+    # First Code of Card Set is the Debut Set
+    debutSet = setCodes[0]
+    dictionary.update({"Card No.": debutSet})
+
+    # Find the Card Series using the Debut Set
+    if (debutSet[0] == "V"):
+        dictionary.update({"Format": "V Series"})
+    elif (debutSet[0] == "D"):
+        dictionary.update({"Format": "D Series"})
+    else:
+        dictionary.update({"Format": "Original Series"})
+
+    # Combine all Card Sets into a String
+    cardSets = ""
+    for code in setCodes:
+        cardSets += code + ", "
+    cardSets = cardSets[0:-2]
+
+    dictionary.update({"Card Set(s)": cardSets})
+
+    # Find all Rarities of a Card throughout Sets
+    bracketPattern = re.compile(r"\((.*?)\)")
+    rarities = bracketPattern.findall(allSets)
+    rarities = removeDuplicates(rarities)
+
+    # Filter out Irrelevant Rarities
+    rarityString = filterRarity(rarities)
+
+    dictionary.update({"Rarity": rarityString})
 
 # Given information about a card, write into the excel spreadsheet
 def writeCardInfo(dictionary):
@@ -121,7 +246,10 @@ def writeCardInfo(dictionary):
 
     # For every header, find the corresponding information in the dictionary
     for keyword in headers:
-        dataArray.append(str(dictionary.get(keyword)))
+        if (dictionary.get(keyword) == None):
+            dataArray.append("-")
+        else:
+            dataArray.append(str(dictionary.get(keyword)))
 
     # Once all information for the row is found, append row to excel spreadsheet
     currentPage.append(tuple(dataArray))
@@ -176,6 +304,8 @@ def retrieveCardInfo(pageURL):
     dictionary.update(setInformation)
     dictionary.update({"Full Art Link(s)": fullArts})
 
+    editDictionary(dictionary)
+
     # Send dictionary to function to write into excel spreadsheet
     writeCardInfo(dictionary)
 
@@ -197,28 +327,37 @@ def retrieveSetInfo(pageURL):
         retrieveCardInfo(newLink)
 
 # MAIN LOOP
-while (True):
-    command = ""
+# while (True):
+#     command = ""
 
-    print("")
-    print("------------ List of Commands ------------")
-    print("CLEAR: Clears the Current Database")
-    print("READBYCARD: Read data of a card given a link")
-    print("READBYSET: Read data of a set given a link")
-    print("EXIT: Exit Program")
-    print("------------------------------------------")
-    command = (input("Enter a Command: ")).lower()
-    print("")
+#     print("")
+#     print("------------ List of Commands ------------")
+#     print("CLEAR: Clears the Current Database")
+#     print("READBYCARD: Read data of a card given a link")
+#     print("READBYSET: Read data of a set given a link")
+#     print("EXIT: Exit Program")
+#     print("------------------------------------------")
+#     command = (input("Enter a Command: ")).lower()
+#     print("")
 
-    if (command == "clear"):
-        clearDatabase()
-    elif (command == "readbycard"):
-        link = input("Provide the URL of the Card: ")
-        retrieveCardInfo(link)
-    elif (command == "readbyset"):
-        link = input("Provide the URL of the Set: ")
-        retrieveSetInfo(link)
-    elif (command == "exit"):
-        break
-    else:
-        print("Not a Valid Command")
+#     if (command == "clear"):
+#         clearDatabase()
+#     elif (command == "readbycard"):
+#         link = input("Provide the URL of the Card: ")
+#         retrieveCardInfo(link)
+#     elif (command == "readbyset"):
+#         link = input("Provide the URL of the Set: ")
+#         retrieveSetInfo(link)
+#     elif (command == "exit"):
+#         break
+#     else:
+#         print("Not a Valid Command")
+
+# TESTING
+createDatabase()
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Exceedance,_Impauldio#English_")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
