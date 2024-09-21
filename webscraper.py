@@ -191,7 +191,6 @@ def retrieveSetInfo(pageURL):
     for row in rowArray:
         info = row.find_all("td")
         sourceLink = (info[1].find("a")).get("href")
-        #sourceLink = link.get("href")
 
         newLink = "https://cardfight.fandom.com" + sourceLink
         print(newLink)
@@ -200,17 +199,26 @@ def retrieveSetInfo(pageURL):
 # MAIN LOOP
 while (True):
     command = ""
+
+    print("")
+    print("------------ List of Commands ------------")
+    print("CLEAR: Clears the Current Database")
+    print("READBYCARD: Read data of a card given a link")
+    print("READBYSET: Read data of a set given a link")
+    print("EXIT: Exit Program")
+    print("------------------------------------------")
     command = (input("Enter a Command: ")).lower()
+    print("")
 
     if (command == "clear"):
         clearDatabase()
-    elif (command == "readcard"):
+    elif (command == "readbycard"):
         link = input("Provide the URL of the Card: ")
         retrieveCardInfo(link)
-    elif (command == "readset"):
+    elif (command == "readbyset"):
         link = input("Provide the URL of the Set: ")
         retrieveSetInfo(link)
     elif (command == "exit"):
         break
     else:
-        print("Not a valid command")
+        print("Not a Valid Command")
