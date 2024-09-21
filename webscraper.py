@@ -179,52 +179,38 @@ def retrieveCardInfo(pageURL):
     # Send dictionary to function to write into excel spreadsheet
     writeCardInfo(dictionary)
 
-def readSetInfo(pageURL):
+def retrieveSetInfo(pageURL):
     setRequest = requests.get(pageURL)
     setPage = BeautifulSoup(setRequest.text, "html.parser")
 
     setList = setPage.find("table")
 
-    rows = setList.find_all("tr")
-    rows = rows[1:]
+    rowArray = setList.find_all("tr")
+    rowArray = rowArray[1:]
 
-    for entry in rows:
-        info = entry.find_all("td")
-        link = (info[1].find("a"))
-        sourceLink = link.get("href")
+    for row in rowArray:
+        info = row.find_all("td")
+        sourceLink = (info[1].find("a")).get("href")
+        #sourceLink = link.get("href")
 
         newLink = "https://cardfight.fandom.com" + sourceLink
         print(newLink)
         retrieveCardInfo(newLink)
 
-    #setTable = pd.read_html(StringIO(str(setList)))[0]
-
-    # links = setList.find_all("a")
-    
-    # for thing in links:
-    #     linkslinks = thing.get("href")
-    #     print(linkslinks)
-
-    #print(setTable)
-
-
-# MY TESTS BEYOND HERE
-#createDatabase()
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-#readSetInfo("https://cardfight.fandom.com/wiki/Booster_Set_15:_Infinite_Rebirth")
-#readSetInfo("https://cardfight.fandom.com/wiki/V_Booster_Set_01:_Unite!_Team_Q4")
-
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Phantom_Blaster_Dragon_(Break_Ride)")
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
-
-#retrieveCardInfo("https://cardfight.fandom.com/wiki/Demonic_Dragon_Mage,_Apalala")
-
+# MAIN LOOP
 while (True):
     command = ""
-    command = (input("Enter a Command: ")).upper()
+    command = (input("Enter a Command: ")).lower()
 
-    if (command == "EXIT"):
+    if (command == "clear"):
+        clearDatabase()
+    elif (command == "readcard"):
+        link = input("Provide the URL of the Card: ")
+        retrieveCardInfo(link)
+    elif (command == "readset"):
+        link = input("Provide the URL of the Set: ")
+        retrieveSetInfo(link)
+    elif (command == "exit"):
         break
     else:
         print("Not a valid command")
