@@ -12,6 +12,8 @@ import requests
 import openpyxl
 import re
 from openpyxl.utils import get_column_letter
+from openpyxl.styles import Font
+from openpyxl.styles import Alignment
 
 def removeDuplicates(array):
     newArray = []
@@ -71,23 +73,45 @@ def createImageLink(pageURL):
     images = images[0:-2]
     return images
 
-# def formatDatabase():
-#     spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
-#     currentPage = spreadsheet.active
+def formatDatabase():
+    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = spreadsheet.active
 
-#     for i in range(0, currentPage.max_column):
-#         maxLength = 0
-#         columnIndex = get_column_letter(i + 1)
+    for i in range(0, currentPage.max_column):
+        for j in range(0, currentPage.max_row):
+            currentPage.cell(row = j + 1, column = i + 1).font = Font(size = 14)
+    
+        currentPage.cell(row = 1, column = i + 1).font = Font(bold = True, size = 16)
 
-#         for j in range(0, currentPage.max_row):
-#             wordLength = len(str(currentPage.cell(row = j + 1, column = i + 1).value))
+    for i in range(0, currentPage.max_column):
+        maxLength = 0
+        columnIndex = get_column_letter(i + 1)
 
-#             if (wordLength > maxLength):
-#                 maxLength = wordLength
+        header = (currentPage.cell(row = 1, column = i + 1)).value
 
-#         currentPage.column_dimensions[columnIndex].width = (maxLength + 5)
+        if (header == "Full Art Link(s)" or header == "Card Effect(s)"):
+            wordLength = len(str(header))
+            currentPage.column_dimensions[columnIndex].width = (wordLength + 5)
+            continue
 
-#     spreadsheet.save("cfvdatabase.xlsx")
+        for j in range(0, currentPage.max_row):
+            currentCell = currentPage.cell(row = j + 1, column = i + 1)
+
+            wordLength = len(str(currentCell.value))
+
+            if (wordLength > maxLength):
+                maxLength = wordLength
+
+            if (header == "Power" or header == "Shield" or header == "Critical"):
+                currentCell.alignment = Alignment(horizontal='center')
+            if (header == "Imaginary Gift" or header == "Special Icon" or header == "Trigger Effect"):
+                currentCell.alignment = Alignment(horizontal='center')
+            elif (currentCell.value == "-"):
+                currentCell.alignment = Alignment(horizontal='center')
+
+        currentPage.column_dimensions[columnIndex].width = (maxLength + 5)
+
+    spreadsheet.save("cfvdatabase.xlsx")
 
 # Clear the current excel spreadsheet
 def clearDatabase():
@@ -119,6 +143,8 @@ def createDatabase():
     currentPage.title = "All Cards"
 
     spreadsheet.save("cfvdatabase.xlsx")
+
+# def sortByHeader(sortKeyword):
 
 def filterRarity(array):
     rarityString = ""
@@ -361,3 +387,4 @@ retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
+formatDatabase()
