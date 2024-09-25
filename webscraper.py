@@ -19,6 +19,8 @@ def removeDuplicates(array):
     newArray = []
 
     for item in array:
+        if (item == "-"):
+            continue
         if (item not in newArray):
             newArray.append(item)
 
@@ -118,8 +120,8 @@ def clearDatabase():
     createDatabase()
 
 # Add headers to the excel spreadsheet
-def addHeaders(spreadsheet):
-    currentPage = spreadsheet.active
+def addHeaders(currentPage):
+    # currentPage = spreadsheet.active
 
     # List of all headers to be added
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", 
@@ -136,15 +138,44 @@ def addHeaders(spreadsheet):
 def createDatabase():
     # Open a new excel spreadsheet and assign headers
     spreadsheet = openpyxl.Workbook()
-    addHeaders(spreadsheet)
+    # addHeaders(spreadsheet)
 
     # Rename the current page of the spreadsheet
     currentPage = spreadsheet.active
     currentPage.title = "All Cards"
 
+    addHeaders(currentPage)
+
     spreadsheet.save("cfvdatabase.xlsx")
 
-# def sortByHeader(sortKeyword):
+def sortByHeader(sortKeyword):
+    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = spreadsheet["All Cards"]
+
+    count = 1
+    headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
+
+    for keywords in headers:
+        if (keywords == sortKeyword):
+            break
+        else:
+            count = count + 1
+        
+    categories = []
+
+    for i in range(2, currentPage.max_row + 1):
+        data = (currentPage.cell(row = i, column = count).value)
+        categories.append(data)
+
+    categories = removeDuplicates(categories)
+
+    for group in categories:
+        spreadsheet.create_sheet(group)
+        currentPage = spreadsheet[group]
+        addHeaders(currentPage)
+        formatDatabase()
+
+    spreadsheet.save("cfvdatabase.xlsx")
 
 def filterRarity(array):
     rarityString = ""
@@ -359,43 +390,45 @@ def automate():
         retrieveSetInfo(set)
 
 # MAIN LOOP
-while (True):
-    command = ""
+# while (True):
+#     command = ""
 
-    print("")
-    print("------------ List of Commands ------------")
-    print("CLEAR: Clears the Current Database")
-    print("READBYCARD: Read data of a card given a link")
-    print("READBYSET: Read data of a set given a link")
-    print("AUTOMATE: Reads in all cards from all sets")
-    print("EXIT: Exit Program")
-    print("------------------------------------------")
-    command = (input("Enter a Command: ")).lower()
-    print("")
+#     print("")
+#     print("------------ List of Commands ------------")
+#     print("CLEAR: Clears the Current Database")
+#     print("READBYCARD: Read data of a card given a link")
+#     print("READBYSET: Read data of a set given a link")
+#     print("AUTOMATE: Reads in all cards from all sets")
+#     print("EXIT: Exit Program")
+#     print("------------------------------------------")
+#     command = (input("Enter a Command: ")).lower()
+#     print("")
 
-    if (command == "clear"):
-        clearDatabase()
-    elif (command == "readbycard"):
-        link = input("Provide the URL of the Card: ")
-        retrieveCardInfo(link)
-    elif (command == "readbyset"):
-        link = input("Provide the URL of the Set: ")
-        retrieveSetInfo(link)
-    elif (command == "automate"):
-        automate()
-    elif (command == "exit"):
-        break
-    else:
-        print("Not a Valid Command")
+#     if (command == "clear"):
+#         clearDatabase()
+#     elif (command == "readbycard"):
+#         link = input("Provide the URL of the Card: ")
+#         retrieveCardInfo(link)
+#     elif (command == "readbyset"):
+#         link = input("Provide the URL of the Set: ")
+#         retrieveSetInfo(link)
+#     elif (command == "automate"):
+#         automate()
+#     elif (command == "exit"):
+#         break
+#     else:
+#         print("Not a Valid Command")
     
-    formatDatabase()
+#     formatDatabase()
 
 # TESTING
-# createDatabase()
-# retrieveCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Exceedance,_Impauldio#English_")
-# retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-# retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-# retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
-# retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
-# retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
-# formatDatabase()
+createDatabase()
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Exceedance,_Impauldio#English_")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
+retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
+formatDatabase()
+
+sortByHeader("Clan")
