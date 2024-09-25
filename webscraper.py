@@ -89,7 +89,7 @@ def formatDatabase():
 
         header = (currentPage.cell(row = 1, column = i + 1)).value
 
-        if (header == "Full Art Link(s)" or header == "Card Effect(s)"):
+        if (header == "Full Art Link(s)" or header == "Card Effect(s)" or header == "Card Set(s)"):
             wordLength = len(str(header))
             currentPage.column_dimensions[columnIndex].width = (wordLength + 5)
             continue
@@ -352,39 +352,50 @@ def retrieveSetInfo(pageURL):
         print(newLink)
         retrieveCardInfo(newLink)
 
+def automate():
+    allSetsFile = open("setsToRead.txt", "r")
+    for set in allSetsFile:
+        set = set[:-1]
+        retrieveSetInfo(set)
+
 # MAIN LOOP
-# while (True):
-#     command = ""
+while (True):
+    command = ""
 
-#     print("")
-#     print("------------ List of Commands ------------")
-#     print("CLEAR: Clears the Current Database")
-#     print("READBYCARD: Read data of a card given a link")
-#     print("READBYSET: Read data of a set given a link")
-#     print("EXIT: Exit Program")
-#     print("------------------------------------------")
-#     command = (input("Enter a Command: ")).lower()
-#     print("")
+    print("")
+    print("------------ List of Commands ------------")
+    print("CLEAR: Clears the Current Database")
+    print("READBYCARD: Read data of a card given a link")
+    print("READBYSET: Read data of a set given a link")
+    print("AUTOMATE: Reads in all cards from all sets")
+    print("EXIT: Exit Program")
+    print("------------------------------------------")
+    command = (input("Enter a Command: ")).lower()
+    print("")
 
-#     if (command == "clear"):
-#         clearDatabase()
-#     elif (command == "readbycard"):
-#         link = input("Provide the URL of the Card: ")
-#         retrieveCardInfo(link)
-#     elif (command == "readbyset"):
-#         link = input("Provide the URL of the Set: ")
-#         retrieveSetInfo(link)
-#     elif (command == "exit"):
-#         break
-#     else:
-#         print("Not a Valid Command")
+    if (command == "clear"):
+        clearDatabase()
+    elif (command == "readbycard"):
+        link = input("Provide the URL of the Card: ")
+        retrieveCardInfo(link)
+    elif (command == "readbyset"):
+        link = input("Provide the URL of the Set: ")
+        retrieveSetInfo(link)
+    elif (command == "automate"):
+        automate()
+    elif (command == "exit"):
+        break
+    else:
+        print("Not a Valid Command")
+    
+    formatDatabase()
 
 # TESTING
-createDatabase()
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Exceedance,_Impauldio#English_")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
-formatDatabase()
+# createDatabase()
+# retrieveCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Exceedance,_Impauldio#English_")
+# retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
+# retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
+# retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
+# retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
+# retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
+# formatDatabase()
