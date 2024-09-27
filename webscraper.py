@@ -34,6 +34,7 @@ def retrieveCardInfo(pageURL):
     # dictionary.update(effectInformation)
     # dictionary.update(setInformation)
     # dictionary.update({"Full Art Link(s)": fullArts})
+    print(cardTable)
 
     print(dictionary)
 
