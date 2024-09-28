@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import re
+from database import *
 
 # Edit Dictionary Functions ----------------------------------------------
 def findGiftMarker(targetClan):
@@ -171,19 +172,19 @@ def readCard(pageURL):
 
     dictionary = editDictionary(dictionary)
 
-    return dictionary
+    writeCardInfo(dictionary)
 
 # Test Cases
-# readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
-# readCard("https://cardfight.fandom.com/wiki/Battleraizer")
-# readCard("https://cardfight.fandom.com/wiki/Cable_Sheep")
-# readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr")
-# readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam")
-# readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)")
-# readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
-# readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
-# readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22")
-# readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra")
-# readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon")
-# readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest")
-# readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv")
+readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+readCard("https://cardfight.fandom.com/wiki/Battleraizer")
+readCard("https://cardfight.fandom.com/wiki/Cable_Sheep")
+readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr")
+readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam")
+readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)")
+readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
+readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
+readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22")
+readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra")
+readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon")
+readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest")
+readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv")

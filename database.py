@@ -1,5 +1,4 @@
 import openpyxl
-from webscraper import *
 
 def addHeaders(page, excludeKey):
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 
@@ -16,6 +15,8 @@ def createPage(spreadsheet, name, excludeKey):
     newPage = spreadsheet.create_sheet(name)
     addHeaders(newPage, excludeKey)
 
+    return newPage
+
 def createDatabase():
     spreadsheet = openpyxl.Workbook()
     currentPage = spreadsheet.active
@@ -25,4 +26,22 @@ def createDatabase():
 
     spreadsheet.save("cfvdatabase.xlsx")
 
-createDatabase()
+def writeCardInfo(cardDictionary):
+    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+    currentPage = spreadsheet.active
+
+    headers = []    
+    for index in range(1, currentPage.max_column + 1):
+        headers.append(currentPage.cell(row = 1, column = index).value)
+
+    cardData = []
+    for keyword in headers:
+        if (cardDictionary.get(keyword) == None):
+            cardData.append("-")
+        else:
+            cardData.append(str(cardDictionary.get(keyword)))
+    
+    currentPage.append(tuple(cardData))
+    spreadsheet.save("cfvdatabase.xlsx")
+
+# createDatabase()
