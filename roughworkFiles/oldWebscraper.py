@@ -75,10 +75,7 @@ def createImageLink(pageURL):
     images = images[0:-2]
     return images
 
-def formatDatabase():
-    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
-    currentPage = spreadsheet.active
-
+def formatDatabase(currentPage):
     for i in range(0, currentPage.max_column):
         for j in range(0, currentPage.max_row):
             currentPage.cell(row = j + 1, column = i + 1).font = Font(size = 14)
@@ -112,8 +109,6 @@ def formatDatabase():
                 currentCell.alignment = Alignment(horizontal='center')
 
         currentPage.column_dimensions[columnIndex].width = (maxLength + 5)
-
-    spreadsheet.save("cfvdatabase.xlsx")
 
 # Clear the current excel spreadsheet
 def clearDatabase():
@@ -173,7 +168,7 @@ def sortByHeader(sortKeyword):
         spreadsheet.create_sheet(group)
         currentPage = spreadsheet[group]
         addHeaders(currentPage)
-        formatDatabase()
+        formatDatabase(currentPage)
 
     spreadsheet.save("cfvdatabase.xlsx")
 
@@ -311,6 +306,8 @@ def writeCardInfo(dictionary):
     # Once all information for the row is found, append row to excel spreadsheet
     currentPage.append(tuple(dataArray))
 
+    formatDatabase(currentPage)
+
     spreadsheet.save("cfvdatabase.xlsx")
 
 # Special function to retrieve information not found in main information table of a card page
@@ -383,12 +380,6 @@ def retrieveSetInfo(pageURL):
         print(newLink)
         retrieveCardInfo(newLink)
 
-def automate():
-    allSetsFile = open("setsToRead.txt", "r")
-    for set in allSetsFile:
-        set = set[:-1]
-        retrieveSetInfo(set)
-
 # MAIN LOOP
 # while (True):
 #     command = ""
@@ -429,6 +420,6 @@ retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
 retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
-formatDatabase()
+#formatDatabase()
 
 sortByHeader("Clan")
