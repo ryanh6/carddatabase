@@ -78,7 +78,8 @@ def cardFullArt(pageURL):
     galleryRequest = requests.get(cardGalleryLink)
     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
 
-    fullArts = galleryPage.find_all("img", {"data-src": re.compile("_%28Full_Art(.*?)%29.png")})
+    regexPattern = re.compile("_%28Full_Art(.*?)%29.png")
+    fullArts = galleryPage.find_all("img", {"data-src": regexPattern})
 
     imagesString = ""
     for images in fullArts:
@@ -90,6 +91,17 @@ def cardFullArt(pageURL):
         return ({"Full Art(s)": "None"})
     
     return ({"Full Art(s)": imagesString[0:-2]})
+
+def readCardSets(page):
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    # codesPattern = re.compile("(?:[A-Za-z]+-)?[A-Za-z]+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?![A-Za-z])")
+    codesPattern = re.compile("(?:[A-Za-z]+-)?[A-Za-z]+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?![A-Za-z]+)?")
+    for set in setsDescription:
+        print(set.text)
+        setCodes = codesPattern.findall(str(set))
+        print(setCodes)
 
 def readCardEffect(page):
     try:
@@ -120,11 +132,13 @@ def readCard(pageURL):
     dictionary.update(readCardEffect(cardPage))
     dictionary.update(cardFullArt(pageURL))
 
+    readCardSets(cardPage)
+
     dictionary = editDictionary(dictionary)
 
-    for item in dictionary:
-        print(item + ": (" + dictionary.get(item) + ")")
-    print("")
+    # for item in dictionary:
+    #     print(item + ": " + dictionary.get(item))
+    # print("")
 
 # Test Cases
 readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
