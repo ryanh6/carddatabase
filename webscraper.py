@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+# Edit Dictionary Functions ----------------------------------------------
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
                                 "Narukami", "Nova Grappler", "Pale Moon", "Tachikaze"],
@@ -16,6 +17,9 @@ def findGiftMarker(targetClan):
                 return giftMarker
 
 def addAttributes(dictionary):
+    debutSet = dictionary.get("Card Set(s)").split(",")[0]
+    dictionary.update({"Card No.": debutSet})
+
     if (dictionary.get("Card Type") == None):
         dictionary.update({"Card Type": "Normal Unit"})
 
@@ -28,7 +32,7 @@ def addAttributes(dictionary):
 
 def deleteAttributes(dictionary):
     toRemove = ["Kanji", "Kana", "Phonetic", "Thai", "Italian", "Korean", 
-                "Format", "Grade / Skill", "Illust", "Design /  Illust"]
+                "Grade / Skill", "Illust", "Design /  Illust"]
     
     for key in toRemove:
         dictionary.pop(key, None)
@@ -36,6 +40,15 @@ def deleteAttributes(dictionary):
     return dictionary
 
 def editAttributes(dictionary):
+    debutSet = dictionary.get("Card No.")
+
+    if (debutSet[0] == "V"):
+        dictionary.update({"Format": "V Series"})
+    elif (debutSet[0] == "D"):
+        dictionary.update({"Format": "D Series"})
+    else:
+        dictionary.update({"Format": "Original Series"})
+
     if (dictionary.get("Grade / Skill") != None):
         splitGrade = dictionary.get("Grade / Skill").split(" / ")
 
@@ -59,6 +72,7 @@ def editDictionary(dictionary):
     dictionary = deleteAttributes(dictionary)
     return dictionary
 
+# Read Details Helper Functions ------------------------------------------
 def rebuildLink(oldLink):
     newString = ""
     splitString = oldLink.split("/")
@@ -92,16 +106,36 @@ def cardFullArt(pageURL):
     
     return ({"Full Art(s)": imagesString[0:-2]})
 
+def readCardRarities(page):
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    rarities = []
+    rarityPattern = re.compile(r"\((.*?)\)")
+    for set in setsDescription:
+        rarities.extend(rarityPattern.findall(str(set)))
+
+    raritiesString = ""
+    for rarity in rarities:
+        if (rarity not in raritiesString):
+            raritiesString += rarity + "+"
+
+    return ({"Rarity": raritiesString[0:-1]})
+
 def readCardSets(page):
     cardSets = page.find("table", {"class": "sets"})
     setsDescription = (cardSets.find("td")).find_all("li")
 
-    # codesPattern = re.compile("(?:[A-Za-z]+-)?[A-Za-z]+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?![A-Za-z])")
-    codesPattern = re.compile("(?:[A-Za-z]+-)?[A-Za-z]+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?![A-Za-z]+)?")
+    setCodes = []
+    codesPattern = re.compile(r"(?:[A-Za-z]+-)?(?:BT|EB|TD|TCB|CHB|CB|CMB|MB|FC|SS|LD|SD|MBT)+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?: |<br/>)")
     for set in setsDescription:
-        print(set.text)
-        setCodes = codesPattern.findall(str(set))
-        print(setCodes)
+        setCodes.extend(codesPattern.findall(str(set)))
+
+    setString = ""
+    for index in range(0, len(setCodes)):
+        setString += (setCodes[index].split("<")[0]).strip() + ", "
+
+    return ({"Card Set(s)": setString[0:-2]})
 
 def readCardEffect(page):
     try:
@@ -111,6 +145,7 @@ def readCardEffect(page):
     except:
         return ({"Card Effect(s)": "None"})
 
+# Main Read Page Functions -----------------------------------------------
 def readCard(pageURL):
     try:
         cardRequest = requests.get(pageURL)
@@ -131,23 +166,24 @@ def readCard(pageURL):
 
     dictionary.update(readCardEffect(cardPage))
     dictionary.update(cardFullArt(pageURL))
-
-    readCardSets(cardPage)
+    dictionary.update(readCardSets(cardPage))
+    dictionary.update(readCardRarities(cardPage))
 
     dictionary = editDictionary(dictionary)
 
-    # for item in dictionary:
-    #     print(item + ": " + dictionary.get(item))
-    # print("")
+    return dictionary
 
 # Test Cases
-readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
-readCard("https://cardfight.fandom.com/wiki/Battleraizer")
-readCard("https://cardfight.fandom.com/wiki/Cable_Sheep")
-readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr")
-readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam")
-readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)")
-readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
-readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
-readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22")
-readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra")
+# readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+# readCard("https://cardfight.fandom.com/wiki/Battleraizer")
+# readCard("https://cardfight.fandom.com/wiki/Cable_Sheep")
+# readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr")
+# readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam")
+# readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)")
+# readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
+# readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
+# readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22")
+# readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra")
+# readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon")
+# readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest")
+# readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv")
