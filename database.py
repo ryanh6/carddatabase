@@ -1,4 +1,14 @@
 import openpyxl
+import pandas as pd
+
+def removeDuplicates():
+    dataframe = pd.read_excel("cfvdatabase.xlsx")
+    dataframeDuplicates = dataframe.drop_duplicates("Card No.")
+    print(dataframeDuplicates.to_string())
+    dataframeDuplicates.to_excel("cfvdatabase.xlsx", index = False)
+
+# def formatDatabase(page):
+#     removeDuplicates(page)
 
 def addHeaders(page, excludeKey):
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 
@@ -45,3 +55,7 @@ def writeCardInfo(cardDictionary):
     spreadsheet.save("cfvdatabase.xlsx")
 
 # createDatabase()
+
+spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+currentPage = spreadsheet.active
+removeDuplicates()
