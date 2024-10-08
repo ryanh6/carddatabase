@@ -4,11 +4,9 @@ import pandas as pd
 def removeDuplicates():
     dataframe = pd.read_excel("cfvdatabase.xlsx")
     dataframeDuplicates = dataframe.drop_duplicates("Card No.")
-    print(dataframeDuplicates.to_string())
-    dataframeDuplicates.to_excel("cfvdatabase.xlsx", index = False)
-
-# def formatDatabase(page):
-#     removeDuplicates(page)
+    dataframeSorted = dataframeDuplicates.sort_values("Card No.")
+    print(dataframeSorted)
+    dataframeSorted.to_excel("cfvdatabase.xlsx", index = False)
 
 def addHeaders(page, excludeKey):
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 

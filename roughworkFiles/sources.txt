@@ -8,3 +8,8 @@ Learning Pandas To Make Tables
 Learning How To Process Excel Files in Python
 - https://www.datacamp.com/tutorial/python-excel-tutorial
 - https://www.geeksforgeeks.org/python-adjusting-rows-and-columns-of-an-excel-file-using-openpyxl-module/
+
+Filter and Output From Pandas to Excel and Back
+- https://www.geeksforgeeks.org/ways-to-filter-pandas-dataframe-by-column-values/
+- https://www.geeksforgeeks.org/get-a-list-of-a-particular-column-values-of-a-pandas-dataframe/
+- https://www.geeksforgeeks.org/how-to-write-pandas-dataframes-to-multiple-excel-sheets/

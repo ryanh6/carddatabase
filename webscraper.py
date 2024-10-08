@@ -103,7 +103,7 @@ def cardFullArt(pageURL):
         imagesString += scaledImage + ", "
     
     if (imagesString == ""):
-        return ({"Full Art(s)": "None"})
+        return ({"Full Art(s)": "-"})
     
     return ({"Full Art(s)": imagesString[0:-2]})
 
@@ -144,7 +144,7 @@ def readCardEffect(page):
         effectDescription = cardEffect.find("td")
         return ({"Card Effect(s)": (effectDescription.text).strip()})
     except:
-        return ({"Card Effect(s)": "None"})
+        return ({"Card Effect(s)": "-"})
 
 # Main Read Page Functions -----------------------------------------------
 def readCard(pageURL):
@@ -175,6 +175,7 @@ def readCard(pageURL):
     writeCardInfo(dictionary)
 
 # Test Cases
+createDatabase()
 readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
 readCard("https://cardfight.fandom.com/wiki/Battleraizer")
 readCard("https://cardfight.fandom.com/wiki/Cable_Sheep")
