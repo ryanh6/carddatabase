@@ -8,6 +8,9 @@ def removeDuplicates():
     print(dataframeSorted)
     dataframeSorted.to_excel("cfvdatabase.xlsx", index = False)
 
+def formatDatabase():
+    removeDuplicates()
+
 def addHeaders(page, excludeKey):
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 
                "Trigger Effect", "Power", "Shield", "Critical", "Nation", "Clan", "Race", "Format", 
@@ -56,4 +59,4 @@ def writeCardInfo(cardDictionary):
 
 spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
 currentPage = spreadsheet.active
-removeDuplicates()
+formatDatabase()
