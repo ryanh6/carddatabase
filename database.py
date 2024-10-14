@@ -1,30 +1,52 @@
 import openpyxl
 import pandas as pd
 
-def removeDuplicates():
-    dataframe = pd.read_excel("cfvdatabase.xlsx")
-    dataframeDuplicates = dataframe.drop_duplicates("Card No.")
-    dataframeSorted = dataframeDuplicates.sort_values("Card No.")
-    print(dataframeSorted)
-    dataframeSorted.to_excel("cfvdatabase.xlsx", index = False)
+def sortDatabase(dataframe):
+    return dataframe.sort_values("Card No.")
+    
+def removeDuplicates(dataframe):
+    return dataframe.drop_duplicates("Card No.")
+
+def convertToPanda():
+    return pd.read_excel("cfvdatabase.xlsx")
+
+# def filterDatabase(keyword):
+#     path = r"C:\Users\ryanh\Documents\Personal\Coding\carddatabase\cfvDatabase.xlsx"
+    
+#     book = openpyxl.load_workbook("cfvdatabase.xlsx")
+#     writer = pd.ExcelWriter(path, engine = "openpyxl")
+#     writer.book = book
+
+#     cfvDataframe = convertToPanda()
+#     values = cfvDataframe[keyword].unique()
+
+#     for word in values:
+#         filteredDataframe = cfvDataframe[cfvDataframe[keyword] == word]
+#         # del filteredDataframe[keyword]
+#         # print(filteredDataframe)
+#         filteredDataframe.to_excel(writer, sheet_name = word, index = False)
+
+#     writer.save()
 
 def formatDatabase():
-    removeDuplicates()
+    cfvDataframe = convertToPanda()
+    cfvDataframe = removeDuplicates(cfvDataframe)
+    cfvDataframe = sortDatabase(cfvDataframe)
+    cfvDataframe.to_excel("cfvdatabase.xlsx", sheet_name = "All Cards", index = False)
 
-def addHeaders(page, excludeKey):
+def addHeaders(page):
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 
                "Trigger Effect", "Power", "Shield", "Critical", "Nation", "Clan", "Race", "Format", 
                "Artist", "Full Art(s)", "Card Set(s)", "Rarity", "Card Effect(s)"]
 
     index = 0
     for keyword in headers:
-        if (keyword != excludeKey):
-            page.cell(row = 1, column = index + 1).value = keyword
-            index = index + 1
+        page.cell(row = 1, column = index + 1).value = keyword
+        index = index + 1
 
-def createPage(spreadsheet, name, excludeKey):
+def createPage(spreadsheet, name):
     newPage = spreadsheet.create_sheet(name)
-    addHeaders(newPage, excludeKey)
+    addHeaders(newPage)
 
     return newPage
 
@@ -33,7 +55,7 @@ def createDatabase():
     currentPage = spreadsheet.active
     currentPage.title = "All Cards"
 
-    addHeaders(currentPage, "")
+    addHeaders(currentPage)
 
     spreadsheet.save("cfvdatabase.xlsx")
 
