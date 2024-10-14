@@ -10,23 +10,19 @@ def removeDuplicates(dataframe):
 def convertToPanda():
     return pd.read_excel("cfvdatabase.xlsx")
 
-# def filterDatabase(keyword):
-#     path = r"C:\Users\ryanh\Documents\Personal\Coding\carddatabase\cfvDatabase.xlsx"
-    
-#     book = openpyxl.load_workbook("cfvdatabase.xlsx")
-#     writer = pd.ExcelWriter(path, engine = "openpyxl")
-#     writer.book = book
+def filterDatabase(keyword):
+    path = r"C:\Users\ryanh\Documents\Personal\Coding\carddatabase\cfvDatabase.xlsx"
 
-#     cfvDataframe = convertToPanda()
-#     values = cfvDataframe[keyword].unique()
+    cfvDataframe = convertToPanda()
+    values = (cfvDataframe[keyword].unique())
+    values.sort()
 
-#     for word in values:
-#         filteredDataframe = cfvDataframe[cfvDataframe[keyword] == word]
-#         # del filteredDataframe[keyword]
-#         # print(filteredDataframe)
-#         filteredDataframe.to_excel(writer, sheet_name = word, index = False)
+    for word in values:
+        filteredDataframe = cfvDataframe[cfvDataframe[keyword] == word]
+        del filteredDataframe[keyword]
 
-#     writer.save()
+        with pd.ExcelWriter(path, mode = "a", engine = "openpyxl") as writer:
+            filteredDataframe.to_excel(writer, sheet_name = word, index = False)
 
 def formatDatabase():
     cfvDataframe = convertToPanda()
@@ -37,7 +33,7 @@ def formatDatabase():
 def addHeaders(page):
     headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 
                "Trigger Effect", "Power", "Shield", "Critical", "Nation", "Clan", "Race", "Format", 
-               "Artist", "Full Art(s)", "Card Set(s)", "Rarity", "Card Effect(s)"]
+               "Artist", "Full Art(s)", "Card Set(s)", "Rarity", "Card Effect(s)", "Release Date"]
 
     index = 0
     for keyword in headers:
@@ -76,9 +72,3 @@ def writeCardInfo(cardDictionary):
     
     currentPage.append(tuple(cardData))
     spreadsheet.save("cfvdatabase.xlsx")
-
-# createDatabase()
-
-spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
-currentPage = spreadsheet.active
-formatDatabase()

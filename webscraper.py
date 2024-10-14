@@ -67,6 +67,30 @@ def editAttributes(dictionary):
 
     return dictionary
 
+def findReleaseDate(setURL):
+    setRequest = requests.get(setURL)
+    setPage = BeautifulSoup(setRequest.text, "html.parser")
+
+    regexPattern = re.compile(r"^.*(JP)")
+    releaseDate = setPage.find(string = regexPattern)
+
+    return (releaseDate.split("(")[0])[:-1]
+
+def getReleaseDate(dictionary, page):
+    debutSet = dictionary.get("Card No.").split("/")[0]
+
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    for set in setsDescription:
+        if debutSet in str(set):
+            link = "https://cardfight.fandom.com" + (set.find("a")).get("href")
+            date = findReleaseDate(link)
+
+    dictionary.update({"Release Date": date})
+
+    return dictionary
+
 def editDictionary(dictionary):
     dictionary = addAttributes(dictionary)
     dictionary = editAttributes(dictionary)
@@ -172,6 +196,8 @@ def readCard(pageURL):
 
     dictionary = editDictionary(dictionary)
 
+    dictionary.update(getReleaseDate(dictionary, cardPage))
+
     writeCardInfo(dictionary)
 
 # Test Cases
@@ -189,3 +215,8 @@ readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra"
 readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon")
 readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest")
 readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv")
+
+spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+currentPage = spreadsheet.active
+formatDatabase()
+filterDatabase("Card Type")
