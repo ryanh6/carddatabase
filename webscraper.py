@@ -3,9 +3,24 @@ import pandas as pd
 import requests
 import re
 import time
+from database import *
 
-# def findReleaseDate(set):
+def makeCalender():
+    dateDictionary = {}
 
+    file = open("sets.txt", "r")
+
+    for line in file:
+        code = line.split(" - ")[0]
+        date = line.split(" - ")[2]
+
+        dateDictionary.update({code: date})
+
+    return dateDictionary
+
+def findReleaseDate(dictionary, set):
+    code = set.split("/")[0]
+    return dictionary.get(code).strip()
 
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
@@ -23,6 +38,9 @@ def findGiftMarker(targetClan):
 def addAttributes(dictionary):
     debutSet = dictionary.get("Card Set(s)").split(",")[0]
     dictionary.update({"Card No.": debutSet})
+
+    releaseDate = findReleaseDate(calender, debutSet)
+    dictionary.update({"Release Date": releaseDate})
 
     if (dictionary.get("Card Type") == None):
         dictionary.update({"Card Type": "Normal Unit"})
@@ -195,14 +213,13 @@ def main():
     list.append(readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv"))
     list.append(readCard("https://cardfight.fandom.com/wiki/Harmonics_Messiah_(V_Series)"))
 
-    print(list)
-
-    # df = pd.DataFrame(list)
-    # print(df)
+    table = pd.DataFrame(list)
+    convertToExcel(table)
 
     endTime = time.time()
 
     executionTime = endTime - startTime
     print(f"Execution time: {executionTime:.4f} seconds")
 
+calender = makeCalender()
 main()

@@ -20,7 +20,7 @@ G-BT02 - Soraing Ascent Of Gale & Blossom - 2015/02/20
 G-BT03 - Sovereign Star Dragon - 2015/05/29
 G-BT04 - Soul Strike Against The Supreme - 2015/08/28
 G-BT05 - Moonlit Dragonfang - 2015/11/13
-G-BT06 - Transcension Of Blade And Blossom 2016/02/19
+G-BT06 - Transcension Of Blade And Blossom - 2016/02/19
 G-BT07 - Glorious Bravery Of Radiant Sword - 2016/05/27
 G-BT08 - Absolute Judgement - 2016/08/26
 G-BT09 - Divine Dragon Caper - 2016/11/11
@@ -61,9 +61,9 @@ DZ-BT04 - Destined Showdown - 2024/08/09
 DZ-BT05 - Omniscient Awakening - 2024/10/11
 D-LBT01 - Lyrical Melody - 2021/08/20
 D-LBT02 - Lyrical Monasterio ~It's a New School Term!~ - 2022/02/25
-D-LBT03 - Lyrical Monasterio ~Summertime Memories!~ 2022/09/02
-D-LBT04 - Lyrical Monasterio ~Trick or Trick!~ 2023/10/13
-DZ-LBT01 - Lyrical Monasterio Sparkling Stars! 2024/07/05
+D-LBT03 - Lyrical Monasterio ~Summertime Memories!~ - 2022/09/02
+D-LBT04 - Lyrical Monasterio ~Trick or Trick!~ - 2023/10/13
+DZ-LBT01 - Lyrical Monasterio Sparkling Stars! - 2024/07/05
 EB01 - Comic Style Vol. 1 - 2011/12/03
 EB02 - Banquet Of Divas - 2012/03/10
 EB03 - Cavalry Of Black Steel - 2012/05/26
@@ -168,7 +168,7 @@ G-TD02 - Divine Swordsman Of The Shiny Star - 2014/11/21
 G-TD03 - Flower Maiden Of Purity - 2015/01/22
 G-TD04 - Blue Cavalry Of The Divine Marine Spirits - 2015/01/22
 G-TD05 - Fateful Star Messiah - 2015/05/29
-G-TD06 - Rallying Call Od The Interspectral Dragon - 2015/11/13
+G-TD06 - Rallying Call Of The Interspectral Dragon - 2015/11/13
 G-TD07 - Illusionist Of The Crescent Moon - 2015/11/13
 G-TD08 - Vampire Princess Of The Nether Hour - 2016/02/19
 G-TD09 - True Zodiac Time Beasts - 2016/09/30
