@@ -1,264 +1,48 @@
-# Pip Installs Include...
-# - pip install beautifulsoup4
-# - pip install requests
-# - pip install pandas
-# - pip install lxml
-# - pip install openpyxl
-
 from bs4 import BeautifulSoup
-from io import StringIO
-import pandas as pd
 import requests
-import openpyxl
 import re
-from openpyxl.utils import get_column_letter
-from openpyxl.styles import Font
-from openpyxl.styles import Alignment
+from database import *
 
-def removeDuplicates(array):
-    newArray = []
-
-    for item in array:
-        if (item == "-"):
-            continue
-        if (item not in newArray):
-            newArray.append(item)
-
-    return newArray
-
-# Rebuilds the image link to remove shrinked size
-def rebuildLink(oldLink):
-    newString = ""
-
-    # Grab contents of link after ?
-    finalBit = oldLink.split("?")[-1]
-
-    # Split string by /, rebuild until shrink properties
-    splitString = oldLink.split("/")
-    for section in splitString:
-        # When we encounter shrink proporties, stop adding to string
-        if (section == "scale-to-width-down"):
-            break
-        else:
-            newString += section + "/"
-
-    # Reattach the ending, return the new string
-    newString += "?" + finalBit
-
-    return newString
-
-# Given the card page, create links to the full image of the card
-def createImageLink(pageURL):
-    # Array of images found
-    images = ""
-
-    # Retrieve name of card to access card gallery page
-    cardName = pageURL.split("/")[-1]
-    generatedLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
-
-    pageRequest = requests.get(generatedLink)
-    page = BeautifulSoup(pageRequest.text, "html.parser")
-
-    # On gallery page, find all "full art" pictures on the page
-    imageLink = page.find_all("img", {"data-src": re.compile("_%28Full_Art(.*?)%29.png")})
+# Edit Dictionary Functions ----------------------------------------------
+def findGiftMarker(targetClan):
+    clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
+                                "Narukami", "Nova Grappler", "Pale Moon", "Tachikaze"],
+                      "Force": ["Bermuda Triangle", "Dimension Police", "Gear Chronicle", "Genesis", "Kagero", 
+                                "Link Joker", "Neo Nectar", "Royal Paladin", "Shadow Paladin", "Spike Brothers"],
+                      "Protect": ["Angel Feathers", "Dark Irregulars", "Granblue",
+                                  "Megacolony", "Nubatama", "Oracle Think Tank"]}
     
-    # For each image found, grab the image link and reformat link
-    for image in imageLink:
-        smallImage = image.get("data-src")
-        fullImage = rebuildLink(smallImage)
-        images += fullImage + ", "
+    for giftMarker in clanDictionary:
+        for clan in clanDictionary[giftMarker]:
+            if (clan == targetClan):
+                return giftMarker
 
-    if (images == ""):
-        return "No Full Arts"
+def addAttributes(dictionary):
+    debutSet = dictionary.get("Card Set(s)").split(",")[0]
+    dictionary.update({"Card No.": debutSet})
 
-    # Remove ending comma and return list of full art images found
-    images = images[0:-2]
-    return images
-
-def formatDatabase(currentPage):
-    for i in range(0, currentPage.max_column):
-        for j in range(0, currentPage.max_row):
-            currentPage.cell(row = j + 1, column = i + 1).font = Font(size = 14)
-    
-        currentPage.cell(row = 1, column = i + 1).font = Font(bold = True, size = 16)
-
-    for i in range(0, currentPage.max_column):
-        maxLength = 0
-        columnIndex = get_column_letter(i + 1)
-
-        header = (currentPage.cell(row = 1, column = i + 1)).value
-
-        if (header == "Full Art Link(s)" or header == "Card Effect(s)" or header == "Card Set(s)"):
-            wordLength = len(str(header))
-            currentPage.column_dimensions[columnIndex].width = (wordLength + 5)
-            continue
-
-        for j in range(0, currentPage.max_row):
-            currentCell = currentPage.cell(row = j + 1, column = i + 1)
-
-            wordLength = len(str(currentCell.value))
-
-            if (wordLength > maxLength):
-                maxLength = wordLength
-
-            if (header == "Power" or header == "Shield" or header == "Critical"):
-                currentCell.alignment = Alignment(horizontal='center')
-            if (header == "Imaginary Gift" or header == "Special Icon" or header == "Trigger Effect"):
-                currentCell.alignment = Alignment(horizontal='center')
-            elif (currentCell.value == "-"):
-                currentCell.alignment = Alignment(horizontal='center')
-
-        currentPage.column_dimensions[columnIndex].width = (maxLength + 5)
-
-# Clear the current excel spreadsheet
-def clearDatabase():
-    createDatabase()
-
-# Add headers to the excel spreadsheet
-def addHeaders(currentPage):
-    # currentPage = spreadsheet.active
-
-    # List of all headers to be added
-    headers = ["Card No.", "Name", "Card Type", "Grade", "Skill", 
-               "Imaginary Gift", "Special Icon", "Trigger Effect", 
-               "Power", "Shield", "Critical", "Nation", "Clan", 
-               "Race", "Format", "Artist", "Full Art Link(s)", 
-               "Card Set(s)", "Rarity", "Card Effect(s)"]
-    
-    # Add each header found in the array
-    for i in range(0, len(headers)):
-        currentPage.cell(row = 1, column = i + 1).value = headers[i]
-
-# Creates a new excel spreadsheet
-def createDatabase():
-    # Open a new excel spreadsheet and assign headers
-    spreadsheet = openpyxl.Workbook()
-    # addHeaders(spreadsheet)
-
-    # Rename the current page of the spreadsheet
-    currentPage = spreadsheet.active
-    currentPage.title = "All Cards"
-
-    addHeaders(currentPage)
-
-    spreadsheet.save("cfvdatabase.xlsx")
-
-def sortByHeader(sortKeyword):
-    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
-    currentPage = spreadsheet["All Cards"]
-
-    count = 1
-    headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
-
-    for keywords in headers:
-        if (keywords == sortKeyword):
-            break
-        else:
-            count = count + 1
-        
-    categories = []
-
-    for i in range(2, currentPage.max_row + 1):
-        data = (currentPage.cell(row = i, column = count).value)
-        categories.append(data)
-
-    categories = removeDuplicates(categories)
-
-    for group in categories:
-        spreadsheet.create_sheet(group)
-        currentPage = spreadsheet[group]
-        addHeaders(currentPage)
-        formatDatabase(currentPage)
-
-    spreadsheet.save("cfvdatabase.xlsx")
-
-def filterRarity(array):
-    rarityString = ""
-    rarityOrder = ['C', 'R', 'RR', 'RRR']
-
-    # Find the Main Highest Rarity of the Card
-    for rare in rarityOrder:
-        for item in array:
-            if (item == rare):
-                rarityString = item
-
-    # Find any other Rarities
-    for item in array:
-        toRemove = False
-        for rare in rarityOrder:
-            if (item == rare):
-                toRemove = True
-        
-        # If we find Special Rarity, add to List
-        if (toRemove == False):
-            if (rarityString == ""):
-                rarityString += item
-            else:
-                rarityString += "+" + item
-    
-    # Return our list of Rarities
-    if (rarityString == ""):
-        return "-"
-    return rarityString
-
-# Cleans the Data of the Dictionary before reading into Excel
-def editDictionary(dictionary):
-    # Each Clan has different Imaginary Gift, use that to assign Gift
-    clanAccel = ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
-                  "Narukami", "Nova Grappler", "Pale Moon", "Tachikaze"]
-    clanForce = ["Bermuda Triangle", "Dimension Police", "Gear Chronicle",
-                 "Genesis", "Kagero", "Link Joker", "Neo Nectar", 
-                 "Royal Paladin", "Shadow Paladin", "Spike Brothers"]
-    clanProtect = ["Angel Feathers", "Dark Irregulars", "Granblue",
-                   "Megacolony", "Nubatama", "Oracle Think Tank"]
-
-    # Any unspecified Card Types are Normal Units
     if (dictionary.get("Card Type") == None):
         dictionary.update({"Card Type": "Normal Unit"})
 
-    # Split the Grade and Skill component into different sections
-    gradeSkill = dictionary.get("Grade / Skill")
-    splitGrade = gradeSkill.split("/")
-    if (len(splitGrade) > 1):
-        dictionary.update({"Grade": splitGrade[0].strip()})
-        dictionary.update({"Skill": splitGrade[1].strip()})
-    else:
-        dictionary.update({"Grade": splitGrade[0].strip()})
-
-    # Check for correct Imaginary Gift based on Clan
-    if (dictionary.get("Imaginary Gift") != None):
-        for clan in clanAccel:
-            if (dictionary.get("Clan") == clan):
-                dictionary.update({"Imaginary Gift": "Accel"})
-        for clan in clanForce:
-            if (dictionary.get("Clan") == clan):
-                dictionary.update({"Imaginary Gift": "Force"})
-        for clan in clanProtect:
-            if (dictionary.get("Clan") == clan):
-                dictionary.update({"Imaginary Gift": "Protect"})
-
-    # Remove Power from Trigger Effect
-    triggerEffect = dictionary.get("Trigger Effect")
-    if (triggerEffect != None):
-        splitTrigger = triggerEffect.split(" ")[0]
-        dictionary.update({"Trigger Effect": splitTrigger})
-
-    # Combine Illust and Design / Illust under Artist Keyword
     if (dictionary.get("Illust") == None):
-        dictionary.update({"Artist": dictionary.get("Design / Illust")})
+        dictionary.update({"Artist": dictionary.get("Design /  Illust")})
     else:
         dictionary.update({"Artist": dictionary.get("Illust")})
 
-    # Regex to search all Codes of Card Sets
-    allSets = dictionary.get("Card Set(s)")
-    pattern = re.compile(r"(?:[A-Za-z]+-)?\b\w{2}\d{2}/[A-Za-z]*\d{2,3}\b(?![A-Za-z])|(?:[A-Za-z]+-)?\b\w{2}\d{2}/[A-Za-z]*S\d{2}\b(?![A-Za-z])")
-    setCodes = pattern.findall(allSets)
+    return dictionary
 
-    # First Code of Card Set is the Debut Set
-    debutSet = setCodes[0]
-    dictionary.update({"Card No.": debutSet})
+def deleteAttributes(dictionary):
+    toRemove = ["Kanji", "Kana", "Phonetic", "Thai", "Italian", "Korean", 
+                "Grade / Skill", "Illust", "Design /  Illust"]
+    
+    for key in toRemove:
+        dictionary.pop(key, None)
 
-    # Find the Card Series using the Debut Set
+    return dictionary
+
+def editAttributes(dictionary):
+    debutSet = dictionary.get("Card No.")
+
     if (debutSet[0] == "V"):
         dictionary.update({"Format": "V Series"})
     elif (debutSet[0] == "D"):
@@ -266,160 +50,173 @@ def editDictionary(dictionary):
     else:
         dictionary.update({"Format": "Original Series"})
 
-    # Combine all Card Sets into a String
-    cardSets = ""
-    for code in setCodes:
-        cardSets += code + ", "
-    cardSets = cardSets[0:-2]
+    if (dictionary.get("Grade / Skill") != None):
+        splitGrade = dictionary.get("Grade / Skill").split(" / ")
 
-    dictionary.update({"Card Set(s)": cardSets})
+        dictionary.update({"Grade": (splitGrade[0]).strip()})
+        if (len(splitGrade) > 1):
+            dictionary.update({"Skill": (splitGrade[1]).strip()})
 
-    # Find all Rarities of a Card throughout Sets
-    bracketPattern = re.compile(r"\((.*?)\)")
-    rarities = bracketPattern.findall(allSets)
-    rarities = removeDuplicates(rarities)
+    if (dictionary.get("Imaginary Gift") != None):
+        giftMarker = findGiftMarker(dictionary.get("Clan"))
+        dictionary.update({"Imaginary Gift": giftMarker})
 
-    # Filter out Irrelevant Rarities
-    rarityString = filterRarity(rarities)
+    if (dictionary.get("Trigger Effect") != None):
+        triggerEffect = dictionary.get("Trigger Effect").split(" / ")[0]
+        dictionary.update({"Trigger Effect": triggerEffect})
 
-    dictionary.update({"Rarity": rarityString})
+    return dictionary
 
-# Given information about a card, write into the excel spreadsheet
-def writeCardInfo(dictionary):
-    # Array to track the contents of the row
-    dataArray = []
-
-    # Open the excel spreadsheet for writing
-    spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
-    currentPage = spreadsheet.active
-
-    # Read the headers found in the excel spreadsheet already
-    headers = [currentPage.cell(row = 1, column = i).value for i in range(1, currentPage.max_column + 1)]
-
-    # For every header, find the corresponding information in the dictionary
-    for keyword in headers:
-        if (dictionary.get(keyword) == None):
-            dataArray.append("-")
-        else:
-            dataArray.append(str(dictionary.get(keyword)))
-
-    # Once all information for the row is found, append row to excel spreadsheet
-    currentPage.append(tuple(dataArray))
-
-    formatDatabase(currentPage)
-
-    spreadsheet.save("cfvdatabase.xlsx")
-
-# Special function to retrieve information not found in main information table of a card page
-def retrieveSpecialInfo(page, keyword):
-    # Find a table based on a given keyword
-    data = page.find("table", {"class": keyword})
-
-    if (data == None):
-        return ({"Card Effect(s)": "None"})
-
-    table = pd.read_html(StringIO(str(data)))[0]
-
-    # Create a mini dictionary based on the table
-    dictionary = table.to_dict('index')
-
-    return dictionary[0]
-
-# Given the URL page of a card, retrieve information about the card
-def retrieveCardInfo(pageURL):
-    # Open the page for parsing given the URL
-    cardRequest = requests.get(pageURL)
-    cardPage = BeautifulSoup(cardRequest.text, "html.parser")
-
-    categories = cardPage.find("div", {"class": "page-header__categories"})
-
-    if (categories == None):
-        return
-
-    tag = categories.find(string = "Cards")
-
-    if (tag == None):
-        return
-
-    # Extract the main table of card information on the page
-    cardInformation = cardPage.find("div", {"class": "info-main"})
-    cardTable = pd.read_html(StringIO(str(cardInformation)))[0]
-
-    # Extract the special information, such as card effect, card sets and full art
-    effectInformation = retrieveSpecialInfo(cardPage, "effect")
-    setInformation = retrieveSpecialInfo(cardPage, "sets")
-    fullArts = createImageLink(pageURL)
-
-    # Create a dictionary for the card information
-    dictionary = {keyword: table.iloc[0, 1] for keyword, table in cardTable.groupby(0)}
-
-    # Add the special information to our dictionary
-    dictionary.update(effectInformation)
-    dictionary.update(setInformation)
-    dictionary.update({"Full Art Link(s)": fullArts})
-
-    editDictionary(dictionary)
-
-    # Send dictionary to function to write into excel spreadsheet
-    writeCardInfo(dictionary)
-
-def retrieveSetInfo(pageURL):
-    setRequest = requests.get(pageURL)
+def findReleaseDate(setURL):
+    setRequest = requests.get(setURL)
     setPage = BeautifulSoup(setRequest.text, "html.parser")
 
-    setList = setPage.find("table")
+    regexPattern = re.compile(r"^.*(JP)")
+    releaseDate = setPage.find(string = regexPattern)
 
-    rowArray = setList.find_all("tr")
-    rowArray = rowArray[1:]
+    return (releaseDate.split("(")[0])[:-1]
 
-    for row in rowArray:
-        info = row.find_all("td")
-        sourceLink = (info[1].find("a")).get("href")
+def getReleaseDate(dictionary, page):
+    debutSet = dictionary.get("Card No.").split("/")[0]
 
-        newLink = "https://cardfight.fandom.com" + sourceLink
-        print(newLink)
-        retrieveCardInfo(newLink)
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
 
-# MAIN LOOP
-# while (True):
-#     command = ""
+    for set in setsDescription:
+        if debutSet in str(set):
+            link = "https://cardfight.fandom.com" + (set.find("a")).get("href")
+            date = findReleaseDate(link)
 
-#     print("")
-#     print("------------ List of Commands ------------")
-#     print("CLEAR: Clears the Current Database")
-#     print("READBYCARD: Read data of a card given a link")
-#     print("READBYSET: Read data of a set given a link")
-#     print("AUTOMATE: Reads in all cards from all sets")
-#     print("EXIT: Exit Program")
-#     print("------------------------------------------")
-#     command = (input("Enter a Command: ")).lower()
-#     print("")
+    dictionary.update({"Release Date": date})
 
-#     if (command == "clear"):
-#         clearDatabase()
-#     elif (command == "readbycard"):
-#         link = input("Provide the URL of the Card: ")
-#         retrieveCardInfo(link)
-#     elif (command == "readbyset"):
-#         link = input("Provide the URL of the Set: ")
-#         retrieveSetInfo(link)
-#     elif (command == "automate"):
-#         automate()
-#     elif (command == "exit"):
-#         break
-#     else:
-#         print("Not a Valid Command")
+    return dictionary
+
+def editDictionary(dictionary):
+    dictionary = addAttributes(dictionary)
+    dictionary = editAttributes(dictionary)
+    dictionary = deleteAttributes(dictionary)
+    return dictionary
+
+# Read Details Helper Functions ------------------------------------------
+def rebuildLink(oldLink):
+    newString = ""
+    splitString = oldLink.split("/")
+
+    for section in splitString:
+        if (section == "scale-to-width-down"):
+            break
+        else:
+            newString += section + "/"
     
-#     formatDatabase()
+    return newString + "?" + oldLink.split("?")[-1]
 
-# TESTING
+def cardFullArt(pageURL):
+    cardName = pageURL.split("/")[-1]
+    cardGalleryLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
+    
+    galleryRequest = requests.get(cardGalleryLink)
+    galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
+
+    regexPattern = re.compile("_%28Full_Art(.*?)%29.png")
+    fullArts = galleryPage.find_all("img", {"data-src": regexPattern})
+
+    imagesString = ""
+    for images in fullArts:
+        shrinkedImage = images.get("data-src")
+        scaledImage = rebuildLink(shrinkedImage)
+        imagesString += scaledImage + ", "
+    
+    if (imagesString == ""):
+        return ({"Full Art(s)": "-"})
+    
+    return ({"Full Art(s)": imagesString[0:-2]})
+
+def readCardRarities(page):
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    rarities = []
+    rarityPattern = re.compile(r"\((.*?)\)")
+    for set in setsDescription:
+        rarities.extend(rarityPattern.findall(str(set)))
+
+    raritiesString = ""
+    for rarity in rarities:
+        if (rarity not in raritiesString):
+            raritiesString += rarity + "+"
+
+    return ({"Rarity": raritiesString[0:-1]})
+
+def readCardSets(page):
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    setCodes = []
+    codesPattern = re.compile(r"(?:[A-Za-z]+-)?(?:BT|EB|TD|TCB|CHB|CB|CMB|MB|FC|SS|LD|SD|MBT)+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?: |<br/>)")
+    for set in setsDescription:
+        setCodes.extend(codesPattern.findall(str(set)))
+
+    setString = ""
+    for index in range(0, len(setCodes)):
+        setString += (setCodes[index].split("<")[0]).strip() + ", "
+
+    return ({"Card Set(s)": setString[0:-2]})
+
+def readCardEffect(page):
+    try:
+        cardEffect = page.find("table", {"class": "effect"})
+        effectDescription = cardEffect.find("td")
+        return ({"Card Effect(s)": (effectDescription.text).strip()})
+    except:
+        return ({"Card Effect(s)": "-"})
+
+# Main Read Page Functions -----------------------------------------------
+def readCard(pageURL):
+    try:
+        cardRequest = requests.get(pageURL)
+        cardPage = BeautifulSoup(cardRequest.text, "html.parser")
+
+        cardMainInfo = cardPage.find("div", {"class": "info-main"})
+        attributes = cardMainInfo.find_all("td")
+    except:
+        print("Not a Valid Card Page")
+        return
+
+    dictionary = {}
+    for index in range(0, len(attributes)):
+        if (index % 2 == 0):
+            title = (attributes[index].text).strip()
+            trait = (attributes[index + 1].text).strip()
+            dictionary.update({title: trait})
+
+    dictionary.update(readCardEffect(cardPage))
+    dictionary.update(cardFullArt(pageURL))
+    dictionary.update(readCardSets(cardPage))
+    dictionary.update(readCardRarities(cardPage))
+
+    dictionary = editDictionary(dictionary)
+
+    dictionary.update(getReleaseDate(dictionary, cardPage))
+
+    writeCardInfo(dictionary)
+
+# Test Cases
 createDatabase()
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Destined_One_of_Exceedance,_Impauldio#English_")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Vampire_Princess_of_Night_Fog,_Nightrose_(V_Series)")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Battleraizer")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Blaster_Blade?so=search")
-retrieveCardInfo("https://cardfight.fandom.com/wiki/Crimson_Butterfly,_Brigitte")
-#formatDatabase()
+readCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+readCard("https://cardfight.fandom.com/wiki/Battleraizer")
+readCard("https://cardfight.fandom.com/wiki/Cable_Sheep")
+readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr")
+readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam")
+readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)")
+readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin")
+readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)")
+readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22")
+readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra")
+readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon")
+readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest")
+readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv")
 
-sortByHeader("Clan")
+spreadsheet = openpyxl.load_workbook("cfvdatabase.xlsx")
+currentPage = spreadsheet.active
+formatDatabase()
+filterDatabase("Card Type")
