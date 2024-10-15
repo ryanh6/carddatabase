@@ -4,23 +4,8 @@ import requests
 import re
 import time
 
-def findReleaseDate(set):
-    dateDictionary = {"BT01":"2011/03/12", "BT02":"2011/05/28", "BT03":"2011/08/06", "BT04":"2011/10/29", "BT05":"2012/01/14",
-                      "BT06":"2012/04/28", "BT07":"2012/07/07", "BT08":"2012/09/22", "BT09":"2012/12/08",
-                      "BT10":"2013/02/16", "BT21":"2013/04/27", "BT12":"2013/07/06", "BT13":"2011/09/13", "BT14":"2013/12/12", "BT15":"2014/02/28",
-                      "BT16":"2014/05/16", "BT17":"2014/08/08",
-                      "G-BT01":"2014/12/05", "G-BT02":"2015/02/20", "G-BT03":"2015/05/29", "G-BT04":"2015/08/28",
-                      "G-BT05":"2015/11/13", "G-BT06":"2016/02/19", "G-BT07":"2016/05/27", "G-BT08":"2016/08/26",
-                      "G-BT09":"2016/11/11", "G-BT10":"2017/02/03", "G-BT11":"2017/06/09", "G-BT12":"2017/08/25", 
-                      "G-BT13":"2017/11/17", "G-BT14":"2018/02/23",
-                      "V-BT01":"2018/05/25", "V-BT02":"2018/08/31", 
-                      "V-BT03":"2018/12/14", "V-BT04":"2019/01/25", "V-BT05":"2019/07/12", "V-BT06":"2019/08/10",
-                      "V-BT07":"2019/10/11", "V-BT08":"2020/06/19", 
-                      "V-BT09":"2020/07/31", "V-BT10":"2020/08/28", "V-BT11":"2020/10/15", "V-BT12":"2020/11/06",
-                      "D-BT01":"2021/04/17", "D-BT02":"2021/06/25", "D-BT03":"2021/09/24", "D-BT04":"2021/12/24", "D-BT05":"2022/04/01",
-                      "D-BT06":"2022/08/05", "D-BT07":"2022/09/30", "D-BT08":"2022/12/09", 
-                      "D-BT09":"2023/02/03", "D-BT10":"2023/04/07", "D-BT11":"2023/06/02", "D-BT12":"2023/08/04", "D-BT13":"2023/09/29",
-                      "DZ-BT01":"2024/02/09", "DZ-BT03":"2024/06/07", "DZ-BT04":"2024/08/09", "DZ-BT05":"2024/10/11"}
+# def findReleaseDate(set):
+
 
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
@@ -208,6 +193,7 @@ def main():
     list.append(readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon"))
     list.append(readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest"))
     list.append(readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Harmonics_Messiah_(V_Series)"))
 
     print(list)
 

@@ -1,104 +1,208 @@
-https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights
-https://cardfight.fandom.com/wiki/Booster_Set_2:_Onslaught_of_Dragon_Souls
-https://cardfight.fandom.com/wiki/Booster_Set_3:_Demonic_Lord_Invasion
-https://cardfight.fandom.com/wiki/Booster_Set_4:_Eclipse_of_Illusionary_Shadows
-https://cardfight.fandom.com/wiki/Booster_Set_5:_Awakening_of_Twin_Blades
-https://cardfight.fandom.com/wiki/Booster_Set_6:_Breaker_of_Limits
-https://cardfight.fandom.com/wiki/Booster_Set_7:_Rampage_of_the_Beast_King
-https://cardfight.fandom.com/wiki/Booster_Set_8:_Blue_Storm_Armada
-https://cardfight.fandom.com/wiki/Booster_Set_9:_Clash_of_the_Knights_%26_Dragons
-https://cardfight.fandom.com/wiki/Booster_Set_10:_Triumphant_Return_of_the_King_of_Knights
-https://cardfight.fandom.com/wiki/Booster_Set_11:_Seal_Dragons_Unleashed
-https://cardfight.fandom.com/wiki/Booster_Set_12:_Binding_Force_of_the_Black_Rings
-https://cardfight.fandom.com/wiki/Booster_Set_13:_Catastrophic_Outbreak
-https://cardfight.fandom.com/wiki/Booster_Set_14:_Brilliant_Strike
-https://cardfight.fandom.com/wiki/Booster_Set_15:_Infinite_Rebirth
-https://cardfight.fandom.com/wiki/Booster_Set_16:_Legion_of_Dragons_%26_Blades
-https://cardfight.fandom.com/wiki/Booster_Set_17:_Blazing_Perdition
-https://cardfight.fandom.com/wiki/G_Booster_Set_1:_Generation_Stride
-https://cardfight.fandom.com/wiki/G_Booster_Set_2:_Soaring_Ascent_of_Gale_%26_Blossom
-https://cardfight.fandom.com/wiki/G_Booster_Set_3:_Sovereign_Star_Dragon
-https://cardfight.fandom.com/wiki/G_Booster_Set_4:_Soul_Strike_Against_The_Supreme
-https://cardfight.fandom.com/wiki/G_Booster_Set_5:_Moonlit_Dragonfang
-https://cardfight.fandom.com/wiki/G_Booster_Set_6:_Transcension_of_Blade_and_Blossom
-https://cardfight.fandom.com/wiki/G_Booster_Set_7:_Glorious_Bravery_of_Radiant_Sword
-https://cardfight.fandom.com/wiki/G_Booster_Set_8:_Absolute_Judgment
-https://cardfight.fandom.com/wiki/G_Booster_Set_9:_Divine_Dragon_Caper
-https://cardfight.fandom.com/wiki/G_Booster_Set_10:_Raging_Clash_of_the_Blade_Fangs
-https://cardfight.fandom.com/wiki/G_Booster_Set_11:_Demonic_Advent
-https://cardfight.fandom.com/wiki/G_Booster_Set_12:_Dragon_King%27s_Awakening
-https://cardfight.fandom.com/wiki/G_Booster_Set_13:_Ultimate_Stride
-https://cardfight.fandom.com/wiki/G_Booster_Set_14:_Divine_Dragon_Apocrypha
-https://cardfight.fandom.com/wiki/V_Booster_Set_01:_Unite!_Team_Q4
-https://cardfight.fandom.com/wiki/V_Booster_Set_02:_Strongest!_Team_AL4
-https://cardfight.fandom.com/wiki/V_Booster_Set_03:_Miyaji_Academy_Cardfight_Club
-https://cardfight.fandom.com/wiki/V_Booster_Set_04:_Vilest!_Deletor
-https://cardfight.fandom.com/wiki/V_Booster_Set_05:_Aerial_Steed_Liberation
-https://cardfight.fandom.com/wiki/V_Booster_Set_06:_Phantasmal_Steed_Restoration
-https://cardfight.fandom.com/wiki/V_Booster_Set_07:_Infinideity_Cradle
-https://cardfight.fandom.com/wiki/V_Booster_Set_08:_Silverdust_Blaze
-https://cardfight.fandom.com/wiki/V_Booster_Set_09:_Butterfly_d%27Moonlight
-https://cardfight.fandom.com/wiki/V_Booster_Set_10:_Phantom_Dragon_Aeon
-https://cardfight.fandom.com/wiki/V_Booster_Set_11:_Storm_of_the_Blue_Cavalry
-https://cardfight.fandom.com/wiki/V_Booster_Set_12:_Divine_Lightning_Radiance
-https://cardfight.fandom.com/wiki/D_Booster_Set_01:_Genesis_of_the_Five_Greats
-https://cardfight.fandom.com/wiki/D_Booster_Set_02:_A_Brush_with_the_Legends
-https://cardfight.fandom.com/wiki/D_Booster_Set_03:_Advance_of_Intertwined_Stars
-https://cardfight.fandom.com/wiki/D_Booster_Set_04:_Awakening_of_Chakrabarthi
-https://cardfight.fandom.com/wiki/D_Booster_Set_05:_Triumphant_Return_of_the_Brave_Heroes
-https://cardfight.fandom.com/wiki/D_Booster_Set_06:_Blazing_Dragon_Reborn
-https://cardfight.fandom.com/wiki/D_Booster_Set_07:_Raging_Flames_Against_Emerald_Storm
-https://cardfight.fandom.com/wiki/D_Booster_Set_08:_Minerva_Rising
-https://cardfight.fandom.com/wiki/D_Booster_Set_09:_Dragontree_Invasion
-https://cardfight.fandom.com/wiki/D_Booster_Set_10:_Dragon_Masquerade
-https://cardfight.fandom.com/wiki/D_Booster_Set_11:_Clash_of_the_Heroes
-https://cardfight.fandom.com/wiki/D_Booster_Set_12:_Evenfall_Onslaught
-https://cardfight.fandom.com/wiki/D_Booster_Set_13:_Flight_of_Chakrabarthi
-https://cardfight.fandom.com/wiki/DZ_Booster_Set_01:_Fated_Clash
-https://cardfight.fandom.com/wiki/DZ_Booster_Set_02:_Illusionless_Strife
-https://cardfight.fandom.com/wiki/DZ_Booster_Set_03:_Dimensional_Transcendence
-https://cardfight.fandom.com/wiki/DZ_Booster_Set_04:_Destined_Showdown
-https://cardfight.fandom.com/wiki/Trial_Deck_1:_Blaster_Blade
-https://cardfight.fandom.com/wiki/Trial_Deck_2:_Dragonic_Overlord
-https://cardfight.fandom.com/wiki/Trial_Deck_3:_Golden_Mechanical_Soldier
-https://cardfight.fandom.com/wiki/Trial_Deck_4:_Maiden_Princess_of_the_Cherry_Blossoms
-https://cardfight.fandom.com/wiki/Trial_Deck_5:_Slash_of_Silver_Wolf
-https://cardfight.fandom.com/wiki/Trial_Deck_6:_Resonance_of_Thunder_Dragon
-https://cardfight.fandom.com/wiki/Trial_Deck_7:_Descendants_of_the_Marine_Emperor
-https://cardfight.fandom.com/wiki/Trial_Deck_8:_Liberator_of_the_Sanctuary
-https://cardfight.fandom.com/wiki/Trial_Deck_9:_Eradicator_of_the_Empire
-https://cardfight.fandom.com/wiki/Trial_Deck_10:_Purgatory_Revenger
-https://cardfight.fandom.com/wiki/Trial_Deck_11:_Star-vader_Invasion
-https://cardfight.fandom.com/wiki/Trial_Deck_12:_Dimensional_Brave_Kaiser
-https://cardfight.fandom.com/wiki/Trial_Deck_13:_Successor_of_the_Sacred_Regalia
-https://cardfight.fandom.com/wiki/Trial_Deck_14:_Seeker_of_Hope
-https://cardfight.fandom.com/wiki/Trial_Deck_15:_Brawler_of_Friendship
-https://cardfight.fandom.com/wiki/Trial_Deck_16:_Divine_Judgment_of_the_Bluish_Flames
-https://cardfight.fandom.com/wiki/Trial_Deck_17:_Will_of_the_Locked_Dragon
-https://cardfight.fandom.com/wiki/G_Trial_Deck_1:_Awakening_of_the_Interdimensional_Dragon
-https://cardfight.fandom.com/wiki/G_Trial_Deck_2:_Divine_Swordsman_of_the_Shiny_Star
-https://cardfight.fandom.com/wiki/G_Trial_Deck_3:_Flower_Maiden_of_Purity
-https://cardfight.fandom.com/wiki/G_Trial_Deck_4:_Blue_Cavalry_of_the_Divine_Marine_Spirits
-https://cardfight.fandom.com/wiki/G_Trial_Deck_5:_Fateful_Star_Messiah
-https://cardfight.fandom.com/wiki/G_Trial_Deck_6:_Rallying_Call_of_the_Interspectral_Dragon
-https://cardfight.fandom.com/wiki/G_Trial_Deck_7:_Illusionist_of_the_Crescent_Moon
-https://cardfight.fandom.com/wiki/G_Trial_Deck_8:_Vampire_Princess_of_the_Nether_Hour
-https://cardfight.fandom.com/wiki/G_Trial_Deck_9:_True_Zodiac_Time_Beasts
-https://cardfight.fandom.com/wiki/G_Trial_Deck_10:_Ritual_of_Dragon_Sorcery
-https://cardfight.fandom.com/wiki/G_Trial_Deck_11:_Divine_Knight_of_Heavenly_Decree
-https://cardfight.fandom.com/wiki/G_Trial_Deck_12:_Flower_Princess_of_Abundant_Blooming
-https://cardfight.fandom.com/wiki/G_Trial_Deck_13:_Evil_Eye_Sovereign
-https://cardfight.fandom.com/wiki/G_Trial_Deck_14:_Debut_of_the_Divas
-https://cardfight.fandom.com/wiki/G_Trial_Deck_15:_Messiah_Dragon_of_Rebirth
-https://cardfight.fandom.com/wiki/V_Trial_Deck_01:_Aichi_Sendou
-https://cardfight.fandom.com/wiki/V_Trial_Deck_02:_Toshiki_Kai
-https://cardfight.fandom.com/wiki/V_Trial_Deck_03:_Leon_Soryu
-https://cardfight.fandom.com/wiki/V_Trial_Deck_04:_Ren_Suzugamori
-https://cardfight.fandom.com/wiki/V_Trial_Deck_05:_Misaki_Tokura
-https://cardfight.fandom.com/wiki/V_Trial_Deck_06:_Naoki_Ishida
-https://cardfight.fandom.com/wiki/V_Trial_Deck_07:_Kouji_Ibuki
-https://cardfight.fandom.com/wiki/V_Trial_Deck_08:_Schokolade_Melody
-https://cardfight.fandom.com/wiki/V_Trial_Deck_09:_Shinemon_Nitta
-https://cardfight.fandom.com/wiki/V_Trial_Deck_10:_Chronojet
-https://cardfight.fandom.com/wiki/V_Trial_Deck_11:_Altmile
-https://cardfight.fandom.com/wiki/V_Trial_Deck_12:_Ahsha
+BT01 - Descent Of The King Of Knights - 2011/03/12
+BT02 - Onslaught Of Dragon Souls - 2011/05/28
+BT03 - Demonic Lord Invasion - 2011/08/06
+BT04 - Eclipse Of Illusionary Shadows - 2011/10/29
+BT05 - Awakening Of Twin Blades - 2012/01/14
+BT06 - Breaker Of Limits - 2012/04/28
+BT07 - Rampage Of The Beast King - 2012/07/07
+BT08 - Blue Storm Armada - 2012/09/22
+BT09 - Clash Of The Knight & Dragons - 2012/12/08
+BT10 - Triumphant Return Of The King Of Knights - 2013/02/16
+BT21 - Seal Dragons Unleashed - 2013/04/27
+BT12 - Binding Force Of The Black Rings - 2013/07/06
+BT13 - Catastrophic Outbreak - 2011/09/13
+BT14 - Brilliant Strike - 2013/12/12
+BT15 - Infinite Rebirth - 2014/02/28
+BT16 - Legion Of Dragon & Blades - 2014/05/16
+BT17 - Blazing Perdition - 2014/08/08
+G-BT01 - Generation Stride - 2014/12/05
+G-BT02 - Soraing Ascent Of Gale & Blossom - 2015/02/20
+G-BT03 - Sovereign Star Dragon - 2015/05/29
+G-BT04 - Soul Strike Against The Supreme - 2015/08/28
+G-BT05 - Moonlit Dragonfang - 2015/11/13
+G-BT06 - Transcension Of Blade And Blossom 2016/02/19
+G-BT07 - Glorious Bravery Of Radiant Sword - 2016/05/27
+G-BT08 - Absolute Judgement - 2016/08/26
+G-BT09 - Divine Dragon Caper - 2016/11/11
+G-BT10 - Raging Clash Of The Blade Fangs - 2017/02/03
+G-BT11 - Demonic Advent - 2017/06/09
+G-BT12 - Dragon King's Awakening - 2017/08/25
+G-BT13 - Ultimate Stride - 2017/11/17
+G-BT14 - Divine Dragon Apocrypha - 2018/02/23
+V-BT01 - Unite! Team Q4 - 2018/05/25
+V-BT02 - Strongest! Team AL4 - 2018/08/31
+V-BT03 - Miyaji Academy Cardfight Club - 2018/12/14
+V-BT04 - Vilest! Deletor - 2019/01/25
+V-BT05 - Aerial Steed Liberation - 2019/07/12
+V-BT06 - Phantasmal Steed Restoration - 2019/08/10
+V-BT07 - Infinideity Cradle - 2019/10/11
+V-BT08 - Silverdust Blaze - 2020/06/19
+V-BT09 - Butterfly d'Moonlight - 2020/07/31
+V-BT10 - Phantom Dragon Aeon - 2020/08/28
+V-BT11 - Storm Of The Blue Cavalry - 2020/10/15
+V-BT12 - Divine Lightning Radiance - 2020/11/06
+D-BT01 - Genesis Of The Five Greats - 2021/04/17
+D-BT02 - A Brush With The Legends - 2021/06/25
+D-BT03 - Advacne Of Intertwined Stars - 2021/09/24
+D-BT04 - Awakening Of Chakrabarthi - 2021/12/24
+D-BT05 - Triumphant Return Of The Brave Heroes - 2022/04/01
+D-BT06 - Blazing Dragon Reborn - 2022/08/05
+D-BT07 - Raging Flames Against Emerald Storm - 2022/09/30
+D-BT08 - Minerva Rising - 2022/12/09
+D-BT09 - Dragontree Invasion - /02/03
+D-BT10 - Dragon Masquerade - 2023/04/07
+D-BT11 - Clash Of The Heroes - 2023/06/02
+D-BT12 - Evenfall Onslaught - 2023/08/04
+D-BT13 - Flight Of Chakrabarthi - 2023/09/29
+DZ-BT01 - Fated Clash - 2024/02/09
+DZ-BT02 - Illusionless Strife - 2024/04/05
+DZ-BT03 - Dimensional Transcendence - 2024/06/07
+DZ-BT04 - Destined Showdown - 2024/08/09
+DZ-BT05 - Omniscient Awakening - 2024/10/11
+D-LBT01 - Lyrical Melody - 2021/08/20
+D-LBT02 - Lyrical Monasterio ~It's a New School Term!~ - 2022/02/25
+D-LBT03 - Lyrical Monasterio ~Summertime Memories!~ 2022/09/02
+D-LBT04 - Lyrical Monasterio ~Trick or Trick!~ 2023/10/13
+DZ-LBT01 - Lyrical Monasterio Sparkling Stars! 2024/07/05
+EB01 - Comic Style Vol. 1 - 2011/12/03
+EB02 - Banquet Of Divas - 2012/03/10
+EB03 - Cavalry Of Black Steel - 2012/05/26
+EB04 - Infinite Phantom Legion - 2012/11/17
+EB05 - Celestial Valkyries - 2012/11/17
+EB06 - Dazzling Divas - 2013/03/23
+EB07 - Mystical Magus - 2013/08/30
+EB08 - Champions Of The Cosmos - 2013/11/15
+EB09 - Divine Dragon Progression - 2013/11/22
+EB10 - Divas Duet - 2014/03/21
+EB11 - Requiem At Dusk - 2014/06/20
+EB12 - Waltz Of The Goddess - 2014/06/20
+G-EB01 - Cosmic Roar - 2015/03/13
+G-EB02 - The Awakening Zoo - 2017/12/08
+G-EB03 - The Galaxy Star Gate - 2018/01/19
+V-EB01 - The Destructive Roar - 2018/06/29
+V-EB02 - Champions Of The Asia Circuit - 2018/07/20
+V-EB03 - Ultrarare Miracle Collection - 2018/10/19
+V-EB04 - The Answer Of Truth - 2018/11/16
+V-EB05 - Primary Melody - 2019/03/29
+V-EB06 - Light Of Salvation, Logic Of Destruction - 2019/04/12
+V-EB07 - The Heroic Evolution - 2019/05/17
+V-EB08 - My Glorious Justice - 2019/06/14
+V-EB09 - The Raging Tactics - 2019/09/06
+V-EB10 - The Mysterious Fortune - 2019/11/15
+V-EB11 - Crystal Melody - 2019/12/20
+V-EB12 - Team Dragon's Vanity! - 2020/01/17
+V-EB13 - The Astral Force - 2020/02/21
+V-EB14 - The Next Stage - 2020/04/10
+V-EB15 - Twinkle Melody - 2020/12/11
+G-TCB01 - The Reckless Rampage - 2016/01/22
+G-TCB02 - The Genius Strategy - 2016/07/22
+G-CHB01 - TRY3 Next - 2016/12/09
+G-CHB02 - We Are Trinity Dragon - 2017/01/13
+G-CHB03 - Rummy Labyrinth Under The Moonlight - 2017/03/03
+G-CB01 - Academy Of Divas - 2015/06/19
+G-CB02 - Commander Of The Incessant Waves - 2015/10/23
+G-CB03 - Blessing Of Divas - 2016/06/24
+G-CB04 - Gear Of Fate - 2016/09/30
+G-CB05 - Prismatic Divas - 2017/07/07
+G-CB06 - Rondeau Of Chaos And Salvation - 2017/10/20
+G-CB07 - Divas' Festa - 2018/03/30
+MBT01 - Neon Messiah - 2014/09/13
+G-CMB01 - Vanguard & Deletor - 2015/09/25
+V-MB01 - PSYqualia Strife - 2018/09/28
+FC01 - Fighters Collection 2013 - 2013/05/25
+FC02 - Fighters Collection 2014 - 2014/05/02
+G-FC01 - Fighters Collection 2015 - 2015/05/01
+G-FC02 - Fighters Collection 2015 Winter - 2015/12/18
+G-FC03 - Fighters Collection 2016 - 2016/04/30
+G-FC04 - Fighters Collection 2017 - 2017/05/12
+V-SS01 - Premium Collection 2019 - 2019/05/17
+V-SS02 - Start Deck Blaster Blade - 2019/06/07
+V-SS03 - Start Deck Blaster Dark - 2019/06/07
+V-SS04 - Colorful Pastorale Supply Gift Set - 2019/12/27
+V-SS05 - Festival Collection - 2020/05/22
+V-SS06 - Special Deck Set Majesty Lord Blaster - 2020/05/22
+V-SS07 - Premium Collection 2020 - 2020/05/22
+V-SS08 - Daigo Special Expansion Set - 2020/11/27
+V-SS09 - Clan Selection Plus Vol. 1 - 2021/01/29
+V-SS10 - Clan Selection Plus Vol. 2 - 2021/02/19
+D-VS01 - V Clan Collection Vol. 1 - 2021/09/03
+D-VS02 - V Clan Collection Vol. 2 - 2021/09/03
+D-VS03 - V Clan Collection Vol. 3 - 2022/01/21
+D-VS04 - V Clan Collection Vol. 4 - 2022/01/21
+D-VS05 - V Clan Collection Vol. 5 - 2022/06/17
+D-VS06 - V Clan Collection Vol. 6 - 2022/06/17
+D-SS01 - Festival Collection 2021 - 2021/05/15
+D-SS02 - Festival Collection 2022 - 2022/05/13
+D-SS03 - Stride Deckset Chronojet - 2022/11/11
+D-SS04 - Stride Deckset Messiah - 2023/03/03
+D-SS05 - Festival Booster 2023 - 2023/05/12
+D-SS06 - Stand Up Deckset "Gramgrace" - 2023/07/07
+D-SS07 - Stand Up Deckest "Favrneel" - 2023/07/07
+D-SS08 - Stand Up Deckset "Orfist" - 2023/07/07
+D-SS09 - Stride Deckset Shiranui - 2023/11/10
+D-SS10 - Stride Deckset Luard - 2023/11/10
+D-SS11 - Triple Drive Booster - 2023/12/08
+D-PV01 - History Collection - 2023/05/26
+DZ-SS01 - Festival Booster 2024 - 2024/05/17
+DZ-SS02 - Stride Deckset Harri - 2024/09/06
+DZ-SS03 - Stride Deckset Nightrose - 2024/09/06
+TD01 - Blaster Blade - 2011/02/26
+TD02 - Dragonic Overlord - 2011/02/26
+TD03 - Golden Mechanical Soldier - 2011/07/16
+TD04 - Maiden Princess Of The Cherry Blossoms - 2011/07/16
+TD05 - Slash Of Silver Wolf - 2012/04/21
+TD06 - Resonance Of Thunder Dragon - 2012/04/21
+TD07 - Descendants Of The Marine Emperor - 2012/08/11
+TD08 - Liberator Of The Sanctuary - 2013/01/26
+TD09 - Eradicator Of The Empire - 2013/01/26
+TD10 - Purgatory Revenger - 2013/06/22
+TD11 - Star-Vader Invasion - 2013/06/22
+TD12 - Dimensional Brave Kaiser - 2013/08/09
+TD13 - Successor Of The Sacred Regalia - 2013/10/25
+TD14 - Seeker Of Hope - 2014/04/18
+TD15 - Brawler Of Friendship - 2014/04/18
+TD16 - Divine Judgement Of The Bluish Flames - 2014/07/11
+TD17 - Will Of The Locked Dragon - 2024/07/11
+G-TD01 - Awakening Of The Interdimensional Dragon - 2014/11/21
+G-TD02 - Divine Swordsman Of The Shiny Star - 2014/11/21
+G-TD03 - Flower Maiden Of Purity - 2015/01/22
+G-TD04 - Blue Cavalry Of The Divine Marine Spirits - 2015/01/22
+G-TD05 - Fateful Star Messiah - 2015/05/29
+G-TD06 - Rallying Call Od The Interspectral Dragon - 2015/11/13
+G-TD07 - Illusionist Of The Crescent Moon - 2015/11/13
+G-TD08 - Vampire Princess Of The Nether Hour - 2016/02/19
+G-TD09 - True Zodiac Time Beasts - 2016/09/30
+G-TD10 - Ritual Of Dragon Sorcery - 2016/11/11
+G-TD11 - Divine Knight Of Heavenly Decree - 2016/12/09
+G-TD12 - Flower Princess Of Abundant Blooming - 2016/12/09
+G-TD13 - Evil Eye Sovereign - 2017/06/09
+G-TD14 - Debut Of The Divas - 2017/07/07
+G-TD15 - Messiah Dragon Of Rebirth - 2017/10/20
+V-TD01 - Aichi Sendou - 2018/05/11
+V-TD02 - Toshiki Kai - 2018/05/11
+V-TD03 - Leon Soryu - 2018/07/20
+V-TD04 - Ren Suzugamori - 2018/08/10
+V-TD05 - Misaki Tokura - 2018/11/30
+V-TD06 - Naoki Ishida - 2018/11/30
+V-TD07 - Kouji Ibuki - 2019/01/25
+V-TD08 - Schokolade Melody - 2019/02/14
+V-TD09 - Shinemon Nitta - 2019/09/27
+V-TD10 - Chronojet - 2020/03/27
+V-TD11 - Altmile - 2020/03/27
+V-TD12 - Ahsha - 2020/03/27
+D-LTD01 - Ahoy! Lyrical Monasterio - 2021/08/20
+G-LD01 - The Dark Ren Suzugamori - 2015/04/24
+G-LD02 - The Overlord Blaze Toshiki Kai - 2016/03/18
+G-LD03 - The Blaster Aichi Sendou - 2017/04/07
+D-SD01 - Yu-Yu Kondo -Holy Dragon- - 2021/03/25
+D-SD02 - Danji Momoyama -Tyrant Tiger- - 2021/03/25
+D-SD03 - Tohya Ebata -Apex Ruler- - 2021/03/25
+D-SD04 - Megumi Okura -Sylvan King- - 2021/04/03
+D-SD05 - Tomari Seta -Aurora Valkyrie- - 2021/04/03
+D-SD06 - Mirei Minae -Sealing Blaze Maiden- - 2021/10/29
+DZ-SD01 - Dragon Empire - 2024/01/19
+DZ-SD02 - Dark States - 2024/01/19
+DZ-SD03 - Brandt Gate - 2024/01/19
+DZ-SD04 - Keter Sanctuary - 2024/01/19
+DZ-SD05 - Stoicheia - 2024/01/19
+DZ-SD06 - Lyrical Monasterio - 2024/01/19
