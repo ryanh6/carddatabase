@@ -1,20 +1,26 @@
 from bs4 import BeautifulSoup
+import pandas as pd
 import requests
 import re
+import time
 
-# def findReleaseDate(set):
-#     dateDictionary = {"BT01":"2011/02/26", "BT02":"", "BT03":"", "BT04":"", "BT05":"", "BT06":"", "BT07":"", "BT08":"",
-#                       "BT09":"", "BT10":"", "BT11":"", "BT12":"", "BT13":"", "BT14":"", "BT15":"", "BT16":"", "BT17":"", 
-#                       "G-BT01":"", "G-BT02":"", "G-BT03":"", "G-BT04":"", "G-BT05":"", "G-BT06":"", "G-BT07":"",
-#                       "G-BT08":"", "G-BT09":"", "G-BT11":"", "G-BT11":"", "G-BT12":"", "G-BT13":"", "G-BT14":"", 
-#                       "V-BT01":"", "V-BT02":"", "V-BT03":"", "V-BT04":"", "V-BT05":"", "V-BT06":"", 
-#                       "V-BT07":"", "V-BT08":"", "V-BT09":"", "V-BT10":"", "V-BT11":"", "V-BT12":"", 
-#                       "D-BT01":"", "D-BT02":"", "D-BT03":"", "D-BT04":"", "D-BT05":"", "D-BT06":"", "D-BT07":"",
-#                       "D-BT08":"", "D-BT09":"", "D-BT10":"", "D-BT11":"", "D-BT12":"", "D-BT13":"",
-#                       "DZ-BT01":"", "DZ-BT02":"", "DZ-BT03":"", "DZ-BT04":"", "DZ-BT05":"",
-#                       "D-LBT01":"", "D-LBT02":"", "D-LBT03":"", "DZ-LBT01":"",}
-    
-#     return dateDictionary.get(set)
+def findReleaseDate(set):
+    dateDictionary = {"BT01":"2011/03/12", "BT02":"2011/05/28", "BT03":"2011/08/06", "BT04":"2011/10/29", "BT05":"2012/01/14",
+                      "BT06":"2012/04/28", "BT07":"2012/07/07", "BT08":"2012/09/22", "BT09":"2012/12/08",
+                      "BT10":"2013/02/16", "BT21":"2013/04/27", "BT12":"2013/07/06", "BT13":"2011/09/13", "BT14":"2013/12/12", "BT15":"2014/02/28",
+                      "BT16":"2014/05/16", "BT17":"2014/08/08",
+                      "G-BT01":"2014/12/05", "G-BT02":"2015/02/20", "G-BT03":"2015/05/29", "G-BT04":"2015/08/28",
+                      "G-BT05":"2015/11/13", "G-BT06":"2016/02/19", "G-BT07":"2016/05/27", "G-BT08":"2016/08/26",
+                      "G-BT09":"2016/11/11", "G-BT10":"2017/02/03", "G-BT11":"2017/06/09", "G-BT12":"2017/08/25", 
+                      "G-BT13":"2017/11/17", "G-BT14":"2018/02/23",
+                      "V-BT01":"2018/05/25", "V-BT02":"2018/08/31", 
+                      "V-BT03":"2018/12/14", "V-BT04":"2019/01/25", "V-BT05":"2019/07/12", "V-BT06":"2019/08/10",
+                      "V-BT07":"2019/10/11", "V-BT08":"2020/06/19", 
+                      "V-BT09":"2020/07/31", "V-BT10":"2020/08/28", "V-BT11":"2020/10/15", "V-BT12":"2020/11/06",
+                      "D-BT01":"2021/04/17", "D-BT02":"2021/06/25", "D-BT03":"2021/09/24", "D-BT04":"2021/12/24", "D-BT05":"2022/04/01",
+                      "D-BT06":"2022/08/05", "D-BT07":"2022/09/30", "D-BT08":"2022/12/09", 
+                      "D-BT09":"2023/02/03", "D-BT10":"2023/04/07", "D-BT11":"2023/06/02", "D-BT12":"2023/08/04", "D-BT13":"2023/09/29",
+                      "DZ-BT01":"2024/02/09", "DZ-BT03":"2024/06/07", "DZ-BT04":"2024/08/09", "DZ-BT05":"2024/10/11"}
 
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
@@ -30,11 +36,8 @@ def findGiftMarker(targetClan):
                 return giftMarker
 
 def addAttributes(dictionary):
-    # debutSet = dictionary.get("Card Set(s)").split(",")[0]
-    # dictionary.update({"Card No.": debutSet})
-
-    # releaseDate = findReleaseDate(debutSet)
-    # dictionary.update({"Release Date": releaseDate})
+    debutSet = dictionary.get("Card Set(s)").split(",")[0]
+    dictionary.update({"Card No.": debutSet})
 
     if (dictionary.get("Card Type") == None):
         dictionary.update({"Card Type": "Normal Unit"})
@@ -56,14 +59,14 @@ def deleteAttributes(dictionary):
     return dictionary
 
 def editAttributes(dictionary):
-    # debutSet = dictionary.get("Card No.")
+    debutSet = dictionary.get("Card No.")
 
-    # if (debutSet[0] == "V"):
-    #     dictionary.update({"Format": "V Series"})
-    # elif (debutSet[0] == "D"):
-    #     dictionary.update({"Format": "D Series"})
-    # else:
-    #     dictionary.update({"Format": "Original Series"})
+    if (debutSet[0] == "V"):
+        dictionary.update({"Format": "V Series"})
+    elif (debutSet[0] == "D"):
+        dictionary.update({"Format": "D Series"})
+    else:
+        dictionary.update({"Format": "Original Series"})
 
     if (dictionary.get("Grade / Skill") != None):
         splitGrade = dictionary.get("Grade / Skill").split(" / ")
@@ -121,6 +124,37 @@ def cardFullArt(pageURL):
     
     return ({"Full Art(s)": imagesString[0:-2]})
 
+def readCardRarities(page):
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    rarities = []
+    rarityPattern = re.compile(r"\((.*?)\)")
+    for set in setsDescription:
+        rarities.extend(rarityPattern.findall(str(set)))
+
+    raritiesString = ""
+    for rarity in rarities:
+        if (rarity not in raritiesString):
+            raritiesString += rarity + " + "
+
+    return ({"Rarity": raritiesString[0:-3]})
+
+def readCardSets(page):
+    cardSets = page.find("table", {"class": "sets"})
+    setsDescription = (cardSets.find("td")).find_all("li")
+
+    setCodes = []
+    codesPattern = re.compile(r"(?:[A-Za-z]+-)?(?:BT|EB|TD|TCB|CHB|CB|CMB|MB|FC|SS|LD|SD|MBT)+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?: |<br/>)")
+    for set in setsDescription:
+        setCodes.extend(codesPattern.findall(str(set)))
+
+    setString = ""
+    for index in range(0, len(setCodes)):
+        setString += (setCodes[index].split("<")[0]).strip() + ", "
+
+    return ({"Card Set(s)": setString[0:-2]})
+
 def readCardEffect(page):
     try:
         cardEffect = page.find("table", {"class": "effect"})
@@ -146,28 +180,43 @@ def readCard(pageURL):
             title = (attributes[index].text).strip()
             trait = (attributes[index + 1].text).strip()
             dictionary.update({title: trait})
-    
+
     dictionary.update(readCardEffect(cardPage))
     dictionary.update(cardFullArt(pageURL))
+    dictionary.update(readCardSets(cardPage))
+    dictionary.update(readCardRarities(cardPage))
 
     dictionary = editDictionary(dictionary)
 
-    #print(dictionary)
-
     return dictionary
 
-cards = []
-cards.append(readCard("https://cardfight.fandom.com/wiki/Blaster_Blade"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Battleraizer"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Cable_Sheep"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest"))
-cards.append(readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv"))
-print(cards)
+def main():
+    startTime = time.time()
+
+    list = []
+
+    list.append(readCard("https://cardfight.fandom.com/wiki/Blaster_Blade"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Battleraizer"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Cable_Sheep"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest"))
+    list.append(readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv"))
+
+    print(list)
+
+    # df = pd.DataFrame(list)
+    # print(df)
+
+    endTime = time.time()
+
+    executionTime = endTime - startTime
+    print(f"Execution time: {executionTime:.4f} seconds")
+
+main()
