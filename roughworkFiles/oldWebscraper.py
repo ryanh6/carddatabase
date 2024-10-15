@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import re
-from database import *
+from oldDatabase import *
 
 # Edit Dictionary Functions ----------------------------------------------
 def findGiftMarker(targetClan):
