@@ -2,8 +2,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 import re
-import time
 from database import *
+
+from io import StringIO
 
 def makeCalender():
     dateDictionary = {}
@@ -20,6 +21,10 @@ def makeCalender():
 
 def findReleaseDate(dictionary, set):
     code = set.split("/")[0]
+
+    if (dictionary.get(code) == None):
+        return "???"
+    
     return dictionary.get(code).strip()
 
 def findGiftMarker(targetClan):
@@ -193,33 +198,29 @@ def readCard(pageURL):
 
     return dictionary
 
-def main():
-    startTime = time.time()
-
+def readSet(setURL):
     list = []
 
-    list.append(readCard("https://cardfight.fandom.com/wiki/Blaster_Blade"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Battleraizer"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Cable_Sheep"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Embodiment_of_Spear,_Tahr"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Destined_One_of_Scales,_Aelquilibra"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Holy_Dragon,_Brave_Lancer_Dragon"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Destruction_Tyrant,_Twintempest"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Light_Source_Seeker,_Alfred_Exiv"))
-    list.append(readCard("https://cardfight.fandom.com/wiki/Harmonics_Messiah_(V_Series)"))
+    setRequest = requests.get(setURL)
+    setPage = BeautifulSoup(setRequest.text, "html.parser")
+
+    setTable = setPage.find("table")
+    rows = setTable.find_all("tr")
+    rows = rows[1:]
+    
+    for links in rows:
+        newLink = "https://cardfight.fandom.com" + links.find_all("td")[1].find("a").get("href")
+        # print(newLink)
+        list.append(readCard(newLink))
+
+    return list
+
+def main():
+    list = readSet("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
 
     table = pd.DataFrame(list)
     convertToExcel(table)
-
-    endTime = time.time()
-
-    executionTime = endTime - startTime
-    print(f"Execution time: {executionTime:.4f} seconds")
+    formatDatabase()
 
 calender = makeCalender()
 main()

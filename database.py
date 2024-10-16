@@ -1,6 +1,13 @@
 import openpyxl
 import pandas as pd
 
+def arrangeColumns(dataframe):
+    return dataframe[["Card No.", "Name", "Card Type", "Grade", "Skill", 
+                      "Imaginary Gift", "Special Icon", "Trigger Effect", 
+                      "Power", "Shield", "Critical", "Nation", "Clan", 
+                      "Race", "Format", "Artist", "Full Art(s)", "Card Set(s)", 
+                      "Rarity", "Card Effect(s)", "Release Date"]]
+
 def sortDatabase(dataframe):
     return dataframe.sort_values(["Release Date", "Card No."])
     
@@ -26,13 +33,10 @@ def filterDatabase(keyword):
 
 def formatDatabase():
     cfvDataframe = convertToPanda()
+    # cfvDataframe = arrangeColumns(cfvDataframe)
     cfvDataframe = removeDuplicates(cfvDataframe)
     cfvDataframe = sortDatabase(cfvDataframe)
-    cfvDataframe.to_excel("cfvdatabase.xlsx", sheet_name = "All Cards", index = False, na_rep = '-')
+    convertToExcel(cfvDataframe)
 
 def convertToExcel(dataframe):
-    dataframe = dataframe[["Card No.", "Name", "Card Type", "Grade", "Skill", "Imaginary Gift", "Special Icon", 
-                          "Trigger Effect", "Power", "Shield", "Critical", "Nation", "Clan", "Race", "Format", 
-                          "Artist", "Full Art(s)", "Card Set(s)", "Rarity", "Card Effect(s)", "Release Date"]]
     dataframe.to_excel("cfvdatabase.xlsx", sheet_name = "All Cards", index = False, na_rep = '-')
-    formatDatabase()
