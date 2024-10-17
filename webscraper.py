@@ -59,7 +59,7 @@ def addAttributes(dictionary):
 
 def deleteAttributes(dictionary):
     toRemove = ["Kanji", "Kana", "Phonetic", "Thai", "Italian", "Korean", 
-                "Grade / Skill", "Illust", "Design /  Illust"]
+                "Grade / Skill", "Illust", "Design /  Illust", "Translation"]
     
     for key in toRemove:
         dictionary.pop(key, None)
@@ -153,7 +153,7 @@ def readCardSets(page):
     setsDescription = (cardSets.find("td")).find_all("li")
 
     setCodes = []
-    codesPattern = re.compile(r"(?:[A-Za-z]+-)?(?:BT|EB|TD|TCB|CHB|CB|CMB|MB|FC|SS|LD|SD|MBT)+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?: |<br/>)")
+    codesPattern = re.compile(r"(?:[A-Za-z]+-)?(?:BT|EB|TD|TCB|CHB|LBT|PR|CB|CMB|MB|FC|SS|LD|SD|MBT)+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?: |<br/>)")
     for set in setsDescription:
         setCodes.extend(codesPattern.findall(str(set)))
 
@@ -196,7 +196,8 @@ def readCard(pageURL):
 
     dictionary = editDictionary(dictionary)
 
-    return dictionary
+    writeCardInfo(dictionary)
+    # return dictionary
 
 def readSet(setURL):
     list = []
@@ -210,17 +211,21 @@ def readSet(setURL):
     
     for links in rows:
         newLink = "https://cardfight.fandom.com" + links.find_all("td")[1].find("a").get("href")
-        # print(newLink)
+        print(newLink)
         list.append(readCard(newLink))
 
-    return list
+    # return list
 
 def main():
-    list = readSet("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+    readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_01:_Fated_Clash")
+    readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_02:_Illusionless_Strife")
+    # list.append(readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_03:_Dimensional_Transcendence"))
+    # list.append(readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_04:_Destined_Showdown"))
 
-    table = pd.DataFrame(list)
-    convertToExcel(table)
-    formatDatabase()
+    # table = pd.DataFrame(list)
+    # convertToExcel(table)
+    # formatDatabase()
 
 calender = makeCalender()
 main()
+# formatDatabase()
