@@ -1,31 +1,8 @@
 from bs4 import BeautifulSoup
-import pandas as pd
 import requests
-import re
-from database import *
 
-from io import StringIO
-
-def makeCalender():
-    dateDictionary = {}
-
-    file = open("sets.txt", "r")
-
-    for line in file:
-        code = line.split(" - ")[0]
-        date = line.split(" - ")[2]
-
-        dateDictionary.update({code: date})
-
-    return dateDictionary
-
-def findReleaseDate(dictionary, set):
-    code = set.split("/")[0]
-
-    if (dictionary.get(code) == None):
-        return "???"
-    
-    return dictionary.get(code).strip()
+import openpyxl
+import pandas as pd
 
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
@@ -41,12 +18,6 @@ def findGiftMarker(targetClan):
                 return giftMarker
 
 def addAttributes(dictionary):
-    debutSet = dictionary.get("Card Set(s)").split(",")[0]
-    dictionary.update({"Card No.": debutSet})
-
-    releaseDate = findReleaseDate(calender, debutSet)
-    dictionary.update({"Release Date": releaseDate})
-
     if (dictionary.get("Card Type") == None):
         dictionary.update({"Card Type": "Normal Unit"})
 
@@ -59,7 +30,7 @@ def addAttributes(dictionary):
 
 def deleteAttributes(dictionary):
     toRemove = ["Kanji", "Kana", "Phonetic", "Thai", "Italian", "Korean", 
-                "Grade / Skill", "Illust", "Design /  Illust", "Translation"]
+                "Grade / Skill", "Illust", "Design /  Illust"]
     
     for key in toRemove:
         dictionary.pop(key, None)
@@ -67,15 +38,6 @@ def deleteAttributes(dictionary):
     return dictionary
 
 def editAttributes(dictionary):
-    debutSet = dictionary.get("Card No.")
-
-    if (debutSet[0] == "V"):
-        dictionary.update({"Format": "V Series"})
-    elif (debutSet[0] == "D"):
-        dictionary.update({"Format": "D Series"})
-    else:
-        dictionary.update({"Format": "Original Series"})
-
     if (dictionary.get("Grade / Skill") != None):
         splitGrade = dictionary.get("Grade / Skill").split(" / ")
 
@@ -99,70 +61,6 @@ def editDictionary(dictionary):
     dictionary = deleteAttributes(dictionary)
     return dictionary
 
-def rebuildLink(oldLink):
-    newString = ""
-    splitString = oldLink.split("/")
-
-    for section in splitString:
-        if (section == "scale-to-width-down"):
-            break
-        else:
-            newString += section + "/"
-    
-    return newString + "?" + oldLink.split("?")[-1]
-
-def cardFullArt(pageURL):
-    cardName = pageURL.split("/")[-1]
-    cardGalleryLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
-    
-    galleryRequest = requests.get(cardGalleryLink)
-    galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
-
-    regexPattern = re.compile("_%28Full_Art(.*?)%29.png")
-    fullArts = galleryPage.find_all("img", {"data-src": regexPattern})
-
-    imagesString = ""
-    for images in fullArts:
-        shrinkedImage = images.get("data-src")
-        scaledImage = rebuildLink(shrinkedImage)
-        imagesString += scaledImage + ", "
-    
-    if (imagesString == ""):
-        return ({"Full Art(s)": "-"})
-    
-    return ({"Full Art(s)": imagesString[0:-2]})
-
-def readCardRarities(page):
-    cardSets = page.find("table", {"class": "sets"})
-    setsDescription = (cardSets.find("td")).find_all("li")
-
-    rarities = []
-    rarityPattern = re.compile(r"\((.*?)\)")
-    for set in setsDescription:
-        rarities.extend(rarityPattern.findall(str(set)))
-
-    raritiesString = ""
-    for rarity in rarities:
-        if (rarity not in raritiesString):
-            raritiesString += rarity + " + "
-
-    return ({"Rarity": raritiesString[0:-3]})
-
-def readCardSets(page):
-    cardSets = page.find("table", {"class": "sets"})
-    setsDescription = (cardSets.find("td")).find_all("li")
-
-    setCodes = []
-    codesPattern = re.compile(r"(?:[A-Za-z]+-)?(?:BT|EB|TD|TCB|CHB|LBT|PR|CB|CMB|MB|FC|SS|LD|SD|MBT)+(?:[0-9]+)?/[A-Za-z]*[0-9]+(?: |<br/>)")
-    for set in setsDescription:
-        setCodes.extend(codesPattern.findall(str(set)))
-
-    setString = ""
-    for index in range(0, len(setCodes)):
-        setString += (setCodes[index].split("<")[0]).strip() + ", "
-
-    return ({"Card Set(s)": setString[0:-2]})
-
 def readCardEffect(page):
     try:
         cardEffect = page.find("table", {"class": "effect"})
@@ -183,6 +81,7 @@ def readCard(pageURL):
         return
 
     dictionary = {}
+
     for index in range(0, len(attributes)):
         if (index % 2 == 0):
             title = (attributes[index].text).strip()
@@ -190,42 +89,22 @@ def readCard(pageURL):
             dictionary.update({title: trait})
 
     dictionary.update(readCardEffect(cardPage))
-    dictionary.update(cardFullArt(pageURL))
-    dictionary.update(readCardSets(cardPage))
-    dictionary.update(readCardRarities(cardPage))
 
     dictionary = editDictionary(dictionary)
 
-    writeCardInfo(dictionary)
-    # return dictionary
+    return dictionary
 
-def readSet(setURL):
-    list = []
+cardList = []
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Blaster_Blade"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Battleraizer"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Cable_Sheep"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Extreme_Battler,_Kenbeam"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Dragonic_Overlord_(Break_Ride)"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Flame_Wing_Steel_Beast,_Denial_Griffin"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(V_Series)"))
+cardList.append(readCard("https://cardfight.fandom.com/wiki/Fated_One_of_Guiding_Star,_Welstra_%22Blitz_Arms%22"))
 
-    setRequest = requests.get(setURL)
-    setPage = BeautifulSoup(setRequest.text, "html.parser")
+print(cardList)
 
-    setTable = setPage.find("table")
-    rows = setTable.find_all("tr")
-    rows = rows[1:]
-    
-    for links in rows:
-        newLink = "https://cardfight.fandom.com" + links.find_all("td")[1].find("a").get("href")
-        print(newLink)
-        list.append(readCard(newLink))
-
-    # return list
-
-def main():
-    readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_01:_Fated_Clash")
-    readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_02:_Illusionless_Strife")
-    # list.append(readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_03:_Dimensional_Transcendence"))
-    # list.append(readSet("https://cardfight.fandom.com/wiki/DZ_Booster_Set_04:_Destined_Showdown"))
-
-    # table = pd.DataFrame(list)
-    # convertToExcel(table)
-    # formatDatabase()
-
-calender = makeCalender()
-main()
-# formatDatabase()
+table = pd.DataFrame(cardList)
+table.to_excel("cfvdatabase.xlsx", sheet_name = "All Cards", index = False)
