@@ -5,15 +5,21 @@ def cfvCardArtworks(cardGalleryLink):
     galleryRequest = requests.get(cardGalleryLink)
     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
 
-    artworks = galleryPage.find_all(string = "BT01/001EN (RRR) (Sample)")
+    sections = galleryPage.find_all("div", {"id": "gallery-0"})
 
-    for element in artworks:
-        parent = element.parent
-        next = parent.previous_sibling
-        image = next.find("img")
-        finalImage = image.get("src")
-        print(finalImage)
-        print()
+    print(sections)
+    print()
+
+    # artworks = sections.find_all("div", {"class": "wikia-gallery-item"})
+    # print(artworks)
+
+    # for element in artworks:
+    #     parent = element.parent
+    #     next = parent.previous_sibling
+    #     image = next.find("img")
+    #     finalImage = image.get("src")
+    #     print(finalImage)
+    #     print()
 
 def cfvReadCard(pageURL):
     try:
