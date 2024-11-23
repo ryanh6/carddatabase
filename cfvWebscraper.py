@@ -1,24 +1,32 @@
 from bs4 import BeautifulSoup
 import requests
 
-def cfvCardArtworks(cardGalleryLink):
-    galleryRequest = requests.get(cardGalleryLink)
-    galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
+# def cfvCardArtworks(cardGalleryLink):
+#     galleryRequest = requests.get(cardGalleryLink)
+#     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
 
-    # sections = galleryPage.find("div", {"id": "gallery-0"})
+#     # sections = galleryPage.find("div", {"id": "gallery-0"})
 
-    artworks = galleryPage.find_all("div", {"class": "wikia-gallery-item"})
-    print(artworks)
+#     artworks = galleryPage.find_all("div", {"class": "wikia-gallery-item"})
+#     print(artworks)
 
-    for element in artworks:
-        # parent = element.parent
-        # next = parent.previous_sibling
-        image = element.find("img")
-        finalImage = image.get("src")
-        print(finalImage)
-        print()
+#     for element in artworks:
+#         # parent = element.parent
+#         # next = parent.previous_sibling
+#         image = element.find("img")
+#         finalImage = image.get("src")
+#         print(finalImage)
+#         print()
 
-def cfvReadCard(pageURL):
+def readCardEffect(pageData):
+    try:
+        cardEffect = pageData.find("table", {"class": "effect"})
+        effectDescription = cardEffect.find("td")
+        return ({"Card Effect(s)": (effectDescription.text).strip()})
+    except:
+        return ({"Card Effect(s)": "-"})
+
+def cfvReadCard(pageURL, dictionary):
     try:
         cardRequest = requests.get(pageURL)
         cardPage = BeautifulSoup(cardRequest.text, "html.parser")
@@ -28,15 +36,23 @@ def cfvReadCard(pageURL):
     except:
         return
     
-    dictionary = {}
     for index in range(0, len(attributes)):
         if (index % 2 == 0):
             title = (attributes[index].text).strip()
             trait = (attributes[index + 1].text).strip()
             dictionary.update({title: trait})
     
+    dictionary.update(readCardEffect(cardPage))
     print(dictionary)
 
-cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
-cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:King_of_Knights,_Alfred")
-cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:Embodiment_of_Spear,_Tahr")
+def readSet():
+    dictionary = {}
+    dictionary.update({"Card ID": "BT01/001"})
+    dictionary.update({"Set Name": "Descent of the King of Knights"})
+    dictionary.update({"Release Date": "12/03/2011"})
+
+    cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred", dictionary)
+
+readSet()
+# cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:King_of_Knights,_Alfred")
+# cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:Embodiment_of_Spear,_Tahr")
