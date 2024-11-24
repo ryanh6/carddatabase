@@ -81,6 +81,28 @@ def readCardEffect(pageData):
     except:
         return ({"Card Effect(s)": "-"})
 
+def readCardSets(pageData):
+    try:
+        cardSets = pageData.find("table", {"class": "sets"})
+        setsDescription = (cardSets.find("td")).find_all("li")
+
+        print()
+        for element in setsDescription:
+            # print(element)
+
+            # stringy = element
+            # print("HI")
+            # print(stringy)
+            # print("WE")
+            # # stringy = "Hello thereL"
+            # new = stringy.replace("L", " - ")
+            # print("YO")
+            new = element.get_text(separator = " - ")
+            print(new)
+            # print("EH")
+    except:
+        return
+
 def cfvReadCard(pageURL):
     try:
         cardRequest = requests.get(pageURL)
@@ -103,6 +125,8 @@ def cfvReadCard(pageURL):
     editDictionary(dictionary)
 
     print(dictionary)
+
+    readCardSets(cardPage)
 
 def readSet():
     cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
