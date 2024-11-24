@@ -88,18 +88,13 @@ def readCardSets(pageData):
 
         print()
         for element in setsDescription:
-            # print(element)
-
-            # stringy = element
-            # print("HI")
-            # print(stringy)
-            # print("WE")
-            # # stringy = "Hello thereL"
-            # new = stringy.replace("L", " - ")
-            # print("YO")
             new = element.get_text(separator = " - ")
-            print(new)
-            # print("EH")
+            # print(new)
+            splitedNew = new.split(" - ")
+            splitedNew = splitedNew[2:]
+
+            for thing in splitedNew:
+                print(thing)
     except:
         return
 
@@ -129,7 +124,8 @@ def cfvReadCard(pageURL):
     readCardSets(cardPage)
 
 def readSet():
-    cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
+    # cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
+    cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
 
 readSet()
 # cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:King_of_Knights,_Alfred")
