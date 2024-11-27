@@ -3,20 +3,36 @@ import requests
 
 from database import *
 
-# def cfvCardArtworks(cardGalleryLink):
-#     galleryRequest = requests.get(cardGalleryLink)
-#     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
+# def rebuildLink(oldLink):
+#     newString = ""
+#     splitString = oldLink.split("/")
 
-#     # artworks = galleryPage.find_all("div", {"class": "wikia-gallery-item"})
-#     artworks = galleryPage.find_all("div", string = "Full Art")
+#     for section in splitString:
+#         if (section == "scale-to-width-down"):
+#             break
+#         else:
+#             newString += section + "/"
+    
+#     return newString + "?" + oldLink.split("?")[-1]
+
+# def cfvCardArtworks(galleryData, title):
+#     imagesString = ""
+#     artworks = galleryData.find_all("div", string = "TD01/005EN")
+#     # artworks += galleryData.find_all("div", string = "TD01/005EN (Sample)")
+
+#     print(artworks)
 
 #     for element in artworks:
-#         # parent = element.parent
 #         next = element.previous_sibling
 #         image = next.find("img")
 #         finalImage = image.get("src")
-#         print(finalImage)
-#         print()
+#         scaledImage = rebuildLink(finalImage)
+#         imagesString += scaledImage + ", "
+
+#     if (imagesString == ""):
+#         return "-"
+    
+#     return imagesString[0:-2]
 
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
@@ -177,29 +193,37 @@ def cfvReadCard(pageURL):
     baseDictionary.update(readCardEffect(cardPage))
     editDictionary(baseDictionary)
 
-    # print(baseDictionary)
+    # cardName = pageURL.split("/")[-1]
+    # cardGalleryLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
+
+    # try:
+    #     galleryRequest = requests.get(cardGalleryLink)
+    #     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
+
+    #     baseDictionary.update(cfvCardArtworks(galleryPage, "Full Art"))
+    # except:
+    #     baseDictionary.update(({"Full Art(s)": "-"}))
 
     codeArray = readCardSets(cardPage)
     # print(codeArray)
 
     for item in codeArray:
-        newCard = dict(baseDictionary)
+        newCard = baseDictionary.copy()
         newCard.update({"Card ID": item})
         editSetAttributes(newCard)
         newCard.update(readTournamentStatus(cardPage, newCard))
         cardList.append(newCard)
 
 
-    for card in cardList:
-        print(card)
+    # for card in cardList:
+    #     print(card)
 
-    updateExcel("cfvdatabase.xlsx", "All Cards", cardList)
+    # updateExcel("cfvdatabase.xlsx", "All Cards", cardList)
 
 def readSet():
     # cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
     cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
-    cfvReadCard("https://cardfight.fandom.com/wiki/Epitome_of_Knowledge,_Silvest")
+    # cfvReadCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(D_Series)")
+    # cfvReadCard("https://cardfight.fandom.com/wiki/Epitome_of_Knowledge,_Silvest")
 
 readSet()
-# cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:King_of_Knights,_Alfred")
-# cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:Embodiment_of_Spear,_Tahr")
