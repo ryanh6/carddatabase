@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+from database import *
+
 # def cfvCardArtworks(cardGalleryLink):
 #     galleryRequest = requests.get(cardGalleryLink)
 #     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
@@ -89,10 +91,13 @@ def readTournamentStatus(pageData, dictionary):
         region = status.find("td", string = language)
         regulation = region.find_next("td")
 
-        restriction = ((regulation.find("a")).get("title"))
+        tourneyStatus = regulation.text.strip()
 
-
-        return
+        if (tourneyStatus == "Unrestricted"):
+            return ({"Restrictions": tourneyStatus})
+        else:
+            tourneyStatus = ((regulation.find("a")).get("title"))
+            return ({"Restrictions": tourneyStatus})
     except:
         return
 
@@ -116,7 +121,7 @@ def readCardSets(pageData):
     return codeList
 
 # Need Edit: Full Art
-# Second Edit: Card Art, Tournament Status
+# Second Edit: Card Art
 # Outer Edit: Set Name, Release Date
 
 def editSetAttributes(dictionary):
@@ -172,7 +177,7 @@ def cfvReadCard(pageURL):
     baseDictionary.update(readCardEffect(cardPage))
     editDictionary(baseDictionary)
 
-    print(baseDictionary)
+    # print(baseDictionary)
 
     codeArray = readCardSets(cardPage)
     # print(codeArray)
@@ -181,12 +186,14 @@ def cfvReadCard(pageURL):
         newCard = dict(baseDictionary)
         newCard.update({"Card ID": item})
         editSetAttributes(newCard)
-        readTournamentStatus(cardPage, newCard)
+        newCard.update(readTournamentStatus(cardPage, newCard))
         cardList.append(newCard)
 
 
-    # for card in cardList:
-    #     print(card)
+    for card in cardList:
+        print(card)
+
+    updateExcel("cfvdatabase.xlsx", "All Cards", cardList)
 
 def readSet():
     # cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
