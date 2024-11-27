@@ -3,36 +3,39 @@ import requests
 
 from database import *
 
-# def rebuildLink(oldLink):
-#     newString = ""
-#     splitString = oldLink.split("/")
+def rebuildLink(oldLink):
+    newString = ""
+    splitString = oldLink.split("/")
 
-#     for section in splitString:
-#         if (section == "scale-to-width-down"):
-#             break
-#         else:
-#             newString += section + "/"
+    for section in splitString:
+        if (section == "scale-to-width-down"):
+            break
+        else:
+            newString += section + "/"
     
-#     return newString + "?" + oldLink.split("?")[-1]
+    return newString + "?" + oldLink.split("?")[-1]
 
-# def cfvCardArtworks(galleryData, title):
-#     imagesString = ""
-#     artworks = galleryData.find_all("div", string = "TD01/005EN")
-#     # artworks += galleryData.find_all("div", string = "TD01/005EN (Sample)")
+def cfvCardArtworks(galleryData):
+    imagesString = ""
+    artworks = galleryData.find_all("div", {"class": "wikia-gallery-item"})
+    # artworks += galleryData.find_all("div", string = "TD01/005EN (Sample)")
 
-#     print(artworks)
+    # print(artworks)
+    for element in artworks:
+        print(element.text)
+        print()
 
-#     for element in artworks:
-#         next = element.previous_sibling
-#         image = next.find("img")
-#         finalImage = image.get("src")
-#         scaledImage = rebuildLink(finalImage)
-#         imagesString += scaledImage + ", "
+    # for element in artworks:
+    #     next = element.previous_sibling
+    #     image = next.find("img")
+    #     finalImage = image.get("src")
+    #     scaledImage = rebuildLink(finalImage)
+    #     imagesString += scaledImage + ", "
 
-#     if (imagesString == ""):
-#         return "-"
+    # if (imagesString == ""):
+    #     return "-"
     
-#     return imagesString[0:-2]
+    # return imagesString[0:-2]
 
 def findGiftMarker(targetClan):
     clanDictionary = {"Accel": ["Aqua Force", "Gold Paladin", "Great Nature", "Murakumo",
@@ -173,6 +176,21 @@ def editSetAttributes(dictionary):
 
 
 def cfvReadCard(pageURL):
+    # Read Card Page (returns the Card Page Data,  error if doesnt exist)
+    # Read Gallery Page (even if doesnt exists, its still fine)
+
+    # Make the basic dictionary
+    # Add card Effects
+    # Add Full arts
+    # Edit Attributes
+
+    # Read Card sets
+    # Make multiple dictionaries
+    # Add tournament status
+    # edit attributes (based on code provided)
+
+    # Add To List
+
     try:
         cardRequest = requests.get(pageURL)
         cardPage = BeautifulSoup(cardRequest.text, "html.parser")
@@ -193,16 +211,19 @@ def cfvReadCard(pageURL):
     baseDictionary.update(readCardEffect(cardPage))
     editDictionary(baseDictionary)
 
-    # cardName = pageURL.split("/")[-1]
-    # cardGalleryLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
+    cardName = pageURL.split("/")[-1]
+    cardGalleryLink = "https://cardfight.fandom.com/wiki/Card_Gallery:" + cardName
 
-    # try:
-    #     galleryRequest = requests.get(cardGalleryLink)
-    #     galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
+    try:
+        galleryRequest = requests.get(cardGalleryLink)
+        galleryPage = BeautifulSoup(galleryRequest.text, "html.parser")
 
-    #     baseDictionary.update(cfvCardArtworks(galleryPage, "Full Art"))
-    # except:
-    #     baseDictionary.update(({"Full Art(s)": "-"}))
+        cfvCardArtworks(galleryPage)
+
+        # baseDictionary.update(cfvCardArtworks(galleryPage, "Full Art"))
+    except:
+        # baseDictionary.update(({"Full Art(s)": "-"}))
+        print("ERROR")
 
     codeArray = readCardSets(cardPage)
     # print(codeArray)
