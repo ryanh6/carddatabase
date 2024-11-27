@@ -81,22 +81,75 @@ def readCardEffect(pageData):
     except:
         return ({"Card Effect(s)": "-"})
 
+def readTournamentStatus(pageData, dictionary):
+    language = dictionary.get("Language")
+
+    try:
+        status = pageData.find("table", {"class": "tourneystatus"})
+        region = status.find("td", string = language)
+        regulation = region.find_next("td")
+
+        restriction = ((regulation.find("a")).get("title"))
+
+
+        return
+    except:
+        return
+
 def readCardSets(pageData):
     try:
         cardSets = pageData.find("table", {"class": "sets"})
         setsDescription = (cardSets.find("td")).find_all("li")
-
-        print()
-        for element in setsDescription:
-            new = element.get_text(separator = " - ")
-            # print(new)
-            splitedNew = new.split(" - ")
-            splitedNew = splitedNew[2:]
-
-            for thing in splitedNew:
-                print(thing)
     except:
         return
+    
+    codeList = []
+    for set in setsDescription:
+        codes = set.get_text(separator = " - ")
+
+        splitedCodes = codes.split(" - ")
+        splitedCodes = splitedCodes[2:]
+
+        for code in splitedCodes:
+            codeList.append(code)
+
+    return codeList
+
+# Need Edit: Full Art
+# Second Edit: Card Art, Tournament Status
+# Outer Edit: Set Name, Release Date
+
+def editSetAttributes(dictionary):
+    code = dictionary.get("Card ID")
+
+    dictionary.update({"Card ID": code.split(" ")[0]})
+    dictionary.update({"Set ID": code.split("/")[0]})
+
+    if (code[:2] == "V-"):
+        dictionary.update({"Series": "V Series"})
+        dictionary.update({"Format": "V-Premium"})
+    elif (code[:2] == "D-" or code[:3] == "DZ-"):
+        dictionary.update({"Series": "D Series"})
+        dictionary.update({"Format": "Standard"})
+    else:
+        dictionary.update({"Series": "Original Series"})
+        dictionary.update({"Format": "Premium"})
+
+    if ("(" in code):
+        rarity = code.split("(")[1].strip("()")
+        dictionary.update({"Rarity": rarity})
+
+    if ("EN" in code):
+        dictionary.update({"Language": "EN"})
+    elif ("KR" in code):
+        dictionary.update({"Language": "KR"})
+    elif ("TH" in code):
+        dictionary.update({"Language": "TH"})
+    elif ("IT" in code):
+        dictionary.update({"Language": "IT"})
+    else:
+        dictionary.update({"Language": "JP"})
+
 
 def cfvReadCard(pageURL):
     try:
@@ -108,24 +161,37 @@ def cfvReadCard(pageURL):
     except:
         return
     
-    dictionary = {}
+    cardList = []
+    baseDictionary = {}
     for index in range(0, len(attributes)):
         if (index % 2 == 0):
             title = (attributes[index].text).strip()
             trait = (attributes[index + 1].text).strip()
-            dictionary.update({title: trait})
+            baseDictionary.update({title: trait})
     
-    dictionary.update(readCardEffect(cardPage))
+    baseDictionary.update(readCardEffect(cardPage))
+    editDictionary(baseDictionary)
 
-    editDictionary(dictionary)
+    print(baseDictionary)
 
-    print(dictionary)
+    codeArray = readCardSets(cardPage)
+    # print(codeArray)
 
-    readCardSets(cardPage)
+    for item in codeArray:
+        newCard = dict(baseDictionary)
+        newCard.update({"Card ID": item})
+        editSetAttributes(newCard)
+        readTournamentStatus(cardPage, newCard)
+        cardList.append(newCard)
+
+
+    # for card in cardList:
+    #     print(card)
 
 def readSet():
     # cfvReadCard("https://cardfight.fandom.com/wiki/King_of_Knights,_Alfred")
     cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+    cfvReadCard("https://cardfight.fandom.com/wiki/Epitome_of_Knowledge,_Silvest")
 
 readSet()
 # cfvCardArtworks("https://cardfight.fandom.com/wiki/Card_Gallery:King_of_Knights,_Alfred")
