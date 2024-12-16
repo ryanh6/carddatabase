@@ -12,7 +12,9 @@ def cfvMain():
 
     list = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
     updateExcel("cfvdatabase.xlsx", "All Cards", list)
-    # sortExcel("cfvdatabase.xlsx", "All Cards", "Language")
+    # sortExcel("cfvdatabase.xlsx", "Language Sorted", "Language")
+    # updateExcel("cfvdatabase.xlsx", "All Cards", list)
+    # sortExcel("cfvdatabase.xlsx", "Name Sorted", "Name")
 
     # readSet()
 
