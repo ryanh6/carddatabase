@@ -235,7 +235,7 @@ def cfvReadCard(pageURL):
         newCard.update(readTournamentStatus(cardPage, newCard))
         cardList.append(newCard)
 
-
+    return cardList
     # for card in cardList:
     #     print(card)
 
@@ -247,4 +247,4 @@ def readSet():
     # cfvReadCard("https://cardfight.fandom.com/wiki/Incandescent_Lion,_Blond_Ezel_(D_Series)")
     # cfvReadCard("https://cardfight.fandom.com/wiki/Epitome_of_Knowledge,_Silvest")
 
-readSet()
+# readSet()

@@ -10,6 +10,10 @@ def cfvMain():
                     "Language", "Restrictions", "Full Art(s)"]
     createExcel("cfvdatabase.xlsx", "All Cards", columnNames)
 
-    readSet()
+    list = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+    updateExcel("cfvdatabase.xlsx", "All Cards", list)
+    # sortExcel("cfvdatabase.xlsx", "All Cards", "Language")
+
+    # readSet()
 
 cfvMain()
