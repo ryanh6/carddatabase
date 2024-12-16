@@ -22,8 +22,11 @@ def cfvCardArtworks(galleryData):
 
     # print(artworks)
     for element in artworks:
-        print(element.text)
+        print(element)
         print()
+
+    # Return the list of artworks, check each element of the array, if element.text contains
+    # the code we are looking for, take the index of that element in array
 
     # for element in artworks:
     #     next = element.previous_sibling

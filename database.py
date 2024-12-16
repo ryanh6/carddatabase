@@ -28,8 +28,6 @@ def updateExcel(fileName, sheetName, cardList):
 
 def sortExcel(fileName, sheetName, keyword):
     table = pd.read_excel(fileName)
-
-    print(table)
     sorted = sortDatabase(table, keyword)
 
     with pd.ExcelWriter(fileName, mode = "a", engine = "openpyxl") as writer:
