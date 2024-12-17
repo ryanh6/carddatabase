@@ -84,7 +84,7 @@ def createBasicDictionary(cardPageData, artworksArray):
     cardDictionary = {}
     addAttributes(cardDictionary, attributes)
     cardDictionary.update(readCardEffect(cardPageData))
-    cardDictionary.update(readGiftMarker(cardMainInfo))
+    # cardDictionary.update(readGiftMarker(cardMainInfo))
     cardDictionary.update(editCardType(cardDictionary))
     cardDictionary.update(editIllust(cardDictionary))
     cardDictionary.update(editGrade(cardDictionary))
