@@ -47,6 +47,59 @@ def editTrigger(dictionary):
 
     return ({"Trigger Effect": "-"})
 
+def editLanguage(dictionary):
+    code = dictionary.get("Card ID")
+
+    if ("EN" in code):
+        return ({"Language": "EN"})
+    elif ("KR" in code):
+        return ({"Language": "KR"})
+    elif ("TH" in code):
+        return ({"Language": "TH"})
+    elif ("IT" in code):
+        return ({"Language": "IT"})
+    else:
+        return ({"Language": "JP"})
+
+def editRarity(dictionary):
+    code = dictionary.get("Card ID")
+
+    if ("(" in code):
+        rarity = code.split("(")[1].strip("()")
+        return ({"Rarity": rarity})
+    
+    return ({"Rarity": "-"})
+
+def editFormat(dictionary):
+    code = dictionary.get("Card ID")
+
+    if (code[:2] == "V-"):
+        return ({"Format": "V-Premium"})
+    elif (code[:2] == "D-" or code[:3] == "DZ-"):
+        return ({"Format": "Standard"})
+    else:
+        return ({"Format": "Premium"})
+
+def editSeries(dictionary):
+    code = dictionary.get("Card ID")
+
+    if (code[:2] == "V-"):
+        return ({"Series": "V Series"})
+    elif (code[:2] == "D-" or code[:3] == "DZ-"):
+        return ({"Series": "D Series"})
+    else:
+        return ({"Series": "Original Series"})
+
+# ADD THIS ONE AT THE END BECAUSE OTHER FUNCTIONS RELY ON
+# THE OLD UNCHANGED CARD ID FIRST
+def editCardID(dictionary):
+    code = dictionary.get("Card ID")
+    return ({"Card ID": code.split(" ")[0]})
+
+def editSetID(dictionary):
+    code = dictionary.get("Card ID")
+    return ({"Set ID": code.split("/")[0]})
+
 def readCardEffect(pageData):
     try:
         cardEffect = pageData.find("table", {"class": "effect"})
