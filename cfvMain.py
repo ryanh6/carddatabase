@@ -10,8 +10,8 @@ def cfvMain():
                     "Language", "Restrictions", "Full Art(s)"]
     createExcel("cfvdatabase.xlsx", "All Cards", columnNames)
 
-    # list = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
-    # updateExcel("cfvdatabase.xlsx", "All Cards", list)
+    list = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+    updateExcel("cfvdatabase.xlsx", "All Cards", list)
     # sortExcel("cfvdatabase.xlsx", "Language Sorted", "Language")
     # updateExcel("cfvdatabase.xlsx", "All Cards", list)
     # sortExcel("cfvdatabase.xlsx", "Name Sorted", "Name")

@@ -251,7 +251,21 @@ def cfvReadCard(pageURL):
 
     return cardList
 
-data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
-print(data)
+def cfvReadSets():
+    setsDataEN = readPage("https://en.cf-vanguard.com/products/")
+
+    productList = setsDataEN.find_all("div", {"class": "products-list"})
+
+    fullList = []
+    for item in productList:
+        fullList.append(item.find_all("div", {"class": "text"}))
+
+    for element in fullList:
+        print(element)
+        print()
+
+# data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+# print(data)
 # table = pd.DataFrame(data)
 # print(table)
+cfvReadSets()
