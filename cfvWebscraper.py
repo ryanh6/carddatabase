@@ -251,32 +251,11 @@ def cfvReadCard(pageURL):
 
     return cardList
 
-# def cfvReadSets():
-#     setsDataEN = readPage("https://en.cf-vanguard.com/products/")
+def tempReadSetFunction():
+    return False
 
-#     productList = setsDataEN.find_all("div", {"class": "products-list"})
-
-
-#     fullList = []
-#     finalList = []
-#     for item in productList:
-#         itemInformation = item.find_all("div", {"class": "text"})
-
-#         for element in itemInformation:
-#             fullList.append(element)
-
-#     for element in fullList:
-#         elementDictionary = {}
-
-#         if (element.find("div", {"class": "category supply"}) != None):
-#             continue
-
-#         elementDictionary.update({"Name": (element.find("div", {"class": "title"})).text})
-#         elementDictionary.update({"Release Date": (element.find("div", {"class": "release"})).text})
-#         finalList.append(elementDictionary)
-
-#     for element in finalList:
-#         print(element)
+def cfvReadSets():
+    tempReadSetFunction()
 
 # data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
 # print(data)

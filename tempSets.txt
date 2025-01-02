@@ -1,0 +1,113 @@
+CODE | TITLE | JP RELEASE DATE | EN RELEASE DATE
+BT01 | Descent of the King of Knights | 12/03/2011 | 10/12/2011 | 
+BT02 | Onslaught of Dragon Souls
+BT03 | Demonic Lord Invasion
+BT04 | Eclipse of Illusionary Shadows
+BT05 | Awakening of Twin Blades
+BT06 | Breaker of Limits
+BT07 | Rampage of the Beast King
+BT08 | Blue Storm Armada
+BT09 | Clash of the Knights & Dragons
+BT10 | Triumphant Return of The King of Knights
+BT11 | Seal Dragons Unleashed
+BT12 | Binding Force of the Black Rings
+BT13 | Catastrophic Outbreak
+BT14 | Brilliant Strike
+BT15 | Infinite Rebirth
+BT16 | Legion of Dragons & Blades
+BT17 | Blazing Perdition
+EB01 | Comic Style Vol. 1
+EB02 | Banquet of Divas
+EB03 | Cavalry of Black Steel
+EB04 | Infinite Phantom Legion
+EB05 | Celestial Valkyries
+EB06 | Dazzling Divas
+EB07 | Mystical Magus
+EB08 | Champions of the Cosmos
+EB09 | Divine Dragon Pregression
+EB10 | Divas Duet
+EB11 | Requiem at Dusk
+EB12 | Waltz of the Goddess
+G-BT01 | Generation Stride
+G-BT02 | Soaring Ascent of Gale & Blossom
+G-BT03 | Sovereign Star Dragon
+G-BT04 | Soul Strike Against The Supreme
+G-BT05 | Moonlit Dragonfang
+G-BT06 | Transcension of Blade and Blossom
+G-BT07 | Glorious Bravery of Radiant Sword
+G-BT08 | Absolute Judgement
+G-BT09 | Divine Dragon Caper
+G-BT10 | Raging Clash of the Blade Fangs
+G-BT11 | Demonic Advent
+G-BT12 | Dragon King's Awakening
+G-BT13 | Ultimate Stride
+G-BT14 | Divine Dragon Aprocrypha
+G-CB01 | Academy of Divas
+G-CB02 | Commander of The Incessant Waves
+G-CB03 | Blessing of Divas
+G-CB04 | Gear of Fate
+G-CB05 | Prismatic Divas
+G-CB06 | Rondeau of Chaos & Salvation
+G-CB07 | Divas' Festa
+G-EB01 | Cosmic Roar
+G-EB02 | The Awakening Zoo
+G-EB03 | The Galaxy Star Gate
+G-TCB01 | The Reckless Rampage
+G-TCB02 | The Genius Strategy
+G-CHB01 | TRY3 Next
+G-CHB02 | We Are Trinity Dragon
+G-CHB03 | Rummy Labyrinth Under The Moonlight
+G-TB01 | Touken Ranbu -ONLINE-
+G-TB02 | Touken Ranbu -ONLINE-
+V-BT01 | Unite! Team Q4
+V-BT02 | Strongest! Team AL4
+V-BT03 | Miyaji Academy Cardfight Club
+V-BT04 | Vilest! Deletor
+V-BT05 | Aerial Steed Liberation
+V-BT06 | Phantasmal Steed Restoration
+V-BT07 | Infinideity Cradle
+V-BT08 | Silverdust Blaze
+V-BT09 | Butterfly d'Moonlight
+V-BT10 | Phantom Dragon Aeon
+V-BT11 | Storm of The Blue Cavalry
+V-BT12 | Divine Lightning Radiance
+V-EB01 | The Destructive Roar
+V-EB02 | Champions of the Asia Circuit
+V-EB03 | Ultrarare Miracle Collection
+V-EB04 | The Answer of Truth
+V-EB05 | Primary Melody
+V-EB06 | Light of Salvation, Logic of Destruction
+V-EB07 | The Heroic Evolution
+V-EB08 | My Glorious Justice
+V-EB09 | The Raging Tactics
+V-EB10 | The Mysterious Fortune
+V-EB11 | Crystal Melody
+V-EB12 | Team Dragon's Vanity
+V-EB13 | The Astral Force
+V-EB14 | The Next Stage
+V-EB15 | Twinkle Melody
+V-TB01 | BanG Dream! FILM LIVE
+D-BT01 | Genesis of The Five Greats
+D-BT02 | A Brush With The Legends
+D-BT03 | Advance of Intertwinted Stars
+D-BT04 | Awakening of Chakrabarthi
+D-BT05 | Triumphant Return of The Brave Heroes
+D-BT06 | Blazing Dragon Reborn
+D-BT07 | Raging Flames Against Emerald Storm
+D-BT08 | Minerva Rising
+D-BT09 | Dragontree Invasion
+D-BT10 | Dragon Masquerade
+D-BT11 | Clash of The Heroes
+D-BT12 | Evenfall Onslaught
+D-BT13 | Flight of Chakrabarthi
+D-LBT01 | Lyrical Melody
+D-LBT02 | Lyrical Monasterio ~It's a New School Term!~
+D-LBT03 | Lyrical Monasterio ~Summertime Memories!~
+DZ-BT01 | Fated Clash
+DZ-BT02 | Illusionless Strife
+DZ-BT03 | Dimensional Transcendence
+DZ-BT04 | Destined Showdown
+DZ-BT05 | Omniscient Awakening
+DZ-BT06 | Generation Dragenesis
+DZ-BT07 | Moon Fangs & Cerulean Blaze
+DZ-LBT01 | Lyrical Monasterio Sparkling Stars!
