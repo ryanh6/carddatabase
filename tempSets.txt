@@ -28,6 +28,9 @@ EB09 | Divine Dragon Pregression
 EB10 | Divas Duet
 EB11 | Requiem at Dusk
 EB12 | Waltz of the Goddess
+FC01 | Fighters Collection 2013
+FC02 | Fighters Collection 2014
+MBT01 | Neon Messiah
 G-BT01 | Generation Stride
 G-BT02 | Soaring Ascent of Gale & Blossom
 G-BT03 | Sovereign Star Dragon
@@ -52,11 +55,18 @@ G-CB07 | Divas' Festa
 G-EB01 | Cosmic Roar
 G-EB02 | The Awakening Zoo
 G-EB03 | The Galaxy Star Gate
+G-FC01 | Fighters Collection 2015
+G-FC02 | Fighters Collection 2015 Winter
+G-FC03 | Fighters Collection 2016
+G-FC04 | Fighters Collection 2017
 G-TCB01 | The Reckless Rampage
 G-TCB02 | The Genius Strategy
 G-CHB01 | TRY3 Next
 G-CHB02 | We Are Trinity Dragon
 G-CHB03 | Rummy Labyrinth Under The Moonlight
+G-RC01 | Revival Collection Vol. 1
+G-RC02 | Revival Collection Vol. 2
+G-CMB01 | Vanguard & Deletor
 G-TB01 | Touken Ranbu -ONLINE-
 G-TB02 | Touken Ranbu -ONLINE-
 V-BT01 | Unite! Team Q4
@@ -86,6 +96,17 @@ V-EB12 | Team Dragon's Vanity
 V-EB13 | The Astral Force
 V-EB14 | The Next Stage
 V-EB15 | Twinkle Melody
+V-SS01 | Premium Collection 2019
+V-SS02 | Start Deck Blaster Blade
+V-SS03 | Start Deck Blaster Dark
+V-SS04 | Colorful Pastorale Supply Gift Set
+V-SS05 | Festival Collection
+V-SS06 | Special Deck Set Majesty Lord Blaster
+V-SS07 | Premium Collection 2020
+V-SS08 | Daigo Special Expansion Set
+V-SS09 | Clan Selection Plus Vol. 1
+V-SS10 | Clan Selection Plus Vol. 2
+V-MB01 | PSYqualia Strife
 V-TB01 | BanG Dream! FILM LIVE
 D-BT01 | Genesis of The Five Greats
 D-BT02 | A Brush With The Legends
@@ -103,6 +124,32 @@ D-BT13 | Flight of Chakrabarthi
 D-LBT01 | Lyrical Melody
 D-LBT02 | Lyrical Monasterio ~It's a New School Term!~
 D-LBT03 | Lyrical Monasterio ~Summertime Memories!~
+D-SS01 | Festival Collection 2021
+D-SS02 | Festival Collection 2022
+D-SS03 | Stride Deckset Chronojet
+D-SS04 | Stride Deckset Messiah
+D-SS05 | Festival Booster 2023
+D-SS06 | Stand Up Deckset Gramgrace
+D-SS07 | Stand Up Deckset Favrneel
+D-SS08 | Stand Up Deckset Orfist
+D-SS09 | Stride Deckset Shiranui
+D-SS10 | Stride Deckset Luard
+D-SS11 | Triple Drive Booster
+D-VS01 | V Clan Selection Vol. 1
+D-VS02 | V Clan Selection Vol. 2
+D-VS03 | V Clan Selection Vol. 3
+D-VS04 | V Clan Selection Vol. 4
+D-VS05 | V Clan Selection Vol. 5
+D-VS06 | V Clan Selection Vol. 6
+D-PS01 | P Clan Selection 2022
+D-PV01 | History Collection 2023
+D-TB01 | Touken Ranbu -ONLINE- 2021
+D-TB02 | Monster Strike
+D-TB03 | Shaman King Vol. 1
+D-TB04 | Shaman King Vol. 2
+D-TB05 | Record of Ragnarok
+D-TB06 | Monster Strike Vol. 2
+D-TB07 | Touken Ranbu ONLINE 2023
 DZ-BT01 | Fated Clash
 DZ-BT02 | Illusionless Strife
 DZ-BT03 | Dimensional Transcendence
@@ -110,4 +157,7 @@ DZ-BT04 | Destined Showdown
 DZ-BT05 | Omniscient Awakening
 DZ-BT06 | Generation Dragenesis
 DZ-BT07 | Moon Fangs & Cerulean Blaze
-DZ-LBT01 | Lyrical Monasterio Sparkling Stars!
+DZ-LBT01 | Lyrical Monasterio Sparkling Stars!\
+DZ-SS01 | Festival Booster 2024
+DZ-SS02 | Stride Deckset Harri
+DZ-SS03 | Stride Deckset Nightrose
