@@ -1,5 +1,5 @@
-CODE | TITLE | JP RELEASE DATE | EN RELEASE DATE
-BT01 | Descent of the King of Knights | 12/03/2011 | 10/12/2011 | 
+CODE | TITLE | RELEASE DATE
+BT01 | Descent of the King of Knights | 12/03/2011
 BT02 | Onslaught of Dragon Souls
 BT03 | Demonic Lord Invasion
 BT04 | Eclipse of Illusionary Shadows
