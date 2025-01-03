@@ -16,6 +16,23 @@ BT14 | Brilliant Strike
 BT15 | Infinite Rebirth
 BT16 | Legion of Dragons & Blades
 BT17 | Blazing Perdition
+TD01 | Blaster Blade
+TD02 | Dragonic Overlord
+TD03 | Golden Mechanical Soldier
+TD04 | Maiden Princess of The Cherry Blossoms
+TD05 | Slash of Silver Wolf
+TD06 | Resonance of Thunder Dragon
+TD07 | Descendants of The Marine Emperor
+TD08 | Liberator of The Sanctuary
+TD09 | Eradicator of The Empire
+TD10 | Purgatory Revenger
+TD11 | Star-Vader Invasion
+TD12 | Dimensional Brave Kaiser
+TD13 | Successor of The Sacred Regalia
+TD14 | Seeker of Hope
+TD15 | Brawler of Friendship
+TD16 | Divine Judgement of The Bluish Flames
+TD17 | Will of The Locked Dragon
 EB01 | Comic Style Vol. 1
 EB02 | Banquet of Divas
 EB03 | Cavalry of Black Steel
@@ -45,6 +62,21 @@ G-BT11 | Demonic Advent
 G-BT12 | Dragon King's Awakening
 G-BT13 | Ultimate Stride
 G-BT14 | Divine Dragon Aprocrypha
+G-TD01 | Awakening of The Interdimensional Dragon
+G-TD02 | Divine Swordsman of The Shiny Star
+G-TD03 | Flower Maiden of Purity
+G-TD04 | Blue Cavalry of The Divine Marine Spirits
+G-TD05 | Fateful Star Messiah
+G-TD06 | Rallying Call of The Interspectral Dragon
+G-TD07 | Illusionist of the Crescent Moon
+G-TD08 | Vampire Princess of The Nether Hour
+G-TD09 | True Zodiac Time Beasts
+G-TD10 | Ritual of Dragon Sorcery
+G-TD11 | Divine Knight of Heavenly Degree
+G-TD12 | Flower Princess of Abundant Blooming
+G-TD13 | Evil Eye Sovereign
+G-TD14 | Debut of The Divas
+G-TD15 | Messiah Dragon of Rebirth
 G-CB01 | Academy of Divas
 G-CB02 | Commander of The Incessant Waves
 G-CB03 | Blessing of Divas
@@ -64,9 +96,13 @@ G-TCB02 | The Genius Strategy
 G-CHB01 | TRY3 Next
 G-CHB02 | We Are Trinity Dragon
 G-CHB03 | Rummy Labyrinth Under The Moonlight
+G-LD01 | The Dark "Ren Suzugamori"
+G-LD02 | The Overlord Blaze "Toshiki Kai"
+G-LD03 | The Blaster "Aichi Sendou"
 G-RC01 | Revival Collection Vol. 1
 G-RC02 | Revival Collection Vol. 2
 G-CMB01 | Vanguard & Deletor
+G-TTD01 | Touken Ranbu -ONLINE-
 G-TB01 | Touken Ranbu -ONLINE-
 G-TB02 | Touken Ranbu -ONLINE-
 V-BT01 | Unite! Team Q4
@@ -81,6 +117,18 @@ V-BT09 | Butterfly d'Moonlight
 V-BT10 | Phantom Dragon Aeon
 V-BT11 | Storm of The Blue Cavalry
 V-BT12 | Divine Lightning Radiance
+V-TD01 | Aichi Sendou
+V-TD02 | Kai Toshikai
+V-TD03 | Leon Soryu
+V-TD04 | Ren Suzugamori
+V-TD05 | Misaki Tokura
+V-TD06 | Naoki Ishida
+V-TD07 | Kouji Ibuki
+V-TD08 | Schokolade Melody
+V-TD09 | Shinemon Nitta
+V-TD10 | Chronojet Dragon
+V-TD11 | Altmile
+V-TD12 | Ahsha
 V-EB01 | The Destructive Roar
 V-EB02 | Champions of the Asia Circuit
 V-EB03 | Ultrarare Miracle Collection
@@ -121,9 +169,16 @@ D-BT10 | Dragon Masquerade
 D-BT11 | Clash of The Heroes
 D-BT12 | Evenfall Onslaught
 D-BT13 | Flight of Chakrabarthi
+D-SD01 | Yu-Yu Kondo -Holy Dragon-
+D-SD02 | Danji Momoyama -Tyrant Tiger-
+D-SD03 | Tohya Ebata -Apex Ruler-
+D-SD04 | Megumi Okura -Sylvan King-
+D-SD05 | Tomari Seto -Aurora Valkyrie-
+D-SD06 | Mirei Minae -Sealed Blaze Maiden-
 D-LBT01 | Lyrical Melody
 D-LBT02 | Lyrical Monasterio ~It's a New School Term!~
 D-LBT03 | Lyrical Monasterio ~Summertime Memories!~
+D-LTD01 | Ahoy! Lyrical Monasterio!
 D-SS01 | Festival Collection 2021
 D-SS02 | Festival Collection 2022
 D-SS03 | Stride Deckset Chronojet
@@ -150,6 +205,11 @@ D-TB04 | Shaman King Vol. 2
 D-TB05 | Record of Ragnarok
 D-TB06 | Monster Strike Vol. 2
 D-TB07 | Touken Ranbu ONLINE 2023
+D-TTD01 | Touken Ranbu
+D-TTD02 | Monster Strike Super Beast Deity Festival
+D-TTD03 | Monster Strike Extreme Beast Deity Festival
+D-TTD04 | Shaman King
+D-TTD05 | Record of Ragnarok
 DZ-BT01 | Fated Clash
 DZ-BT02 | Illusionless Strife
 DZ-BT03 | Dimensional Transcendence
@@ -157,7 +217,13 @@ DZ-BT04 | Destined Showdown
 DZ-BT05 | Omniscient Awakening
 DZ-BT06 | Generation Dragenesis
 DZ-BT07 | Moon Fangs & Cerulean Blaze
-DZ-LBT01 | Lyrical Monasterio Sparkling Stars!\
+DZ-SD01 | Dragon Empire
+DZ-SD02 | Dark States
+DZ-SD03 | Brandt Gate
+DZ-SD04 | Keter Sanctuary
+DZ-SD05 | Stoicheia
+DZ-SD06 | Lyrical Monasterio
+DZ-LBT01 | Lyrical Monasterio Sparkling Stars!
 DZ-SS01 | Festival Booster 2024
 DZ-SS02 | Stride Deckset Harri
 DZ-SS03 | Stride Deckset Nightrose
