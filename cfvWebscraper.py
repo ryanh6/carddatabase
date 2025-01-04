@@ -252,13 +252,14 @@ def cfvReadCard(pageURL):
     return cardList
 
 def tempReadSetFunction():
-    return False
+    tempTable = pd.read_csv("tempSets.txt", sep = "|")
+    return tempTable
 
 def cfvReadSets():
-    tempReadSetFunction()
+    setsTable = tempReadSetFunction()
 
 # data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
 # print(data)
 # table = pd.DataFrame(data)
 # print(table)
-# cfvReadSets()
+cfvReadSets()
