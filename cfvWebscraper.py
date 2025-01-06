@@ -178,7 +178,8 @@ def addAttributes(dictionary, attributes):
     return dictionary
 
 def deleteAttributes(dictionary):
-    removeKeywords = ["Kanji", "Kana", "Phonetic", "Thai", "Italian", "Korean", "Grade / Skill", "Illust", "Design /  Illust", "Translation"]
+    removeKeywords = ["Kanji", "Kana", "Phonetic", "Thai", "Italian", "Korean", 
+                      "Grade / Skill", "Illust", "Design /  Illust", "Translation"]
     
     for key in removeKeywords:
         dictionary.pop(key, None)
@@ -251,15 +252,33 @@ def cfvReadCard(pageURL):
 
     return cardList
 
+
+
+
+
+
+
+
+
 def tempReadSetFunction():
-    tempTable = pd.read_csv("tempSets.txt", sep = "|")
+    tempTable = pd.read_csv("tempSets.txt", sep = "|", names = ["Language", "Code", "Name", "Release Date"])
     return tempTable
 
 def cfvReadSets():
     setsTable = tempReadSetFunction()
+    return setsTable
 
-# data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
-# print(data)
-# table = pd.DataFrame(data)
-# print(table)
-cfvReadSets()
+data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+print(data)
+table = pd.DataFrame(data)
+print(table)
+setData = cfvReadSets()
+print(setData)
+
+
+for card in data:
+    value = (card.get("Set ID"))
+    lang = (card.get("Language"))
+    print(value)
+    result = setData.loc[setData["Code"] == value]
+    print(result)
