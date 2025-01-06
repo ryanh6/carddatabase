@@ -76,13 +76,13 @@ JP|G-BT14|Divine Dragon Aprocrypha|2018/02/23
     JP|G-TD13|Evil Eye Sovereign|
     JP|G-TD14|Debut of The Divas|
     JP|G-TD15|Messiah Dragon of Rebirth|
-    JP|G-CB01|Academy of Divas|
-    JP|G-CB02|Commander of The Incessant Waves|
-    JP|G-CB03|Blessing of Divas|
-    JP|G-CB04|Gear of Fate|
-    JP|G-CB05|Prismatic Divas|
-    JP|G-CB06|Rondeau of Chaos & Salvation|
-    JP|G-CB07|Divas' Festa|
+JP|G-CB01|Academy of Divas|2015/06/19
+JP|G-CB02|Commander of The Incessant Waves|2015/10/23
+JP|G-CB03|Blessing of Divas|2016/06/24
+JP|G-CB04|Gear of Fate|2016/09/30
+JP|G-CB05|Prismatic Divas|2017/07/07
+JP|G-CB06|Rondeau of Chaos & Salvation|2017/10/20
+JP|G-CB07|Divas' Festa|2018/03/30
 JP|G-EB01|Cosmic Roar|2015/03/13
 JP|G-EB02|The Awakening Zoo|2017/12/08
 JP|G-EB03|The Galaxy Star Gate|2018/01/19
