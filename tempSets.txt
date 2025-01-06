@@ -32,18 +32,18 @@ JP|BT17|Blazing Perdition|2014/08/08
     JP|TD15|Brawler of Friendship
     JP|TD16|Divine Judgement of The Bluish Flames
     JP|TD17|Will of The Locked Dragon
-    JP|EB01|Comic Style Vol. 1
-    JP|EB02|Banquet of Divas
-    JP|EB03|Cavalry of Black Steel
-    JP|EB04|Infinite Phantom Legion
-    JP|EB05|Celestial Valkyries
-    JP|EB06|Dazzling Divas
-    JP|EB07|Mystical Magus
-    JP|EB08|Champions of the Cosmos
-    JP|EB09|Divine Dragon Pregression
-    JP|EB10|Divas Duet
-    JP|EB11|Requiem at Dusk
-    JP|EB12|Waltz of the Goddess
+JP|EB01|Comic Style Vol. 1|2011/12/03
+JP|EB02|Banquet of Divas|2012/03/10
+JP|EB03|Cavalry of Black Steel|2012/05/26
+JP|EB04|Infinite Phantom Legion|2012/11/17
+JP|EB05|Celestial Valkyries|2012/11/17
+JP|EB06|Dazzling Divas|2013/03/23
+JP|EB07|Mystical Magus|2013/08/30
+JP|EB08|Champions of the Cosmos|2013/11/15
+JP|EB09|Divine Dragon Pregression|2013/11/22
+JP|EB10|Divas Duet|2014/03/21
+JP|EB11|Requiem at Dusk|2014/06/20
+JP|EB12|Waltz of the Goddess|2014/06/20
     JP|FC01|Fighters Collection 2013
     JP|FC02|Fighters Collection 2014
     JP|MBT01|Neon Messiah
@@ -83,18 +83,18 @@ JP|G-BT14|Divine Dragon Aprocrypha|2018/02/23
     JP|G-CB05|Prismatic Divas|
     JP|G-CB06|Rondeau of Chaos & Salvation|
     JP|G-CB07|Divas' Festa|
-    JP|G-EB01|Cosmic Roar|
-    JP|G-EB02|The Awakening Zoo|
-    JP|G-EB03|The Galaxy Star Gate|
+JP|G-EB01|Cosmic Roar|2015/03/13
+JP|G-EB02|The Awakening Zoo|2017/12/08
+JP|G-EB03|The Galaxy Star Gate|2018/01/19
     JP|G-FC01|Fighters Collection 2015|
     JP|G-FC02|Fighters Collection 2015 Winter|
     JP|G-FC03|Fighters Collection 2016|
     JP|G-FC04|Fighters Collection 2017|
 JP|G-TCB01|The Reckless Rampage|2016/01/22
 JP|G-TCB02|The Genius Strategy|2016/07/22
-    JP|G-CHB01|TRY3 Next|
-    JP|G-CHB02|We Are Trinity Dragon|
-    JP|G-CHB03|Rummy Labyrinth Under The Moonlight|
+JP|G-CHB01|TRY3 Next|2016/12/09
+JP|G-CHB02|We Are Trinity Dragon|2017/01/13
+JP|G-CHB03|Rummy Labyrinth Under The Moonlight|2017/03/03
 JP|G-LD01|The Dark "Ren Suzugamori"|2015/04/24
 JP|G-LD02|The Overlord Blaze "Toshiki Kai"|2016/03/18
 JP|G-LD03|The Blaster "Aichi Sendou"|2017/04/07
@@ -128,21 +128,21 @@ JP|V-BT12|Divine Lightning Radiance|2020/11/06
     JP|V-TD10|Chronojet Dragon|
     JP|V-TD11|Altmile|
     JP|V-TD12|Ahsha|
-    JP|V-EB01|The Destructive Roar|
-    JP|V-EB02|Champions of the Asia Circuit|
-    JP|V-EB03|Ultrarare Miracle Collection|
-    JP|V-EB04|The Answer of Truth|
-    JP|V-EB05|Primary Melody|
-    JP|V-EB06|Light of Salvation, Logic of Destruction|
-    JP|V-EB07|The Heroic Evolution|
-    JP|V-EB08|My Glorious Justice|
-    JP|V-EB09|The Raging Tactics|
-    JP|V-EB10|The Mysterious Fortune|
-    JP|V-EB11|Crystal Melody|
-    JP|V-EB12|Team Dragon's Vanity|
-    JP|V-EB13|The Astral Force|
-    JP|V-EB14|The Next Stage|
-    JP|V-EB15|Twinkle Melody|
+JP|V-EB01|The Destructive Roar|2018/06/29
+JP|V-EB02|Champions of the Asia Circuit|2018/07/20
+JP|V-EB03|Ultrarare Miracle Collection|2018/10/19
+JP|V-EB04|The Answer of Truth|2018/11/16
+JP|V-EB05|Primary Melody|2019/03/29
+JP|V-EB06|Light of Salvation, Logic of Destruction|2019/04/12
+JP|V-EB07|The Heroic Evolution|2019/05/17
+JP|V-EB08|My Glorious Justice|2019/06/14
+JP|V-EB09|The Raging Tactics|2019/09/06
+JP|V-EB10|The Mysterious Fortune|2019/11/15
+JP|V-EB11|Crystal Melody|2019/12/20
+JP|V-EB12|Team Dragon's Vanity|2020/01/17
+JP|V-EB13|The Astral Force|2020/02/21
+JP|V-EB14|The Next Stage|2020/04/10
+JP|V-EB15|Twinkle Melody|2020/12/11
     JP|V-SS01|Premium Collection 2019|
     JP|V-SS02|Start Deck Blaster Blade|
     JP|V-SS03|Start Deck Blaster Dark|
