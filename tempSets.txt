@@ -98,12 +98,10 @@ JP|G-CHB03|Rummy Labyrinth Under The Moonlight|2017/03/03
 JP|G-LD01|The Dark "Ren Suzugamori"|2015/04/24
 JP|G-LD02|The Overlord Blaze "Toshiki Kai"|2016/03/18
 JP|G-LD03|The Blaster "Aichi Sendou"|2017/04/07
-JP|G-RC01|Revival Collection Vol. 1
-JP|G-RC02|Revival Collection Vol. 2|
 JP|G-CMB01|Vanguard & Deletor|2015/09/25
 JP|G-TTD01|Touken Ranbu -ONLINE-|2016/10/14
-    JP|G-TB01|Touken Ranbu -ONLINE-|
-    JP|G-TB02|Touken Ranbu -ONLINE-|
+JP|G-TB01|Touken Ranbu -ONLINE-|2015/07/17
+JP|G-TB02|Touken Ranbu -ONLINE-|2016/10/14
 JP|V-BT01|Unite! Team Q4|2018/05/25
 JP|V-BT02|Strongest! Team AL4|2018/08/31
 JP|V-BT03|Miyaji Academy Cardfight Club|2018/12/14
@@ -143,18 +141,18 @@ JP|V-EB12|Team Dragon's Vanity|2020/01/17
 JP|V-EB13|The Astral Force|2020/02/21
 JP|V-EB14|The Next Stage|2020/04/10
 JP|V-EB15|Twinkle Melody|2020/12/11
-    JP|V-SS01|Premium Collection 2019|
-    JP|V-SS02|Start Deck Blaster Blade|
-    JP|V-SS03|Start Deck Blaster Dark|
-    JP|V-SS04|Colorful Pastorale Supply Gift Set|
-    JP|V-SS05|Festival Collection|
-    JP|V-SS06|Special Deck Set Majesty Lord Blaster|
-    JP|V-SS07|Premium Collection 2020|
-    JP|V-SS08|Daigo Special Expansion Set|
-    JP|V-SS09|Clan Selection Plus Vol. 1|
-    JP|V-SS10|Clan Selection Plus Vol. 2|
+JP|V-SS01|Premium Collection 2019|2019/05/17
+JP|V-SS02|Start Deck Blaster Blade|2019/06/07
+JP|V-SS03|Start Deck Blaster Dark|2019/06/07
+JP|V-SS04|Colorful Pastorale Supply Gift Set|2019/12/27
+JP|V-SS05|Festival Collection|2020/05/22
+JP|V-SS06|Special Deck Set Majesty Lord Blaster|2020/05/22
+JP|V-SS07|Premium Collection 2020|2020/05/22
+JP|V-SS08|Daigo Special Expansion Set|2020/11/27
+JP|V-SS09|Clan Selection Plus Vol. 1|2021/01/29
+JP|V-SS10|Clan Selection Plus Vol. 2|2021/02/19
 JP|V-MB01|PSYqualia Strife|2018/09/28
-    JP|V-TB01|BanG Dream! FILM LIVE|
+JP|V-TB01|BanG Dream! FILM LIVE|2020/07/17
 JP|D-BT01|Genesis of The Five Greats|2021/04/17
 JP|D-BT02|A Brush With The Legends|2021/06/25
 JP|D-BT03|Advance of Intertwinted Stars|2021/09/24
@@ -178,32 +176,32 @@ JP|D-LBT01|Lyrical Melody|2021/08/20
 JP|D-LBT02|Lyrical Monasterio ~It's a New School Term!~|2022/02/25
 JP|D-LBT03|Lyrical Monasterio ~Summertime Memories!~|2022/09/02
 JP|D-LTD01|Ahoy! Lyrical Monasterio!|2021/08/20
-    JP|D-SS01|Festival Collection 2021|
-    JP|D-SS02|Festival Collection 2022|
-    JP|D-SS03|Stride Deckset Chronojet|
-    JP|D-SS04|Stride Deckset Messiah|
-    JP|D-SS05|Festival Booster 2023|
-    JP|D-SS06|Stand Up Deckset Gramgrace|
-    JP|D-SS07|Stand Up Deckset Favrneel|
-    JP|D-SS08|Stand Up Deckset Orfist|
-    JP|D-SS09|Stride Deckset Shiranui|
-    JP|D-SS10|Stride Deckset Luard|
-    JP|D-SS11|Triple Drive Booster|
-    JP|D-VS01|V Clan Selection Vol. 1|
-    JP|D-VS02|V Clan Selection Vol. 2|
-    JP|D-VS03|V Clan Selection Vol. 3|
-    JP|D-VS04|V Clan Selection Vol. 4|
-    JP|D-VS05|V Clan Selection Vol. 5|
-    JP|D-VS06|V Clan Selection Vol. 6|
-    JP|D-PS01|P Clan Selection 2022|
-    JP|D-PV01|History Collection 2023|
-    JP|D-TB01|Touken Ranbu -ONLINE- 2021|
-    JP|D-TB02|Monster Strike|
-    JP|D-TB03|Shaman King Vol. 1|
-    JP|D-TB04|Shaman King Vol. 2|
-    JP|D-TB05|Record of Ragnarok|
-    JP|D-TB06|Monster Strike Vol. 2|
-    JP|D-TB07|Touken Ranbu ONLINE 2023|
+JP|D-SS01|Festival Collection 2021|2021/05/15
+JP|D-SS02|Festival Collection 2022|2022/05/13
+JP|D-SS03|Stride Deckset Chronojet|2022/11/11
+JP|D-SS04|Stride Deckset Messiah|2023/03/03
+JP|D-SS05|Festival Booster 2023|2023/05/12
+JP|D-SS06|Stand Up Deckset Gramgrace|2023/07/07
+JP|D-SS07|Stand Up Deckset Favrneel|2023/07/07
+JP|D-SS08|Stand Up Deckset Orfist|2023/07/07
+JP|D-SS09|Stride Deckset Shiranui|2023/11/10
+JP|D-SS10|Stride Deckset Luard|2023/11/10
+JP|D-SS11|Triple Drive Booster|2023/12/08
+JP|D-VS01|V Clan Selection Vol. 1|2021/09/03
+JP|D-VS02|V Clan Selection Vol. 2|2021/09/03
+JP|D-VS03|V Clan Selection Vol. 3|2022/01/21
+JP|D-VS04|V Clan Selection Vol. 4|2022/01/21
+JP|D-VS05|V Clan Selection Vol. 5|2022/06/17
+JP|D-VS06|V Clan Selection Vol. 6|2022/06/17
+JP|D-PS01|P Clan Selection 2022|2022/05/13
+JP|D-PV01|History Collection 2023|2023/05/26
+JP|D-TB01|Touken Ranbu -ONLINE- 2021|2021/05/22
+JP|D-TB02|Monster Strike|2021/07/23
+JP|D-TB03|Shaman King Vol. 1|2021/11/05
+JP|D-TB04|Shaman King Vol. 2|2022/04/22
+JP|D-TB05|Record of Ragnarok|2022/04/22
+JP|D-TB06|Monster Strike Vol. 2|2022/10/21
+JP|D-TB07|Touken Ranbu ONLINE 2023|2023/06/23
 JP|D-TTD01|Touken Ranbu|2021/05/22
 JP|D-TTD02|Monster Strike Super Beast Deity Festival|2021/07/23
 JP|D-TTD03|Monster Strike Extreme Beast Deity Festival|2021/07/23
@@ -223,6 +221,228 @@ JP|DZ-SD04|Keter Sanctuary|2024/01/19
 JP|DZ-SD05|Stoicheia|2024/01/19
 JP|DZ-SD06|Lyrical Monasterio|2024/01/19
 JP|DZ-LBT01|Lyrical Monasterio Sparkling Stars!|2024/07/05
-    JP|DZ-SS01|Festival Booster 2024|
-    JP|DZ-SS02|Stride Deckset Harri|
-    JP|DZ-SS03|Stride Deckset Nightrose|
+JP|DZ-SS01|Festival Booster 2024|2024/05/17
+JP|DZ-SS02|Stride Deckset Harri|2024/09/06
+JP|DZ-SS03|Stride Deckset Nightrose|2024/09/06
+EN|BT01|Descent of the King of Knights|2011/12/10
+EN|BT02|Onslaught of Dragon Souls|2012/03/10
+EN|BT03|Demonic Lord Invasion|2012/08/11
+EN|BT04|Eclipse of Illusionary Shadows|2012/12/14
+EN|BT05|Awakening of Twin Blades|2013/02/22
+EN|BT06|Breaker of Limits|2012/05/19
+EN|BT07|Rampage of the Beast King|2012/09/29
+EN|BT08|Blue Storm Armada|2013/05/03
+EN|BT09|Clash of the Knights & Dragons|2013/06/28
+EN|BT10|Triumphant Return of The King of Knights|2013/12/13
+EN|BT11|Seal Dragons Unleashed|2013/10/25
+EN|BT12|Binding Force of the Black Rings|2014/02/21
+EN|BT13|Catastrophic Outbreak|2014/05/02
+EN|BT14|Brilliant Strike|2014/07/18
+EN|BT15|Infinite Rebirth|2014/09/19
+EN|BT16|Legion of Dragons & Blades Ver.E|2014/12/19
+EN|BT17|Blazing Perdition Ver.E|2015/01/23
+EN|TD01|Blaster Blade|2011/12/03
+EN|TD02|Dragonic Overlord|2011/12/03
+EN|TD03|Golden Mechanical Soldier|2013/01/25
+EN|TD04|Maiden Princess of The Cherry Blossoms|2013/01/25
+EN|TD05|Slash of Silver Wolf|2012/05/19
+EN|TD06|Resonance of Thunder Dragon|2012/05/19
+EN|TD07|Descendants of The Marine Emperor|2013/04/19
+EN|TD08|Liberator of The Sanctuary|2013/10/04
+EN|TD09|Eradicator of The Empire|2013/10/04
+EN|TD10|Purgatory Revenger|2014/02/07
+EN|TD11|Star-Vader Invasion|2014/02/07
+EN|TD12|Dimensional Brave Kaiser|2014/03/14
+EN|TD13|Successor of The Sacred Regalia|2014/06/27
+EN|TD14|Seeker of Hope|2014/11/21
+EN|TD16|Divine Judgement of The Bluish Flames|2014/11/21
+EN|TD17|Will of The Locked Dragon|2014/11/21
+EN|EB01|Comic Style Vol. 1|2013/03/29
+EN|EB02|Banquet of Divas|2012/11/09
+EN|EB03|Cavalry of Black Steel|2012/07/07
+EN|EB04|Infinite Phantom Legion|2013/09/06
+EN|EB05|Celestial Valkyries|2013/09/06
+EN|EB06|Dazzling Divas|2013/07/26
+EN|EB07|Mystical Magus|2014/04/11
+EN|EB08|Champions of the Cosmos|2014/06/06
+EN|EB09|Divine Dragon Pregression|2014/06/06
+EN|EB10|Divas Duet|2014/08/15
+EN|EB11|Requiem at Dusk|2014/11/21
+EN|EB12|Waltz of the Goddess|2014/11/21
+EN|FC02|Fighters Collection 2014|2014/11/07
+EN|G-BT01|Generation Stride|2015/03/13
+EN|G-BT02|Soaring Ascent of Gale & Blossom|2015/05/22
+EN|G-BT03|Sovereign Star Dragon|2015/07/10
+EN|G-BT04|Soul Strike Against The Supreme|2015/10/02
+EN|G-BT05|Moonlit Dragonfang|2016/01/29
+EN|G-BT06|Transcension of Blade and Blossom|2016/03/25
+EN|G-BT07|Glorious Bravery of Radiant Sword|2016/06/17
+EN|G-BT08|Absolute Judgement|2016/10/07
+EN|G-BT09|Divine Dragon Caper|2016/12/16
+EN|G-BT10|Raging Clash of the Blade Fangs|2017/04/14
+EN|G-BT11|Demonic Advent|2017/09/01
+EN|G-BT12|Dragon King's Awakening|2017/10/13
+EN|G-BT13|Ultimate Stride|2017/12/22
+EN|G-BT14|Divine Dragon Aprocrypha|2018/03/09
+EN|G-TD01|Awakening of The Interdimensional Dragon|2015/02/27
+EN|G-TD02|Divine Swordsman of The Shiny Star|2015/02/27
+EN|G-TD03|Flower Maiden of Purity|2015/02/27
+EN|G-TD04|Blue Cavalry of The Divine Marine Spirits|2015/04/17
+EN|G-TD05|Fateful Star Messiah|2015/06/19
+EN|G-TD06|Rallying Call of The Interspectral Dragon|2015/12/18
+EN|G-TD07|Illusionist of the Crescent Moon|2015/12/18
+EN|G-TD08|Vampire Princess of The Nether Hour|2016/03/25
+EN|G-TD09|True Zodiac Time Beasts|2016/11/04
+EN|G-TD10|Ritual of Dragon Sorcery|2016/12/09
+EN|G-TD11|Divine Knight of Heavenly Degree|2017/02/17
+EN|G-TD12|Flower Princess of Abundant Blooming|2017/02/17
+EN|G-TD13|Evil Eye Sovereign|2017/09/01
+EN|G-TD14|Debut of The Divas|2017/07/21
+EN|G-TD15|Messiah Dragon of Rebirth|2017/12/01
+EN|G-CB01|Academy of Divas|2015/08/28
+EN|G-CB02|Commander of The Incessant Waves|2015/12/11
+EN|G-CB03|Blessing of Divas|2016/07/29
+EN|G-CB04|Gear of Fate|2016/11/04
+EN|G-CB05|Prismatic Divas|2017/07/21
+EN|G-CB06|Rondeau of Chaos & Salvation|2017/12/01
+EN|G-CB07|Divas' Festa|2018/04/27
+EN|G-EB01|Cosmic Roar|2015/04/17
+EN|G-EB02|The Awakening Zoo|2018/01/26
+EN|G-EB03|The Galaxy Star Gate|2018/02/23
+EN|G-FC01|Fighters Collection 2015|2015/06/19
+EN|G-FC02|Fighters Collection 2015 Winter|2016/01/08
+EN|G-FC03|Fighters Collection 2016|2016/05/20
+EN|G-FC04|Fighters Collection 2017|2017/06/09
+EN|G-RC01|Revival Collection Vol. 1|2017/01/06
+EN|G-RC01|Revival Collection Vol. 2|2019/04/26
+EN|G-TCB01|The Reckless Rampage|2016/02/19
+EN|G-TCB02|The Genius Strategy|2016/08/26
+EN|G-CHB01|TRY3 Next|2017/03/03
+EN|G-CHB02|We Are Trinity Dragon|2017/03/24
+EN|G-CHB03|Rummy Labyrinth Under The Moonlight|2017/05/12
+EN|G-LD01|The Dark "Ren Suzugamori"|2015/06/19
+EN|G-LD02|The Overlord Blaze "Toshiki Kai"|2016/04/29
+EN|G-LD03|The Blaster "Aichi Sendou"|2017/05/26
+EN|G-RC01|Revival Collection Vol. 1|2017/01/06
+EN|G-RC02|Revival Collection Vol. 2|2019/04/26
+EN|G-CMB01|Vanguard & Deletor|2015/11/20
+EN|G-TTD01|Touken Ranbu -ONLINE-|2017/02/03
+EN|G-TB01|Touken Ranbu -ONLINE-|2015/07/17
+EN|G-TB02|Touken Ranbu -ONLINE-|2017/02/03
+EN|V-BT01|Unite! Team Q4|2018/06/22
+EN|V-BT02|Strongest! Team AL4|2018/10/19
+EN|V-BT03|Miyaji Academy Cardfight Club|2019/02/15
+EN|V-BT04|Vilest! Deletor|2019/03/22
+EN|V-BT05|Aerial Steed Liberation|2019/08/30
+EN|V-BT06|Phantasmal Steed Restoration|2019/09/27
+EN|V-BT07|Infinideity Cradle|2019/11/22
+EN|V-BT08|Silverdust Blaze|2020/09/04
+EN|V-BT09|Butterfly d'Moonlight|2020/10/02
+EN|V-BT10|Phantom Dragon Aeon|2020/10/30
+EN|V-BT11|Storm of The Blue Cavalry|2020/11/20
+EN|V-BT12|Divine Lightning Radiance|2020/12/18
+EN|V-TD01|Aichi Sendou|2018/06/08
+EN|V-TD02|Kai Toshikai|2018/06/08
+EN|V-TD03|Leon Soryu|2018/08/31
+EN|V-TD04|Ren Suzugamori|2018/09/14
+EN|V-TD05|Misaki Tokura|2019/02/08
+EN|V-TD06|Naoki Ishida|2019/02/08
+EN|V-TD07|Kouji Ibuki|2019/03/22
+EN|V-TD08|Schokolade Melody|2019/04/12
+EN|V-TD09|Shinemon Nitta|2019/11/15
+EN|V-TD10|Chronojet Dragon|2020/06/26
+EN|V-TD11|Altmile|2020/06/26
+EN|V-TD12|Ahsha|2020/06/26
+EN|V-EB01|The Destructive Roar|2018/08/02
+EN|V-EB02|Champions of the Asia Circuit|2018/08/31
+EN|V-EB03|Ultrarare Miracle Collection|2018/12/14
+EN|V-EB04|The Answer of Truth|2019/01/18
+EN|V-EB05|Primary Melody|2019/05/17
+EN|V-EB06|Light of Salvation, Logic of Destruction|2019/06/07
+EN|V-EB07|The Heroic Evolution|2019/07/19
+EN|V-EB08|My Glorious Justice|2019/08/09
+EN|V-EB09|The Raging Tactics|2019/10/25
+EN|V-EB10|The Mysterious Fortune|2019/12/20
+EN|V-EB11|Crystal Melody|2020/01/31
+EN|V-EB12|Team Dragon's Vanity|2020/03/06
+EN|V-EB13|The Astral Force|2020/04/03
+EN|V-EB14|The Next Stage|2020/07/10
+EN|V-EB15|Twinkle Melody|2021/01/22
+EN|V-SS01|Premium Collection 2019|2019/06/21
+EN|V-SS02|Colorful Pastorale Supply Gift Set|2020/07/03
+EN|V-SS03|Festival Collection|2020/08/07
+EN|V-SS04|Special Deck Set Majesty Lord Blaster|2020/10/02
+EN|V-SS05|Premium Collection 2020|2020/08/07
+EN|V-SS06|Valiant Sanctuary|2021/01/22
+EN|V-SS07|Clan Selection Plus Vol. 1|2021/02/26
+EN|V-SS08|Clan Selection Plus Vol. 2|2021/04/02
+EN|V-SS09|Revival Selection|2021/09/24
+EN|V-MB01|PSYqualia Strife|2019/11/09
+EN|V-TB01|BanG Dream! FILM LIVE|2021/03/05
+EN|D-BT01|Genesis of The Five Greats|2021/05/21
+EN|D-BT02|A Brush With The Legends|2021/07/23
+EN|D-BT03|Advance of Intertwinted Stars|2021/12/10
+EN|D-BT04|Awakening of Chakrabarthi|2022/02/11
+EN|D-BT05|Triumphant Return of The Brave Heroes|2022/06/10
+EN|D-BT06|Blazing Dragon Reborn|2022/10/21
+EN|D-BT07|Raging Flames Against Emerald Storm|2022/12/16
+EN|D-BT08|Minerva Rising|2023/02/03
+EN|D-BT09|Dragontree Invasion|2023/03/31
+EN|D-BT10|Dragon Masquerade|2023/06/09
+EN|D-BT11|Clash of The Heroes|2023/09/15
+EN|D-BT12|Evenfall Onslaught|2023/10/13
+EN|D-BT13|Flight of Chakrabarthi|2023/12/08
+EN|D-SD01|Yu-Yu Kondo -Holy Dragon-|2021/05/14
+EN|D-SD02|Danji Momoyama -Tyrant Tiger-|2021/05/14
+EN|D-SD03|Tohya Ebata -Apex Ruler-|2021/05/14
+EN|D-SD04|Megumi Okura -Sylvan King-|2021/05/14
+EN|D-SD05|Tomari Seto -Aurora Valkyrie-|2021/05/14
+EN|D-SD06|Mirei Minae -Sealed Blaze Maiden-|2021/12/22
+EN|D-LBT01|Lyrical Melody|2021/10/22
+EN|D-LBT02|Lyrical Monasterio ~It's a New School Term!~|2022/05/13
+EN|D-LBT03|Lyrical Monasterio ~Summertime Memories!~|2022/11/11
+EN|D-LTD01|Ahoy! Lyrical Monasterio!|2021/10/15
+EN|D-SS01|Festival Collection 2021|2021/06/25
+EN|D-SS02|Festival Collection 2022|2022/06/24
+EN|D-SS03|Stride Deckset Chronojet|2023/02/24
+EN|D-SS04|Stride Deckset Messiah|2023/06/09
+EN|D-SS05|Festival Booster 2023|2023/07/14
+EN|D-SS06|Stand Up Deckset Gramgrace|2023/10/06
+EN|D-SS07|Stand Up Deckset Favrneel|2023/10/06
+EN|D-SS08|Stand Up Deckset Orfist|2023/10/06
+EN|D-SS09|Stride Deckset Shiranui|2024/02/23
+EN|D-SS10|Stride Deckset Luard|2024/02/23
+EN|D-SS12|Triple Drive Booster|2024/03/22
+EN|D-VS01|V Clan Selection Vol. 1|2021/11/19
+EN|D-VS02|V Clan Selection Vol. 2|2021/11/19
+EN|D-VS03|V Clan Selection Vol. 3|2022/03/04
+EN|D-VS04|V Clan Selection Vol. 4|2022/03/04
+EN|D-VS05|V Clan Selection Vol. 5|2022/08/19
+EN|D-VS06|V Clan Selection Vol. 6|2022/08/19
+EN|D-PS01|P Clan Selection 2022|
+EN|D-PV01|History Collection 2023|2023/08/11
+EN|D-TB01|Touken Ranbu -ONLINE- 2021|2022/01/21
+EN|D-TB02|Record of Ragnarok|2022/07/15
+EN|D-TB03|Shaman King Vol. 1|2022/09/09
+EN|D-TB04|Touken Ranbu -ONLINE- 2023|2024/05/24
+EN|D-TTD01|Touken Ranbu|2022/01/21
+EN|D-TTD02|Record of Ragnarok|2022/07/15
+EN|D-TTD03||Shaman King|2022/09/09
+EN|DZ-BT01|Fated Clash|2024/05/03
+EN|DZ-BT02|Illusionless Strife|2024/06/28
+EN|DZ-BT03|Dimensional Transcendence|2024/08/30
+EN|DZ-BT04|Destined Showdown|2024/10/25
+EN|DZ-BT05|Omniscient Awakening|2024/12/13
+EN|DZ-BT06|Generation Dragenesis|2025/02/28
+EN|DZ-BT07|Moon Fangs & Cerulean Blaze|2025/04/25
+EN|DZ-SD01|Dragon Empire|2024/04/19
+EN|DZ-SD02|Dark States|2024/04/19
+EN|DZ-SD03|Brandt Gate|2024/04/19
+EN|DZ-SD04|Keter Sanctuary|2024/04/19
+EN|DZ-SD05|Stoicheia|2024/04/19
+EN|DZ-SD06|Lyrical Monasterio|2024/04/19
+EN|DZ-LBT01|Lyrical Monasterio Sparkling Stars!|2024/09/27
+EN|DZ-SS01|Festival Booster 2024|2024/07/12
+EN|DZ-SS02|Stride Deckset Harri|2025/01/24
+EN|DZ-SS03|Stride Deckset Nightrose|2025/01/24
+EN|DZ-SS04|Stardust Blade|2024/11/22
