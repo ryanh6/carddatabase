@@ -44,8 +44,8 @@ JP|EB09|Divine Dragon Pregression|2013/11/22
 JP|EB10|Divas Duet|2014/03/21
 JP|EB11|Requiem at Dusk|2014/06/20
 JP|EB12|Waltz of the Goddess|2014/06/20
-    JP|FC01|Fighters Collection 2013
-    JP|FC02|Fighters Collection 2014
+JP|FC01|Fighters Collection 2013|2013/05/23
+JP|FC02|Fighters Collection 2014|2014/05/02
 JP|MBT01|Neon Messiah|2014/09/13
 JP|G-BT01|Generation Stride|2014/12/05
 JP|G-BT02|Soaring Ascent of Gale & Blossom|/2015/02/20
@@ -86,10 +86,10 @@ JP|G-CB07|Divas' Festa|2018/03/30
 JP|G-EB01|Cosmic Roar|2015/03/13
 JP|G-EB02|The Awakening Zoo|2017/12/08
 JP|G-EB03|The Galaxy Star Gate|2018/01/19
-    JP|G-FC01|Fighters Collection 2015|
-    JP|G-FC02|Fighters Collection 2015 Winter|
-    JP|G-FC03|Fighters Collection 2016|
-    JP|G-FC04|Fighters Collection 2017|
+JP|G-FC01|Fighters Collection 2015|2015/05/01
+JP|G-FC02|Fighters Collection 2015 Winter|2015/12/18
+JP|G-FC03|Fighters Collection 2016|2016/04/30
+JP|G-FC04|Fighters Collection 2017|2017/05/12
 JP|G-TCB01|The Reckless Rampage|2016/01/22
 JP|G-TCB02|The Genius Strategy|2016/07/22
 JP|G-CHB01|TRY3 Next|2016/12/09
