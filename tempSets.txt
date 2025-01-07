@@ -15,23 +15,23 @@ JP|BT14|Brilliant Strike|2013/12/12
 JP|BT15|Infinite Rebirth|2014/02/28
 JP|BT16|Legion of Dragons & Blades|2014/05/16
 JP|BT17|Blazing Perdition|2014/08/08
-    JP|TD01|Blaster Blade
-    JP|TD02|Dragonic Overlord
-    JP|TD03|Golden Mechanical Soldier
-    JP|TD04|Maiden Princess of The Cherry Blossoms
-    JP|TD05|Slash of Silver Wolf
-    JP|TD06|Resonance of Thunder Dragon
-    JP|TD07|Descendants of The Marine Emperor
-    JP|TD08|Liberator of The Sanctuary
-    JP|TD09|Eradicator of The Empire
-    JP|TD10|Purgatory Revenger
-    JP|TD11|Star-Vader Invasion
-    JP|TD12|Dimensional Brave Kaiser
-    JP|TD13|Successor of The Sacred Regalia
-    JP|TD14|Seeker of Hope
-    JP|TD15|Brawler of Friendship
-    JP|TD16|Divine Judgement of The Bluish Flames
-    JP|TD17|Will of The Locked Dragon
+JP|TD01|Blaster Blade|2011/02/26
+JP|TD02|Dragonic Overlord|2011/02/26
+JP|TD03|Golden Mechanical Soldier|2011/07/16
+JP|TD04|Maiden Princess of The Cherry Blossoms|2011/07/16
+JP|TD05|Slash of Silver Wolf|2012/04/21
+JP|TD06|Resonance of Thunder Dragon|2012/04/21
+JP|TD07|Descendants of The Marine Emperor|2013/08/11
+JP|TD08|Liberator of The Sanctuary|2013/01/26
+JP|TD09|Eradicator of The Empire|2013/01/26
+JP|TD10|Purgatory Revenger|2013/06/22
+JP|TD11|Star-Vader Invasion|2013/06/22
+JP|TD12|Dimensional Brave Kaiser|2013/08/09
+JP|TD13|Successor of The Sacred Regalia|2013/10/25
+JP|TD14|Seeker of Hope|2014/04/18
+JP|TD15|Brawler of Friendship|2014/04/18
+JP|TD16|Divine Judgement of The Bluish Flames|2014/07/11
+JP|TD17|Will of The Locked Dragon|2014/07/11
 JP|EB01|Comic Style Vol. 1|2011/12/03
 JP|EB02|Banquet of Divas|2012/03/10
 JP|EB03|Cavalry of Black Steel|2012/05/26
@@ -46,7 +46,7 @@ JP|EB11|Requiem at Dusk|2014/06/20
 JP|EB12|Waltz of the Goddess|2014/06/20
     JP|FC01|Fighters Collection 2013
     JP|FC02|Fighters Collection 2014
-    JP|MBT01|Neon Messiah
+JP|MBT01|Neon Messiah|2014/09/13
 JP|G-BT01|Generation Stride|2014/12/05
 JP|G-BT02|Soaring Ascent of Gale & Blossom|/2015/02/20
 JP|G-BT03|Sovereign Star Dragon|2015/05/29
@@ -61,21 +61,21 @@ JP|G-BT11|Demonic Advent|2017/06/09
 JP|G-BT12|Dragon King's Awakening|2017/08/25
 JP|G-BT13|Ultimate Stride|2017/11/17
 JP|G-BT14|Divine Dragon Aprocrypha|2018/02/23
-    JP|G-TD01|Awakening of The Interdimensional Dragon|
-    JP|G-TD02|Divine Swordsman of The Shiny Star|
-    JP|G-TD03|Flower Maiden of Purity|
-    JP|G-TD04|Blue Cavalry of The Divine Marine Spirits|
-    JP|G-TD05|Fateful Star Messiah|
-    JP|G-TD06|Rallying Call of The Interspectral Dragon|
-    JP|G-TD07|Illusionist of the Crescent Moon|
-    JP|G-TD08|Vampire Princess of The Nether Hour|
-    JP|G-TD09|True Zodiac Time Beasts|
-    JP|G-TD10|Ritual of Dragon Sorcery|
-    JP|G-TD11|Divine Knight of Heavenly Degree|
-    JP|G-TD12|Flower Princess of Abundant Blooming|
-    JP|G-TD13|Evil Eye Sovereign|
-    JP|G-TD14|Debut of The Divas|
-    JP|G-TD15|Messiah Dragon of Rebirth|
+JP|G-TD01|Awakening of The Interdimensional Dragon|2014/11/21
+JP|G-TD02|Divine Swordsman of The Shiny Star|2014/11/21
+JP|G-TD03|Flower Maiden of Purity|2015/01/22
+JP|G-TD04|Blue Cavalry of The Divine Marine Spirits|2015/01/22
+JP|G-TD05|Fateful Star Messiah|2015/05/29
+JP|G-TD06|Rallying Call of The Interspectral Dragon|2015/11/13
+JP|G-TD07|Illusionist of the Crescent Moon|2015/11/13
+JP|G-TD08|Vampire Princess of The Nether Hour|2016/02/19
+JP|G-TD09|True Zodiac Time Beasts|2016/09/30
+JP|G-TD10|Ritual of Dragon Sorcery|2016/11/11
+JP|G-TD11|Divine Knight of Heavenly Degree|2016/12/09
+JP|G-TD12|Flower Princess of Abundant Blooming|2016/12/09
+JP|G-TD13|Evil Eye Sovereign|2017/06/09
+JP|G-TD14|Debut of The Divas|2017/07/07
+JP|G-TD15|Messiah Dragon of Rebirth|2017/10/20
 JP|G-CB01|Academy of Divas|2015/06/19
 JP|G-CB02|Commander of The Incessant Waves|2015/10/23
 JP|G-CB03|Blessing of Divas|2016/06/24
@@ -100,8 +100,8 @@ JP|G-LD02|The Overlord Blaze "Toshiki Kai"|2016/03/18
 JP|G-LD03|The Blaster "Aichi Sendou"|2017/04/07
 JP|G-RC01|Revival Collection Vol. 1
 JP|G-RC02|Revival Collection Vol. 2|
-    JP|G-CMB01|Vanguard & Deletor|
-    JP|G-TTD01|Touken Ranbu -ONLINE-|
+JP|G-CMB01|Vanguard & Deletor|2015/09/25
+JP|G-TTD01|Touken Ranbu -ONLINE-|2016/10/14
     JP|G-TB01|Touken Ranbu -ONLINE-|
     JP|G-TB02|Touken Ranbu -ONLINE-|
 JP|V-BT01|Unite! Team Q4|2018/05/25
@@ -116,18 +116,18 @@ JP|V-BT09|Butterfly d'Moonlight|2020/07/31
 JP|V-BT10|Phantom Dragon Aeon|2020/08/28
 JP|V-BT11|Storm of The Blue Cavalry|2020/10/15
 JP|V-BT12|Divine Lightning Radiance|2020/11/06
-    JP|V-TD01|Aichi Sendou|
-    JP|V-TD02|Kai Toshikai|
-    JP|V-TD03|Leon Soryu|
-    JP|V-TD04|Ren Suzugamori|
-    JP|V-TD05|Misaki Tokura|
-    JP|V-TD06|Naoki Ishida|
-    JP|V-TD07|Kouji Ibuki|
-    JP|V-TD08|Schokolade Melody|
-    JP|V-TD09|Shinemon Nitta|
-    JP|V-TD10|Chronojet Dragon|
-    JP|V-TD11|Altmile|
-    JP|V-TD12|Ahsha|
+JP|V-TD01|Aichi Sendou|2018/05/11
+JP|V-TD02|Kai Toshikai|2018/05/11
+JP|V-TD03|Leon Soryu|2018/07/20
+JP|V-TD04|Ren Suzugamori|2018/08/10
+JP|V-TD05|Misaki Tokura|2018/11/30
+JP|V-TD06|Naoki Ishida|2018/11/30
+JP|V-TD07|Kouji Ibuki|2019/01/25
+JP|V-TD08|Schokolade Melody|2019/02/14
+JP|V-TD09|Shinemon Nitta|2019/09/27
+JP|V-TD10|Chronojet Dragon|2020/03/27
+JP|V-TD11|Altmile|2020/03/27
+JP|V-TD12|Ahsha|2020/03/27
 JP|V-EB01|The Destructive Roar|2018/06/29
 JP|V-EB02|Champions of the Asia Circuit|2018/07/20
 JP|V-EB03|Ultrarare Miracle Collection|2018/10/19
@@ -153,7 +153,7 @@ JP|V-EB15|Twinkle Melody|2020/12/11
     JP|V-SS08|Daigo Special Expansion Set|
     JP|V-SS09|Clan Selection Plus Vol. 1|
     JP|V-SS10|Clan Selection Plus Vol. 2|
-    JP|V-MB01|PSYqualia Strife|
+JP|V-MB01|PSYqualia Strife|2018/09/28
     JP|V-TB01|BanG Dream! FILM LIVE|
 JP|D-BT01|Genesis of The Five Greats|2021/04/17
 JP|D-BT02|A Brush With The Legends|2021/06/25
@@ -177,7 +177,7 @@ JP|D-SD06|Mirei Minae -Sealed Blaze Maiden-|2021/10/29
 JP|D-LBT01|Lyrical Melody|2021/08/20
 JP|D-LBT02|Lyrical Monasterio ~It's a New School Term!~|2022/02/25
 JP|D-LBT03|Lyrical Monasterio ~Summertime Memories!~|2022/09/02
-    JP|D-LTD01|Ahoy! Lyrical Monasterio!|
+JP|D-LTD01|Ahoy! Lyrical Monasterio!|2021/08/20
     JP|D-SS01|Festival Collection 2021|
     JP|D-SS02|Festival Collection 2022|
     JP|D-SS03|Stride Deckset Chronojet|
@@ -204,11 +204,11 @@ JP|D-LBT03|Lyrical Monasterio ~Summertime Memories!~|2022/09/02
     JP|D-TB05|Record of Ragnarok|
     JP|D-TB06|Monster Strike Vol. 2|
     JP|D-TB07|Touken Ranbu ONLINE 2023|
-    JP|D-TTD01|Touken Ranbu|
-    JP|D-TTD02|Monster Strike Super Beast Deity Festival|
-    JP|D-TTD03|Monster Strike Extreme Beast Deity Festival|
-    JP|D-TTD04|Shaman King|
-    JP|D-TTD05|Record of Ragnarok|
+JP|D-TTD01|Touken Ranbu|2021/05/22
+JP|D-TTD02|Monster Strike Super Beast Deity Festival|2021/07/23
+JP|D-TTD03|Monster Strike Extreme Beast Deity Festival|2021/07/23
+JP|D-TTD04|Shaman King|2021/11/05
+JP|D-TTD05|Record of Ragnarok|2022/04/22
 JP|DZ-BT01|Fated Clash|2024/02/09
 JP|DZ-BT02|Illusionless Strife|2024/04/05
 JP|DZ-BT03|Dimensional Transcendence|2024/06/07
