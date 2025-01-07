@@ -427,7 +427,7 @@ EN|D-TB03|Shaman King Vol. 1|2022/09/09
 EN|D-TB04|Touken Ranbu -ONLINE- 2023|2024/05/24
 EN|D-TTD01|Touken Ranbu|2022/01/21
 EN|D-TTD02|Record of Ragnarok|2022/07/15
-EN|D-TTD03||Shaman King|2022/09/09
+EN|D-TTD03|Shaman King|2022/09/09
 EN|DZ-BT01|Fated Clash|2024/05/03
 EN|DZ-BT02|Illusionless Strife|2024/06/28
 EN|DZ-BT03|Dimensional Transcendence|2024/08/30

@@ -124,8 +124,6 @@ def editSeries(dictionary):
     else:
         return ({"Series": "Original Series"})
 
-# ADD THIS ONE AT THE END BECAUSE OTHER FUNCTIONS RELY ON
-# THE OLD UNCHANGED CARD ID FIRST
 def editCardID(dictionary):
     code = dictionary.get("Card ID")
     return ({"Card ID": code.split(" ")[0]})
@@ -133,6 +131,24 @@ def editCardID(dictionary):
 def editSetID(dictionary):
     code = dictionary.get("Card ID")
     return ({"Set ID": code.split("/")[0]})
+
+def readTournamentStatus(cardPageData, dictionary):
+    language = dictionary.get("Language")
+
+    try:
+        status = cardPageData.find("table", {"class": "tourneystatus"})
+        region = status.find("td", string = language)
+        regulation = region.find_next("td")
+
+        tourneyStatus = regulation.text.strip()
+
+        if (tourneyStatus == "Unrestricted"):
+            return ({"Restrictions": tourneyStatus})
+        else:
+            tourneyStatus = ((regulation.find("a")).get("title"))
+            return ({"Restrictions": tourneyStatus})
+    except:
+        return
 
 def readCardSets(pageData):
     cardSets = pageData.find("table", {"class": "sets"})
@@ -204,25 +220,7 @@ def createBasicDictionary(cardPageData, artworksArray):
 
     return cardDictionary
 
-def readTournamentStatus(cardPageData, dictionary):
-    language = dictionary.get("Language")
-
-    try:
-        status = cardPageData.find("table", {"class": "tourneystatus"})
-        region = status.find("td", string = language)
-        regulation = region.find_next("td")
-
-        tourneyStatus = regulation.text.strip()
-
-        if (tourneyStatus == "Unrestricted"):
-            return ({"Restrictions": tourneyStatus})
-        else:
-            tourneyStatus = ((regulation.find("a")).get("title"))
-            return ({"Restrictions": tourneyStatus})
-    except:
-        return
-
-def createCardList(cardPageData, basicCard, artworksArray, idArray):
+def createCardList(cardPageData, basicCard, artworksArray, idArray, setTable):
     cardList = []
     
     for element in idArray:
@@ -240,7 +238,7 @@ def createCardList(cardPageData, basicCard, artworksArray, idArray):
     
     return cardList
 
-def cfvReadCard(pageURL):
+def cfvReadCard(pageURL, setTable):
     cardPageData = readPage(pageURL)
     galleryPageData = readPage(createGalleryLink(pageURL))
 
@@ -248,17 +246,9 @@ def cfvReadCard(pageURL):
     artworksArray = readFullArts(galleryPageData)
 
     basicCard = createBasicDictionary(cardPageData, artworksArray)
-    cardList = createCardList(cardPageData, basicCard, artworksArray, idArray)
+    cardList = createCardList(cardPageData, basicCard, artworksArray, idArray, setTable)
 
     return cardList
-
-
-
-
-
-
-
-
 
 def tempReadSetFunction():
     tempTable = pd.read_csv("tempSets.txt", sep = "|", names = ["Language", "Code", "Name", "Release Date"])
@@ -268,12 +258,21 @@ def cfvReadSets():
     setsTable = tempReadSetFunction()
     return setsTable
 
-data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+
+
+
+
+
+
+
+
+setData = cfvReadSets()
+print(setData)
+
+data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade", setData)
 print(data)
 table = pd.DataFrame(data)
 print(table)
-setData = cfvReadSets()
-print(setData)
 
 
 for card in data:
