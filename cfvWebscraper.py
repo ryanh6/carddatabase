@@ -28,7 +28,6 @@ def searchArtworks(artworks, keyword):
     for element in artworks:
         if (keyword in element.text and "IT" not in element.text):
             try:
-                print(element.text)
                 image = element.find("img")
                 imageSource = image.get("src")
                 scaledImage = rescaleImage(imageSource)
@@ -220,7 +219,7 @@ def createBasicDictionary(cardPageData, artworksArray):
 
     return cardDictionary
 
-def createCardList(cardPageData, basicCard, artworksArray, idArray, setTable):
+def createCardList(cardPageData, basicCard, artworksArray, idArray):
     cardList = []
     
     for element in idArray:
@@ -238,7 +237,7 @@ def createCardList(cardPageData, basicCard, artworksArray, idArray, setTable):
     
     return cardList
 
-def cfvReadCard(pageURL, setTable):
+def cfvReadCard(pageURL):
     cardPageData = readPage(pageURL)
     galleryPageData = readPage(createGalleryLink(pageURL))
 
@@ -246,38 +245,31 @@ def cfvReadCard(pageURL, setTable):
     artworksArray = readFullArts(galleryPageData)
 
     basicCard = createBasicDictionary(cardPageData, artworksArray)
-    cardList = createCardList(cardPageData, basicCard, artworksArray, idArray, setTable)
+    cardList = createCardList(cardPageData, basicCard, artworksArray, idArray)
 
     return cardList
 
-def tempReadSetFunction():
-    tempTable = pd.read_csv("tempSets.txt", sep = "|", names = ["Language", "Code", "Name", "Release Date"])
-    return tempTable
+# def tempReadSetFunction():
+#     tempTable = pd.read_csv("tempSets.txt", sep = "|", names = ["Language", "Code", "Name", "Release Date"])
+#     return tempTable
 
-def cfvReadSets():
-    setsTable = tempReadSetFunction()
-    return setsTable
+# def cfvReadSets():
+#     setsTable = tempReadSetFunction()
+#     return setsTable
 
+# setData = cfvReadSets()
+# print(setData)
 
-
-
-
-
-
-
-
-setData = cfvReadSets()
-print(setData)
-
-data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade", setData)
-print(data)
-table = pd.DataFrame(data)
-print(table)
+# data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade", setData)
+# print(data)
+# table = pd.DataFrame(data)
+# print(table)
 
 
-for card in data:
-    value = (card.get("Set ID"))
-    lang = (card.get("Language"))
-    print(value)
-    result = setData.loc[setData["Code"] == value]
-    print(result)
+# for card in data:
+#     value = (card.get("Set ID"))
+#     lang = (card.get("Language"))
+#     print(value)
+#     result = setData.loc[setData["Code"] == value]
+#     release = result["Release Date"]
+#     print("Release Date is " + release)
