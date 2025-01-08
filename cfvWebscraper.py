@@ -249,6 +249,12 @@ def cfvReadCard(pageURL):
 
     return cardList
 
+def cfvScrapeSet(pageURL):
+    setPageData = readPage(pageURL)
+
+    setInfo = setPageData.find("table")
+    print(setInfo)
+
 # def tempReadSetFunction():
 #     tempTable = pd.read_csv("tempSets.txt", sep = "|", names = ["Language", "Code", "Name", "Release Date"])
 #     return tempTable
@@ -273,3 +279,5 @@ def cfvReadCard(pageURL):
 #     result = setData.loc[setData["Code"] == value]
 #     release = result["Release Date"]
 #     print("Release Date is " + release)
+
+cfvScrapeSet("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
