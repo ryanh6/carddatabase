@@ -252,8 +252,23 @@ def cfvReadCard(pageURL):
 def cfvScrapeSet(pageURL):
     setPageData = readPage(pageURL)
 
+    # Read card page
+    # Find table of all the cards, extract the links
+    # visit each link and read card
+    
+
     setInfo = setPageData.find("table")
     print(setInfo)
+
+
+
+
+
+
+
+
+
+
 
 # def tempReadSetFunction():
 #     tempTable = pd.read_csv("tempSets.txt", sep = "|", names = ["Language", "Code", "Name", "Release Date"])
