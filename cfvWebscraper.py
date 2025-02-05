@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 
-import pandas as pd
-
 def readFullArts(galleryData):
     return galleryData.find_all("div", {"class": "wikia-gallery-item"})
 
