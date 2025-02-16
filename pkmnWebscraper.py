@@ -12,7 +12,7 @@ def readSet(pageURL):
     links = setPageData.find_all("article", {"class": "type-pkmn_card entry"})
 
     for element in links:
-        cardLink  = element.find("a")
-        print(cardLink['href'])
+        cardLink = (element.find("a"))['href']
+        print(cardLink)
 
 data = readSet("https://pkmncards.com/set/temporal-forces")
