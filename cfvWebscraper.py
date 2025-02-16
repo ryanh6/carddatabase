@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+import pandas as pd
+
 def readFullArts(galleryData):
     return galleryData.find_all("div", {"class": "wikia-gallery-item"})
 
@@ -293,4 +295,9 @@ def cfvScrapeSet(pageURL):
 #     release = result["Release Date"]
 #     print("Release Date is " + release)
 
-cfvScrapeSet("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+# cfvScrapeSet("https://cardfight.fandom.com/wiki/Booster_Set_1:_Descent_of_the_King_of_Knights")
+
+data = cfvReadCard("https://cardfight.fandom.com/wiki/Blaster_Blade")
+print(data)
+table = pd.DataFrame(data)
+print(table)
