@@ -47,9 +47,42 @@ def retrieveStage(pageContent):
         return ({"Stage": cardStage.text})
     return ({"Stage": "-"})
 
+def retrieveArtist(pageContent):
+    cardArtist = pageContent.find("a", {"title": "Illustrator"})
+    return ({"Artist": cardArtist.text})
+
+def retrieveSeries(pageContent):
+    cardSeries = pageContent.find("span", {"title": "Series"})
+    return ({"Series": cardSeries.text})
+
+def retrieveSet(pageContent):
+    cardSet = pageContent.find("span", {"title": "Set"})
+    return ({"Set": cardSet.text})
+
+def retrieveSetCode(pageContent):
+    cardSetCode = pageContent.find("span", {"title": "Set Series Code"})
+    return ({"Set": cardSetCode.text})
+
+def retrieveCardID(pageContent):
+    cardSetCode = pageContent.find("span", {"title": "Set Abbreviation"})
+    cardNumber = pageContent.find("a", {"title": "Number"})
+    setTotal = pageContent.find("span", {"title": "Out Of"})
+    return ({"Card ID": str(cardSetCode.text) + " " + str(cardNumber.text) + str(setTotal.text)})
+
+def retrieveRarity(pageContent):
+    cardRarity = pageContent.find("a", {"title": "Rarity"})
+    return ({"Rarity": cardRarity.text})
+
+def retrieveReleaseDate(pageContent):
+    cardReleaseDate = pageContent.find("span", {"title": "Date Released"})
+    return ({"Release Date": (cardReleaseDate.text)})
+
 def retrieveFlavorText(pageContent):
     cardFlavor = pageContent.find("div", {"class": "flavor minor-text"})
-    return ({"Flavor Text": cardFlavor})
+
+    if (cardFlavor != None):
+        return ({"Flavor Text": cardFlavor.text})
+    return ({"Flavor Text": "-"})
 
 def retrieveImage(pageContent):
     cardImage = pageContent.find("a")
@@ -61,14 +94,24 @@ def readCardInfo(pageContent):
     imageInfo = pageContent.find("div", {"class": "card-image-area"})
     textInfo = pageContent.find("div", {"class": "tab text"})
 
-
     cardDictionary.update(retrieveName(textInfo))
-    # cardDictionary.update(retrieveHP(textInfo))
-    # cardDictionary.update(retrieveElement(textInfo))
-    # cardDictionary.update(retrieveType(textInfo))
-    # cardDictionary.update(retrieveSubtype(textInfo))
-    # cardDictionary.update(retrieveStage(textInfo))
-    # cardDictionary.update(retrieveFlavorText(textInfo))
+    cardDictionary.update(retrieveHP(textInfo))
+    cardDictionary.update(retrieveElement(textInfo))
+    cardDictionary.update(retrieveType(textInfo))
+    cardDictionary.update(retrieveSubtype(textInfo))
+    cardDictionary.update(retrieveStage(textInfo))
+    # EVOLUTIONS (2 of them)
+    # Weakenss, resistance, retreat
+    # Moves
+    # Formats
+    cardDictionary.update(retrieveArtist(textInfo))
+    cardDictionary.update(retrieveSeries(textInfo))
+    cardDictionary.update(retrieveSet(textInfo))
+    cardDictionary.update(retrieveSetCode(textInfo))
+    cardDictionary.update(retrieveCardID(textInfo))
+    cardDictionary.update(retrieveRarity(textInfo))
+    cardDictionary.update(retrieveReleaseDate(textInfo))
+    cardDictionary.update(retrieveFlavorText(textInfo))
     cardDictionary.update(retrieveImage(imageInfo))
     print(cardDictionary)
 
@@ -100,5 +143,5 @@ def allSets(pageURL):
 
 # pkmnMain()
 
-# data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
-allSets("https://pkmncards.com/sets/")
+data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
+# allSets("https://pkmncards.com/sets/")
