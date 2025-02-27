@@ -63,22 +63,32 @@ def readCardInfo(pageContent):
 
 
     cardDictionary.update(retrieveName(textInfo))
-    cardDictionary.update(retrieveHP(textInfo))
-    cardDictionary.update(retrieveElement(textInfo))
-    cardDictionary.update(retrieveType(textInfo))
-    cardDictionary.update(retrieveSubtype(textInfo))
-    cardDictionary.update(retrieveStage(textInfo))
-    cardDictionary.update(retrieveFlavorText(textInfo))
+    # cardDictionary.update(retrieveHP(textInfo))
+    # cardDictionary.update(retrieveElement(textInfo))
+    # cardDictionary.update(retrieveType(textInfo))
+    # cardDictionary.update(retrieveSubtype(textInfo))
+    # cardDictionary.update(retrieveStage(textInfo))
+    # cardDictionary.update(retrieveFlavorText(textInfo))
     cardDictionary.update(retrieveImage(imageInfo))
     print(cardDictionary)
 
-def readSet(pageURL):
+def readSetInfo(pageURL):
     setPageData = readPage(pageURL)
     cards = setPageData.find_all("article", {"class": "type-pkmn_card entry"})
 
     for element in cards:
         cardInfo = (element.find("div", {"class": "entry-content"}))
         readCardInfo(cardInfo)
+
+def allSets(pageURL):
+    allSetsPageData = readPage(pageURL)
+    section = allSetsPageData.find("div", {"class": "entry-content"})
+
+    sets = section.find_all("li")
+
+    for element in sets:
+        mainLink = (element.find("a")["href"]) + "?sort=date&ord=auto&display=full"
+        readSetInfo(mainLink)
 
 # def pkmnMain():
 #     columnNames = ["Card ID", "Name", "HP", "Type", "Class", 
@@ -90,4 +100,5 @@ def readSet(pageURL):
 
 # pkmnMain()
 
-data = readSet("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
+# data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
+allSets("https://pkmncards.com/sets/")
