@@ -100,15 +100,6 @@ def retrieveRetreat(pageContent):
     
     return ({"Retreat": "-"})
 
-def retrieveMoves(pageContent):
-    cardMoves = pageContent.find("div", {"class": "text"})
-    moveList = cardMoves.find_all("p")
-
-    if (moveList != None):
-        for element in moveList:
-            print(decryptSymbol(element))
-            print(element.text)
-
 def retrieveArtist(pageContent):
     cardArtist = pageContent.find("a", {"title": "Illustrator"})
     return ({"Artist": cardArtist.text})
@@ -195,7 +186,6 @@ def readCardInfo(pageContent):
     cardDictionary.update(retrieveResistance(textInfo))
     cardDictionary.update(retrieveRetreat(textInfo))
     # Moves
-    retrieveMoves(textInfo)
     # cardDictionary.update(retrieveArtist(textInfo))
     # cardDictionary.update(retrieveSeries(textInfo))
     # cardDictionary.update(retrieveSet(textInfo))
