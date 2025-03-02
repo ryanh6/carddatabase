@@ -1,0 +1,115 @@
+from bs4 import BeautifulSoup
+import requests
+
+# Base Website Used: https://scryfall.com/sets
+
+# Helper Functions
+
+def readPage(pageURL):
+    pageRequest = requests.get(pageURL)
+    return BeautifulSoup(pageRequest.text, "html.parser")
+
+# Retrieve Data Functions
+
+def retrieveName(pageContent):
+    cardName = pageContent.find("span", {"class": "card-text-card-name"})
+    return ({"Name": (cardName.text).strip()})
+
+def retrieveType(pageContent):
+    cardType = pageContent.find("p", {"class": "card-text-type-line"})
+    return ({"Type": (cardType.text).strip()})
+
+def retrieveStats(pageContent):
+    cardStats = pageContent.find("div", {"class": "card-text-stats"})
+    
+    if (cardStats != None):
+        return ({"Stats": (cardStats.text).strip()})
+    return ({"Stats": "-"})
+
+def retrieveFlavor(pageContent):
+    section = pageContent.find("div", {"class": "card-text-flavor"})
+
+    if (section != None):
+        cardFlavor = section.find("p")
+        return ({"Flavor Text": (cardFlavor.text).strip()})
+    return ({"Flavor Text": "-"})
+
+def retrieveArtist(pageContent):
+    section = pageContent.find("p", {"class": "card-text-artist"})
+    cardArtist = section.find("a")
+
+    return ({"Artist": cardArtist.text})
+
+def retrieveFormats(pageContent):
+    formatString = ""
+    formats = pageContent.find_all("div", {"class": "card-legality-item"})
+
+    for element in formats:
+        cardFormat = element.find("dt")
+        cardLegality = element.find("dd")
+        formatString += str(cardFormat.text) + ": " + str(cardLegality.text) + ", "
+
+    return ({"Formats": formatString[:-2]})
+
+def retrieveSet(pageContent):
+    cardSet = pageContent.find("span", {"class": "prints-current-set-name"})
+    return ({"Set": ((cardSet.text).strip()).split(" ")[0]})
+
+def retrieveSetCode(pageContent):
+    setCode = pageContent.find("span", {"class": "prints-current-set-name"})
+    return ({"Set Code": (((setCode.text).strip()).split(" ")[1])[1:-1]})
+
+def retrieveCardID(pageContent):
+    setCode = pageContent.find("span", {"class": "prints-current-set-name"})
+    setID = (((setCode.text).strip()).split(" ")[1])[1:-1]
+
+    cardNumber = pageContent.find("span", {"class": "prints-current-set-details"})
+    return ({"Card ID": str(setID) + str(cardNumber.text.strip().split(" · ")[0])})
+
+def retrieveRarity(pageContent):
+    cardRarity = pageContent.find("span", {"class": "prints-current-set-details"})
+    return ({"Rarity": cardRarity.text.strip().split(" · ")[1]})
+
+def retrieveQuality(pageContent):
+    cardQuality = pageContent.find("span", {"class": "prints-current-set-details"})
+    return ({"Rarity": cardQuality.text.strip().split(" · ")[3]})
+
+def retrieveImage(pageContent):
+    section = pageContent.find("div", {"class": "card-image-front"})
+    cardImage = section.find("img")
+    return ({"Card Art": cardImage["src"]})
+
+# Reading Overall Data Functions
+
+def readCardInfo(pageContent):
+    cardDictionary = {}
+
+    imageInfo = pageContent.find("div", {"class": "card-image"})
+    textInfo = pageContent.find("div", {"class": "card-text"})
+    printInfo = pageContent.find("div", {"class": "prints"})
+
+    cardDictionary.update(retrieveName(textInfo))
+    # MANA COST
+    cardDictionary.update(retrieveType(textInfo))
+    # MOVES
+    cardDictionary.update(retrieveStats(textInfo))
+    cardDictionary.update(retrieveFlavor(textInfo))
+    cardDictionary.update(retrieveArtist(textInfo))
+    cardDictionary.update(retrieveFormats(textInfo))
+    cardDictionary.update(retrieveSet(printInfo))
+    cardDictionary.update(retrieveSetCode(printInfo))
+    cardDictionary.update(retrieveCardID(printInfo))
+    cardDictionary.update(retrieveRarity(printInfo))
+    cardDictionary.update(retrieveQuality(printInfo))
+    cardDictionary.update(retrieveImage(imageInfo))
+    print(cardDictionary)
+
+def readSetInfo(pageURL):
+    setPageData = readPage(pageURL)
+    cards = setPageData.find_all("div", {"class": "card-profile"})
+
+    for element in cards:
+        cardInfo = (element.find("div", {"class": "inner-flex"}))
+        readCardInfo(cardInfo)
+
+readSetInfo("https://scryfall.com/search?as=full&order=name&q=set%3Adft&unique=prints")
