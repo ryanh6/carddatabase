@@ -39,16 +39,17 @@ def retrieveName(pageContent):
     return ({"Name": (cardName.text).strip()})
 
 def retrieveMana(pageContent):
-    manaString = ""
+    manaList = []
     cardMana = pageContent.find("span", {"class": "card-text-mana-cost"})
 
     if (cardMana != None):
         manaCost = decryptSymbol(cardMana)
 
         for element in manaCost:
-            manaString += "{" + str(element) + "}, "
+            manaString = "{" + str(element) + "}"
+            manaList.append(manaString)
 
-        return ({"Mana": manaString[:-2]})
+        return ({"Mana": manaList})
 
     return ({"Mana": "-"})
 
@@ -57,7 +58,7 @@ def retrieveType(pageContent):
     return ({"Type": (cardType.text).strip()})
 
 def retrieveMoves(pageContent):
-    moveString = ""
+    moveList = []
     section = pageContent.find("div", {"class": "card-text-oracle"})
 
     if (section != None):
@@ -67,9 +68,9 @@ def retrieveMoves(pageContent):
             symbols = decryptSymbol(element)
             rawText = element.text
             cardText = cleanText(rawText, symbols)
-            moveString += str(cardText) + ", "
+            moveList.append(str(cardText))
         
-        return ({"Moves": moveString[:-2]})
+        return ({"Moves": moveList})
 
     return ({"Moves": "-"})
 
@@ -95,15 +96,16 @@ def retrieveArtist(pageContent):
     return ({"Artist": cardArtist.text})
 
 def retrieveFormats(pageContent):
-    formatString = ""
+    formatList = []
     formats = pageContent.find_all("div", {"class": "card-legality-item"})
 
     for element in formats:
         cardFormat = element.find("dt")
         cardLegality = element.find("dd")
-        formatString += str(cardFormat.text) + ": " + str(cardLegality.text) + ", "
+        formatString = str(cardFormat.text) + ": " + str(cardLegality.text)
+        formatList.append(formatString)
 
-    return ({"Formats": formatString[:-2]})
+    return ({"Formats": formatList})
 
 def retrieveSet(pageContent):
     cardSet = pageContent.find("span", {"class": "prints-current-set-name"})
