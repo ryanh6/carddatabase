@@ -10,13 +10,31 @@ def readPage(pageURL):
     return BeautifulSoup(pageRequest.text, "html.parser")
 
 def decryptSymbol(pageContent):
-    typeString = ""
+    symbols = []
     typeList = pageContent.find_all("abbr", {"class": "ptcg-font ptcg-symbol-name"})
 
     for element in typeList:
-        typeString += str(element["title"]) + ", "
+        symbols.append(str(element["title"]).title())
 
-    return typeString[:-2]
+    return symbols
+
+def cleanText(rawText, symbols):
+    counter = 0
+    finalizedText = ""
+
+    for character in range(len(rawText)):
+        if (rawText[character] == "@"):
+            continue
+        if (rawText[character] == "\n"):
+            finalizedText += " - "
+        elif (rawText[character - 1] == "{"):
+            finalizedText += symbols[counter]
+            character += 2
+            counter += 1
+        else:
+            finalizedText += rawText[character]
+
+    return finalizedText
 
 # Retrieve Data Functions
 
@@ -35,8 +53,8 @@ def retrieveElement(pageContent):
     section = pageContent.find("div", {"class": "name-hp-color"})
     cardElement = decryptSymbol(section)
 
-    if (cardElement != None):
-        return ({"Type": cardElement})
+    if (len(cardElement) > 0):
+        return ({"Type": cardElement[0]})
     return ({"Type": "-"})
 
 def retrieveType(pageContent):
@@ -73,10 +91,10 @@ def retrieveWeakness(pageContent):
     cardWeakness = decryptSymbol(section)
     cardWeaknessModifier = section.find("span", {"title": "Weakness Modifier"})
     
-    if (cardWeakness == None or cardWeaknessModifier == None):
+    if (len(cardWeakness) == 0 or cardWeaknessModifier == None):
         return ({"Weakness": "-"})
     
-    return ({"Weakness": str(cardWeakness) + " " + str(cardWeaknessModifier.text)})
+    return ({"Weakness": str(cardWeakness[0]) + " " + str(cardWeaknessModifier.text)})
 
 def retrieveResistance(pageContent):
     section = pageContent.find("span", {"title": "Resistance"})
@@ -87,10 +105,10 @@ def retrieveResistance(pageContent):
     cardResistance = decryptSymbol(section)
     cardResistanceModifier = section.find("span", {"title": "Resistance Modifier"})
     
-    if (cardResistance == None or cardResistanceModifier == None):
+    if (len(cardResistance) == 0 or cardResistanceModifier == None):
         return ({"Resistance": "-"})
     
-    return ({"Resistance": str(cardResistance) + " " + str(cardResistanceModifier.text)})
+    return ({"Resistance": str(cardResistance[0]) + " " + str(cardResistanceModifier.text)})
 
 def retrieveRetreat(pageContent):
     cardRetreatCost = pageContent.find("span", {"title": "Retreat Cost"})
@@ -99,6 +117,23 @@ def retrieveRetreat(pageContent):
         return ({"Retreat": (cardRetreatCost.text).split(" ")[1]})
     
     return ({"Retreat": "-"})
+
+def retrieveMoves(pageContent):
+    moveList = []
+    section = pageContent.find("div", {"class": "text"})
+
+    if (section != None):
+        cardMoves = section.find_all("p")
+
+        for element in cardMoves:
+            symbols = decryptSymbol(element)
+            rawText = element.text
+            cardText = cleanText(rawText, symbols)
+            moveList.append(str(cardText))
+
+        return ({"Moves": moveList})
+
+    return ({"Moves": "-"})
 
 def retrieveArtist(pageContent):
     cardArtist = pageContent.find("a", {"title": "Illustrator"})
@@ -128,25 +163,27 @@ def retrieveRarity(pageContent):
 
 def retrieveReleaseDate(pageContent):
     cardReleaseDate = pageContent.find("span", {"title": "Date Released"})
-    return ({"Release Date": (cardReleaseDate.text)})
+    return ({"Release Date": (cardReleaseDate.text).split("↘ ")[1]})
 
 def retrieveRulingText(pageContent):
-    rulesString = ""
+    rulesList = []
     cardRules = pageContent.find("div", {"class": "rules minor-text"})
 
     if (cardRules != None):
         section = cardRules.find_all("div")
         for element in section:
-            rulesString += str(element.text)[2:] + ", "
+            rulesString = str(element.text)[2:]
+            rulesList.append(rulesString)
 
-        return ({"Flavor Text": rulesString[:-2]})
-    return ({"Flavor Text": "-"})   
+        return ({"Ruling Text": rulesList})
+    return ({"Ruling Text": "-"})   
 
 def retrieveFlavorText(pageContent):
     cardFlavor = pageContent.find("div", {"class": "flavor minor-text"})
 
     if (cardFlavor != None):
-        return ({"Flavor Text": cardFlavor.text})
+        flavorString = cleanText(cardFlavor.text, [])
+        return ({"Flavor Text": flavorString})
     return ({"Flavor Text": "-"})
 
 def retrieveMark(pageContent):
@@ -154,13 +191,14 @@ def retrieveMark(pageContent):
     return ({"Mark": (cardMark.text).split(" ")[1]})
 
 def retrieveFormats(pageContent):
-    formatString = ""
+    formatList = []
     formats = pageContent.find_all("span", {"title": "Format Type"})
 
     for element in formats:
-        formatString += str(element.text) + ", "
+        formatString = str(element.text)
+        formatList.append(formatString)
 
-    return ({"Formats": formatString[:-2]})
+    return ({"Formats": formatList})
 
 def retrieveImage(pageContent):
     cardImage = pageContent.find("a")
@@ -185,7 +223,7 @@ def readCardInfo(pageContent):
     cardDictionary.update(retrieveWeakness(textInfo))
     cardDictionary.update(retrieveResistance(textInfo))
     cardDictionary.update(retrieveRetreat(textInfo))
-    # Moves
+    cardDictionary.update(retrieveMoves(textInfo))
     cardDictionary.update(retrieveArtist(textInfo))
     cardDictionary.update(retrieveSeries(textInfo))
     cardDictionary.update(retrieveSet(textInfo))
