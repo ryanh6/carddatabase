@@ -23,7 +23,9 @@ def cleanText(rawText, symbols):
     finalizedText = ""
 
     for character in range(len(rawText)):
-        if (rawText[character - 1] == "{"):
+        if (rawText[character] == "\n"):
+            finalizedText += " "
+        elif (rawText[character - 1] == "{"):
             finalizedText += symbols[counter]
             character += 2
             counter += 1
@@ -86,7 +88,9 @@ def retrieveFlavor(pageContent):
 
     if (section != None):
         cardFlavor = section.find("p")
-        return ({"Flavor Text": (cardFlavor.text).strip()})
+        flavorString = cleanText((cardFlavor.text).strip(), [])
+
+        return ({"Flavor Text": flavorString})
     return ({"Flavor Text": "-"})
 
 def retrieveArtist(pageContent):
