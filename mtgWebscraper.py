@@ -9,15 +9,69 @@ def readPage(pageURL):
     pageRequest = requests.get(pageURL)
     return BeautifulSoup(pageRequest.text, "html.parser")
 
+def decryptSymbol(pageContent):
+    symbols = []
+    typeList = pageContent.find_all("abbr")
+
+    for element in typeList:
+        symbols.append(str(element["title"]).title())
+    
+    return symbols
+
+def cleanText(rawText, symbols):
+    counter = 0
+    finalizedText = ""
+
+    for character in range(len(rawText)):
+        if (rawText[character - 1] == "{"):
+            finalizedText += symbols[counter]
+            character += 2
+            counter += 1
+        else:
+            finalizedText += rawText[character]
+
+    return finalizedText
+
 # Retrieve Data Functions
 
 def retrieveName(pageContent):
     cardName = pageContent.find("span", {"class": "card-text-card-name"})
     return ({"Name": (cardName.text).strip()})
 
+def retrieveMana(pageContent):
+    manaString = ""
+    cardMana = pageContent.find("span", {"class": "card-text-mana-cost"})
+
+    if (cardMana != None):
+        manaCost = decryptSymbol(cardMana)
+
+        for element in manaCost:
+            manaString += "{" + str(element) + "}, "
+
+        return ({"Mana": manaString[:-2]})
+
+    return ({"Mana": "-"})
+
 def retrieveType(pageContent):
     cardType = pageContent.find("p", {"class": "card-text-type-line"})
     return ({"Type": (cardType.text).strip()})
+
+def retrieveMoves(pageContent):
+    moveString = ""
+    section = pageContent.find("div", {"class": "card-text-oracle"})
+
+    if (section != None):
+        cardMoves = section.find_all("p")
+
+        for element in cardMoves:
+            symbols = decryptSymbol(element)
+            rawText = element.text
+            cardText = cleanText(rawText, symbols)
+            moveString += str(cardText) + ", "
+        
+        return ({"Moves": moveString[:-2]})
+
+    return ({"Moves": "-"})
 
 def retrieveStats(pageContent):
     cardStats = pageContent.find("div", {"class": "card-text-stats"})
@@ -89,9 +143,9 @@ def readCardInfo(pageContent):
     printInfo = pageContent.find("div", {"class": "prints"})
 
     cardDictionary.update(retrieveName(textInfo))
-    # MANA COST
+    cardDictionary.update(retrieveMana(textInfo))
     cardDictionary.update(retrieveType(textInfo))
-    # MOVES
+    cardDictionary.update(retrieveMoves(textInfo))
     cardDictionary.update(retrieveStats(textInfo))
     cardDictionary.update(retrieveFlavor(textInfo))
     cardDictionary.update(retrieveArtist(textInfo))
