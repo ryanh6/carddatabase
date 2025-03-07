@@ -89,9 +89,9 @@ def retrievePreevolutions(pageContent):
         cardPreEvolutions = section.find("a")
 
         if "from" in section.text:
-            return ({"PreEvolution": cardPreEvolutions.text})
+            return ({"Preevolution": cardPreEvolutions.text})
 
-    return ({"Evolutions": "-"})
+    return ({"Preevolution": "-"})
 
 def retrieveEvolutions(pageContent):
     evolutionList = []
@@ -166,7 +166,11 @@ def retrieveMoves(pageContent):
 
 def retrieveArtist(pageContent):
     cardArtist = pageContent.find("a", {"title": "Illustrator"})
-    return ({"Artist": cardArtist.text})
+
+    if (cardArtist != None):
+        return ({"Artist": cardArtist.text})
+    
+    return ({"Artist": "-"})
 
 def retrieveSeries(pageContent):
     cardSeries = pageContent.find("span", {"title": "Series"})
@@ -178,13 +182,23 @@ def retrieveSet(pageContent):
 
 def retrieveSetCode(pageContent):
     cardSetCode = pageContent.find("span", {"title": "Set Series Code"})
-    return ({"Set": cardSetCode.text})
+
+    if (cardSetCode != None):
+        return ({"Set": cardSetCode.text})
+    
+    return ({"Set": "-"})
 
 def retrieveCardID(pageContent):
     cardSetCode = pageContent.find("span", {"title": "Set Abbreviation"})
     cardNumber = pageContent.find("a", {"title": "Number"})
     setTotal = pageContent.find("span", {"title": "Out Of"})
-    return ({"Card ID": str(cardSetCode.text) + " " + str(cardNumber.text) + str(setTotal.text)})
+
+    if (setTotal != None):
+        return ({"Card ID": str(cardSetCode.text) + " " + str(cardNumber.text) + str(setTotal.text)})
+    elif (cardSetCode != None):
+        return ({"Card ID": str(cardSetCode.text) + " " + str(cardNumber.text)})
+    
+    return ({"Card ID": "-"})
 
 def retrieveRarity(pageContent):
     cardRarity = pageContent.find("a", {"title": "Rarity"})
@@ -217,7 +231,11 @@ def retrieveFlavorText(pageContent):
 
 def retrieveMark(pageContent):
     cardMark = pageContent.find("span", {"class": "Regulation Mark"})
-    return ({"Mark": (cardMark.text).split(" ")[1]})
+
+    if (cardMark != None):
+        return ({"Mark": (cardMark.text).split(" ")[1]})
+    
+    return ({"Mark": "-"})
 
 def retrieveFormats(pageContent):
     formatList = []
@@ -296,5 +314,5 @@ def allSets(pageURL):
 
 # pkmnMain()
 
-data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
-# allSets("https://pkmncards.com/sets/")
+# data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
+allSets("https://pkmncards.com/sets/")
