@@ -25,12 +25,16 @@ def cleanText(rawText, symbols):
     for character in range(len(rawText)):
         if (rawText[character] == "@"):
             continue
+        if (rawText[character] == "*"):
+            continue
         if (rawText[character] == "\n"):
             finalizedText += " - "
         elif (rawText[character - 1] == "{"):
-            finalizedText += symbols[counter]
+            if (rawText[character] != "+"):
+                finalizedText += symbols[counter]
+                counter += 1
+
             character += 2
-            counter += 1
         else:
             finalizedText += rawText[character]
 
@@ -189,15 +193,21 @@ def retrieveSetCode(pageContent):
     return ({"Set": "-"})
 
 def retrieveCardID(pageContent):
+    IDString = ""
     cardSetCode = pageContent.find("span", {"title": "Set Abbreviation"})
     cardNumber = pageContent.find("a", {"title": "Number"})
     setTotal = pageContent.find("span", {"title": "Out Of"})
 
+    if (cardSetCode != None):
+        IDString += str(cardSetCode.text)
+    if (cardNumber != None):
+        IDString += " " + str(cardNumber.text)
     if (setTotal != None):
-        return ({"Card ID": str(cardSetCode.text) + " " + str(cardNumber.text) + str(setTotal.text)})
-    elif (cardSetCode != None):
-        return ({"Card ID": str(cardSetCode.text) + " " + str(cardNumber.text)})
-    
+        IDString += str(setTotal.text)
+
+    if (IDString != ""):
+        return ({"Card ID": IDString})
+
     return ({"Card ID": "-"})
 
 def retrieveRarity(pageContent):
