@@ -82,6 +82,35 @@ def retrieveClass(pageContent):
         return ({"Class": cardClass.text[4:]})
     return ({"Class": "-"})
 
+def retrievePreevolutions(pageContent):
+    section = pageContent.find("span", {"class": "evolves"})
+
+    if (section != None):
+        cardPreEvolutions = section.find("a")
+
+        if "from" in section.text:
+            return ({"PreEvolution": cardPreEvolutions.text})
+
+    return ({"Evolutions": "-"})
+
+def retrieveEvolutions(pageContent):
+    evolutionList = []
+    section = pageContent.find("span", {"class": "evolves"})
+
+    if (section != None):
+        cardEvolutions = section.find_all("a")
+        
+        for element in cardEvolutions:
+            evolutionList.append(element.text)
+
+        if "from" in section.text:
+            evolutionList.pop(0)
+
+        if (len(evolutionList) > 0):
+            return ({"Evolutions": evolutionList})
+
+    return ({"Evolutions": "-"})
+
 def retrieveWeakness(pageContent):
     section = pageContent.find("span", {"title": "Weakness"})
 
@@ -219,7 +248,8 @@ def readCardInfo(pageContent):
     cardDictionary.update(retrieveSubtype(textInfo))
     cardDictionary.update(retrieveStage(textInfo))
     cardDictionary.update(retrieveClass(textInfo))
-    # EVOLUTIONS (2 of them)
+    cardDictionary.update(retrievePreevolutions(textInfo))
+    cardDictionary.update(retrieveEvolutions(textInfo))
     cardDictionary.update(retrieveWeakness(textInfo))
     cardDictionary.update(retrieveResistance(textInfo))
     cardDictionary.update(retrieveRetreat(textInfo))
