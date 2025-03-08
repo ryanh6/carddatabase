@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import math
 
 # Base Website Used: https://scryfall.com/sets
 
@@ -95,9 +96,12 @@ def retrieveFlavor(pageContent):
 
 def retrieveArtist(pageContent):
     section = pageContent.find("p", {"class": "card-text-artist"})
-    cardArtist = section.find("a")
 
-    return ({"Artist": cardArtist.text})
+    if (section != None):
+        cardArtist = section.find("a")
+        return ({"Artist": cardArtist.text})
+    
+    return ({"Artist": "-"})
 
 def retrieveFormats(pageContent):
     formatList = []
@@ -162,7 +166,7 @@ def readCardInfo(pageContent):
     cardDictionary.update(retrieveRarity(printInfo))
     cardDictionary.update(retrieveQuality(printInfo))
     cardDictionary.update(retrieveImage(imageInfo))
-    print(cardDictionary)
+    # print(cardDictionary)
 
 def readSetInfo(pageURL):
     setPageData = readPage(pageURL)
@@ -172,4 +176,22 @@ def readSetInfo(pageURL):
         cardInfo = (element.find("div", {"class": "inner-flex"}))
         readCardInfo(cardInfo)
 
-readSetInfo("https://scryfall.com/search?as=full&order=name&q=set%3Adft&unique=prints")
+def allSets(pageURL):
+    allSetsPageData = readPage(pageURL)
+    table = allSetsPageData.find("table", {"class": "checklist"})
+    tableBody = table.find("tbody")
+
+    row = tableBody.find_all("tr")
+
+    for element in row:
+        cardSet = (element.find("a")["href"]).split("/")[-1]
+        cardNumber = (element.find("a", {"tabindex": -1})).text
+        pages = math.ceil(int(cardNumber) / 20)
+
+        for index in range(pages):
+            print(cardSet)
+            mainLink = "https://scryfall.com/search?as=full&order=set&page=" + str(index) + "&q=set%3A" + cardSet + "&unique=prints"
+            readSetInfo(mainLink)
+
+# readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
+allSets("https://scryfall.com/sets")
