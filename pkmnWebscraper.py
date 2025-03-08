@@ -178,7 +178,11 @@ def retrieveArtist(pageContent):
 
 def retrieveSeries(pageContent):
     cardSeries = pageContent.find("span", {"title": "Series"})
-    return ({"Series": cardSeries.text})
+
+    if (cardSeries != None):
+        return ({"Series": cardSeries.text})
+    
+    return ({"Series": "Classic"})
 
 def retrieveSet(pageContent):
     cardSet = pageContent.find("span", {"title": "Set"})
