@@ -318,15 +318,5 @@ def allSets(pageURL):
         mainLink = (element.find("a")["href"]) + "?sort=date&ord=auto&display=full"
         readSetInfo(mainLink)
 
-# def pkmnMain():
-#     columnNames = ["Card ID", "Name", "HP", "Type", "Class", 
-#                    "Stage", "Preevolutions", "Evolutions", "Attacks",
-#                    "Weakness", "Resistance", "Retreat",
-#                    "Illust", "Series", "Set", "Set Code", "Rarity", "Release Date",
-#                    "Regulations", "Format", "Text"]
-#     createExcel("pkmndatabase.xlsx", "All Cards", columnNames)
-
-# pkmnMain()
-
 # data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
 allSets("https://pkmncards.com/sets/")
