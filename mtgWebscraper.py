@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import math
 
+from database import *
+
 # Base Website Used: https://scryfall.com/sets
 
 # Helper Functions
@@ -166,15 +168,19 @@ def readCardInfo(pageContent):
     cardDictionary.update(retrieveRarity(printInfo))
     cardDictionary.update(retrieveQuality(printInfo))
     cardDictionary.update(retrieveImage(imageInfo))
-    # print(cardDictionary)
+   
+    return cardDictionary
 
 def readSetInfo(pageURL):
+    cardList = []
     setPageData = readPage(pageURL)
     cards = setPageData.find_all("div", {"class": "card-profile"})
 
     for element in cards:
         cardInfo = (element.find("div", {"class": "inner-flex"}))
-        readCardInfo(cardInfo)
+        cardList.append(readCardInfo(cardInfo))
+
+    return cardList
 
 def allSets(pageURL):
     allSetsPageData = readPage(pageURL)
@@ -189,9 +195,9 @@ def allSets(pageURL):
         pages = math.ceil(int(cardNumber) / 20)
 
         for index in range(pages):
-            print(cardSet)
             mainLink = "https://scryfall.com/search?as=full&order=set&page=" + str(index) + "&q=set%3A" + cardSet + "&unique=prints"
             readSetInfo(mainLink)
 
-# readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
-allSets("https://scryfall.com/sets")
+data = readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
+print(dataframe(data))
+# allSets("https://scryfall.com/sets")
