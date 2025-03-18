@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+from database import *
+
 # Base Website Used: https://pkmncards.com/sets/
 
 # Helper Functions
@@ -298,15 +300,19 @@ def readCardInfo(pageContent):
     cardDictionary.update(retrieveMark(textInfo))
     cardDictionary.update(retrieveFormats(textInfo))
     cardDictionary.update(retrieveImage(imageInfo))
-    print(cardDictionary)
+    
+    return cardDictionary
 
 def readSetInfo(pageURL):
+    cardList = []
     setPageData = readPage(pageURL)
     cards = setPageData.find_all("article", {"class": "type-pkmn_card entry"})
 
     for element in cards:
         cardInfo = (element.find("div", {"class": "entry-content"}))
-        readCardInfo(cardInfo)
+        cardList.append(readCardInfo(cardInfo))
+
+    return cardList
 
 def allSets(pageURL):
     allSetsPageData = readPage(pageURL)
@@ -318,5 +324,6 @@ def allSets(pageURL):
         mainLink = (element.find("a")["href"]) + "?sort=date&ord=auto&display=full"
         readSetInfo(mainLink)
 
-# data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
-allSets("https://pkmncards.com/sets/")
+data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
+print(dataframe(data))
+# allSets("https://pkmncards.com/sets/")
