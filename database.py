@@ -1,8 +1,5 @@
 import pandas as pd
 
-def dictionaryToDataframe(dictionary):
-    return pd.DataFrame.from_dict(dictionary)
-
 def toExcel(dataframe):
     print("Filler")
 
@@ -14,3 +11,11 @@ def filterDatabase(keyword):
 
 def createExcel(fileName, columnNames):
     print("Hello")
+
+def dictionaryToDataframe(dictionary):
+    return pd.DataFrame.from_dict(dictionary)
+
+def updateFile(newDatabase, name):
+    currentDatabase = pd.read_excel(name)
+    updatedDatabase = currentDatabase.append(newDatabase, ignore_index = True)
+    updatedDatabase.to_excel(name, index = False)
