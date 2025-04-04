@@ -326,4 +326,4 @@ def allSets(pageURL):
 
 data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
 print(dataframe(data))
-# allSets("https://pkmncards.com/sets/")
+allSets("https://pkmncards.com/sets/")
