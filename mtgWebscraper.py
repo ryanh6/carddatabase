@@ -199,5 +199,5 @@ def allSets(pageURL):
             readSetInfo(mainLink)
 
 data = readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
-print(dataframe(data))
+print(dictionaryToDataframe(data))
 # allSets("https://scryfall.com/sets")

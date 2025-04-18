@@ -325,5 +325,6 @@ def allSets(pageURL):
         readSetInfo(mainLink)
 
 data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
-print(dictionaryToDataframe(data))
+table = (dictionaryToDataframe(data))
+updateFile(table, 'pkmndatabase.xlsx')
 # allSets("https://pkmncards.com/sets/")
