@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import multiprocessing
+import time
 
 from database import *
 
@@ -8,7 +10,16 @@ from database import *
 # Helper Functions
 
 def readPage(pageURL):
-    pageRequest = requests.get(pageURL)
+    pageRequest = ''
+
+    while pageRequest == '':
+        try:
+            pageRequest = requests.get(pageURL)
+            break
+        except:
+            time.sleep(5)
+            continue
+
     return BeautifulSoup(pageRequest.text, "html.parser")
 
 def decryptSymbol(pageContent):
@@ -315,6 +326,8 @@ def readSetInfo(pageURL):
     return cardList
 
 def allSets(pageURL):
+    links = []
+    results = []
     allSetsPageData = readPage(pageURL)
     section = allSetsPageData.find("div", {"class": "entry-content"})
 
@@ -322,9 +335,43 @@ def allSets(pageURL):
 
     for element in sets:
         mainLink = (element.find("a")["href"]) + "?sort=date&ord=auto&display=full"
-        readSetInfo(mainLink)
+        links.append(mainLink)
+        # data = readSetInfo(mainLink)
+        # table = (dictionaryToDataframe(data))
+        # results.append(table)
 
-data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
-table = (dictionaryToDataframe(data))
-updateFile(table, 'pkmndatabase.xlsx')
+    with multiprocessing.Pool() as pool:
+        results += pool.map(readSetInfo, links)
+        pool.close()
+        pool.join()
+
+    print(results)
+    print(len(results))
+
+# data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
+# table = (dictionaryToDataframe(data))
+# updateFile(table, 'pkmndatabase.xlsx')
+
 # allSets("https://pkmncards.com/sets/")
+
+# import multiprocessing
+
+# def square(x): 
+#     return x * x 
+
+# if __name__ == '__main__': 
+#     pool = multiprocessing.Pool() 
+#     pool = multiprocessing.Pool(processes=10) 
+#     inputs = [0,1,2,3,4,5,6,7,8,9,10] 
+#     outputs = pool.map(square, inputs) 
+#     print("Input: {}".format(inputs)) 
+#     print("Output: {}".format(outputs)) 
+
+if __name__ == '__main__':
+    multiprocessing.freeze_support()
+    startTime = time.time()
+    allSets("https://pkmncards.com/sets/")
+    endTime = time.time()
+
+    elapsedTime = endTime - startTime
+    print(f"Elapsed time: {elapsedTime:.4f} seconds")
