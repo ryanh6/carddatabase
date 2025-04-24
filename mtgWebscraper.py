@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import math
+import multiprocessing
+import time
 
 from database import *
 
@@ -183,6 +185,8 @@ def readSetInfo(pageURL):
     return cardList
 
 def allSets(pageURL):
+    links = []
+    fullList = []
     allSetsPageData = readPage(pageURL)
     table = allSetsPageData.find("table", {"class": "checklist"})
     tableBody = table.find("tbody")
@@ -196,10 +200,30 @@ def allSets(pageURL):
 
         for index in range(pages):
             mainLink = "https://scryfall.com/search?as=full&order=set&page=" + str(index) + "&q=set%3A" + cardSet + "&unique=prints"
-            readSetInfo(mainLink)
+            links.append(mainLink)
+
+    with multiprocessing.Pool() as pool:
+        results = pool.map(readSetInfo, links)
+        pool.close()
+        pool.join()
+
+    for dictionary in results:
+        fullList.extend(dictionary)
+
+    table = (dictionaryToDataframe(fullList))
+    updateFile(table, 'mtgdatabase.xlsx')
 
 # data = readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
-data = readSetInfo("https://scryfall.com/search?as=full&order=name&q=set%3Atdm&unique=prints")
-table = (dictionaryToDataframe(data))
-updateFile(table, 'mtgdatabase.xlsx')
+# data = readSetInfo("https://scryfall.com/search?as=full&order=name&q=set%3Atdm&unique=prints")
+# table = (dictionaryToDataframe(data))
+# updateFile(table, 'mtgdatabase.xlsx')
 # allSets("https://scryfall.com/sets")
+
+# if __name__ == '__main__':
+#     multiprocessing.freeze_support()
+#     startTime = time.time()
+#     allSets("https://scryfall.com/sets")
+#     endTime = time.time()
+
+#     elapsedTime = endTime - startTime
+#     print(f"Elapsed time: {elapsedTime:.4f} seconds")
