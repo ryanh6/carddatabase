@@ -198,6 +198,8 @@ def allSets(pageURL):
             mainLink = "https://scryfall.com/search?as=full&order=set&page=" + str(index) + "&q=set%3A" + cardSet + "&unique=prints"
             readSetInfo(mainLink)
 
-data = readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
-print(dictionaryToDataframe(data))
+# data = readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
+data = readSetInfo("https://scryfall.com/search?as=full&order=name&q=set%3Atdm&unique=prints")
+table = (dictionaryToDataframe(data))
+updateFile(table, 'mtgdatabase.xlsx')
 # allSets("https://scryfall.com/sets")
