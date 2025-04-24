@@ -327,7 +327,7 @@ def readSetInfo(pageURL):
 
 def allSets(pageURL):
     links = []
-    results = []
+    fullList = []
     allSetsPageData = readPage(pageURL)
     section = allSetsPageData.find("div", {"class": "entry-content"})
 
@@ -336,17 +336,17 @@ def allSets(pageURL):
     for element in sets:
         mainLink = (element.find("a")["href"]) + "?sort=date&ord=auto&display=full"
         links.append(mainLink)
-        # data = readSetInfo(mainLink)
-        # table = (dictionaryToDataframe(data))
-        # results.append(table)
 
     with multiprocessing.Pool() as pool:
-        results += pool.map(readSetInfo, links)
+        results = pool.map(readSetInfo, links)
         pool.close()
         pool.join()
 
-    print(results)
-    print(len(results))
+    for dictionary in results:
+        fullList.extend(dictionary)
+
+    table = (dictionaryToDataframe(fullList))
+    updateFile(table, 'pkmndatabase.xlsx')
 
 # data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
 # table = (dictionaryToDataframe(data))
