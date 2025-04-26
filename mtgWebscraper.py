@@ -186,7 +186,6 @@ def readSetInfo(pageURL):
 
 def allSets(pageURL):
     links = []
-    fullList = []
     allSetsPageData = readPage(pageURL)
     table = allSetsPageData.find("table", {"class": "checklist"})
     tableBody = table.find("tbody")
@@ -202,6 +201,10 @@ def allSets(pageURL):
             mainLink = "https://scryfall.com/search?as=full&order=set&page=" + str(index) + "&q=set%3A" + cardSet + "&unique=prints"
             links.append(mainLink)
 
+    return links
+
+def readLinks(links)
+    fullList = []
     with multiprocessing.Pool() as pool:
         results = pool.map(readSetInfo, links)
         pool.close()
@@ -222,7 +225,8 @@ def allSets(pageURL):
 # if __name__ == '__main__':
 #     multiprocessing.freeze_support()
 #     startTime = time.time()
-#     allSets("https://scryfall.com/sets")
+#     linksArray = allSets("https://scryfall.com/sets")
+#     readLinks(linksArray)
 #     endTime = time.time()
 
 #     elapsedTime = endTime - startTime

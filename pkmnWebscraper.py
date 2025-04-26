@@ -325,9 +325,8 @@ def readSetInfo(pageURL):
 
     return cardList
 
-def allSets(pageURL):
+def searchLinks(pageURL):
     links = []
-    fullList = []
     allSetsPageData = readPage(pageURL)
     section = allSetsPageData.find("div", {"class": "entry-content"})
 
@@ -337,6 +336,11 @@ def allSets(pageURL):
         mainLink = (element.find("a")["href"]) + "?sort=date&ord=auto&display=full"
         links.append(mainLink)
 
+    return links
+
+def readLinks(links):
+    fullList = []
+    
     with multiprocessing.Pool() as pool:
         results = pool.map(readSetInfo, links)
         pool.close()
@@ -370,7 +374,8 @@ def allSets(pageURL):
 if __name__ == '__main__':
     multiprocessing.freeze_support()
     startTime = time.time()
-    allSets("https://pkmncards.com/sets/")
+    linkArray = searchLinks("https://pkmncards.com/sets/")
+    readLinks(linkArray)
     endTime = time.time()
 
     elapsedTime = endTime - startTime
