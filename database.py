@@ -1,17 +1,5 @@
 import pandas as pd
 
-def toExcel(dataframe):
-    print("Filler")
-
-def removeDuplicates(dataframe):
-    print("remove")
-
-def filterDatabase(keyword):
-    print("filter")
-
-def createExcel(fileName, columnNames):
-    print("Hello")
-
 def dictionaryToDataframe(dictionary):
     return pd.DataFrame.from_dict(dictionary)
 
