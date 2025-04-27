@@ -349,8 +349,8 @@ def readLinks(links):
     for dictionary in results:
         fullList.extend(dictionary)
 
-    table = (dictionaryToDataframe(fullList))
-    updateFile(table, 'pkmndatabase.xlsx')
+    # table = (dictionaryToDataframe(fullList))
+    # updateFile(table, 'pkmndatabase.xlsx')
 
 # data = readSetInfo("https://pkmncards.com/set/prismatic-evolutions/?sort=date&ord=auto&display=full")
 # table = (dictionaryToDataframe(data))

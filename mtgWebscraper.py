@@ -213,8 +213,8 @@ def readLinks(links)
     for dictionary in results:
         fullList.extend(dictionary)
 
-    table = (dictionaryToDataframe(fullList))
-    updateFile(table, 'mtgdatabase.xlsx')
+    # table = (dictionaryToDataframe(fullList))
+    # updateFile(table, 'mtgdatabase.xlsx')
 
 # data = readSetInfo("https://scryfall.com/search?as=full&order=name&page=18&q=set%3Ada1&unique=prints")
 # data = readSetInfo("https://scryfall.com/search?as=full&order=name&q=set%3Atdm&unique=prints")
