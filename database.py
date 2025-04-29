@@ -1,15 +1,22 @@
 import json
+import pymongo
+
+def createDatabase(name):
+    client = pymongo.MongoClient("")
+    database = client[name]
+
+    collection = database["Cards"]
 
 def dictionaryToJSON(card):
     return json.dumps(card)
 
-# def dictionaryToDataframe(dictionary):
-#     return pd.DataFrame.from_dict(dictionary)
+def makeJSONList(cardList):
+    transformedList = []
 
-# def updateFile(newDatabase, name):
-#     try:
-#         currentDatabase = pd.read_excel(name)
-#         updatedDatabase = currentDatabase.append(newDatabase, ignore_index = True)
-#         updatedDatabase.to_excel(name, index = False)
-#     except:
-#         newDatabase.to_excel(name, index = False)
+    for element in cardList:
+        transformedList.append(dictionaryToJSON(element))
+
+    return transformedList
+
+def addToDatabase(JSONList):
+    collection.insert_many(JSONList)
