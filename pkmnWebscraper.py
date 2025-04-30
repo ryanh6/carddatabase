@@ -358,19 +358,6 @@ def readLinks(links):
 
 # allSets("https://pkmncards.com/sets/")
 
-# import multiprocessing
-
-# def square(x): 
-#     return x * x 
-
-# if __name__ == '__main__': 
-#     pool = multiprocessing.Pool() 
-#     pool = multiprocessing.Pool(processes=10) 
-#     inputs = [0,1,2,3,4,5,6,7,8,9,10] 
-#     outputs = pool.map(square, inputs) 
-#     print("Input: {}".format(inputs)) 
-#     print("Output: {}".format(outputs)) 
-
 if __name__ == '__main__':
     multiprocessing.freeze_support()
     startTime = time.time()
