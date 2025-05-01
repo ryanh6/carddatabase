@@ -340,14 +340,18 @@ def searchLinks(pageURL):
 
 def readLinks(links):
     fullList = []
-    
-    with multiprocessing.Pool() as pool:
-        results = pool.map(readSetInfo, links)
-        pool.close()
-        pool.join()
 
-    for dictionary in results:
-        fullList.extend(dictionary)
+    for element in links:
+        new = readSetInfo(element)
+        fullList.append(new)
+    
+    # with multiprocessing.Pool() as pool:
+    #     results = pool.map(readSetInfo, links)
+    #     pool.close()
+    #     pool.join()
+
+    # for dictionary in results:
+    #     fullList.extend(dictionary)
 
     # table = (dictionaryToDataframe(fullList))
     # updateFile(table, 'pkmndatabase.xlsx')
