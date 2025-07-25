@@ -203,7 +203,7 @@ def allSets(pageURL):
 
     return links
 
-def readLinks(links)
+def readLinks(links):
     fullList = []
     with multiprocessing.Pool() as pool:
         results = pool.map(readSetInfo, links)
