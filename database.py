@@ -1,22 +1,22 @@
-import json
-import pymongo
+# import json
+# import pymongo
 
-def createDatabase(name):
-    client = pymongo.MongoClient("")
-    database = client[name]
+# def createDatabase(name):
+#     client = pymongo.MongoClient("")
+#     database = client[name]
 
-    collection = database["Cards"]
+#     collection = database["Cards"]
 
-def dictionaryToJSON(card):
-    return json.dumps(card)
+# def dictionaryToJSON(card):
+#     return json.dumps(card)
 
-def makeJSONList(cardList):
-    transformedList = []
+# def makeJSONList(cardList):
+#     transformedList = []
 
-    for element in cardList:
-        transformedList.append(dictionaryToJSON(element))
+#     for element in cardList:
+#         transformedList.append(dictionaryToJSON(element))
 
-    return transformedList
+#     return transformedList
 
-def addToDatabase(JSONList):
-    collection.insert_many(JSONList)
+# def addToDatabase(JSONList):
+#     collection.insert_many(JSONList)
