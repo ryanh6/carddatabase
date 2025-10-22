@@ -5,80 +5,78 @@ def readPage(pageURL):
     pageRequest = requests.get(pageURL)
     return BeautifulSoup(pageRequest.text, "html.parser")
 
-def retrieveName(data):
-    return data.find("div", {"class": "name"}).get_text(strip = True)
+# def retrieveName(data):
+#     return data.find("div", {"class": "name"}).get_text(strip = True)
 
-def retrieveType(data):
-    return data.find("div", {"class": "type"}).get_text(strip = True)
+# def retrieveType(data):
+#     return data.find("div", {"class": "type"}).get_text(strip = True)
 
-def retrieveNation(data):
-    return data.find("div", {"class": "nation"}).get_text(strip = True)
+# def retrieveNation(data):
+#     return data.find("div", {"class": "nation"}).get_text(strip = True)
 
-def retrieveClan(data):
-    return data.find("div", {"class": "group"}).get_text(strip = True)
+# def retrieveClan(data):
+#     return data.find("div", {"class": "group"}).get_text(strip = True)
 
-def retrieveRace(data):
-    return data.find("div", {"class": "race"}).get_text(strip = True)
+# def retrieveRace(data):
+#     return data.find("div", {"class": "race"}).get_text(strip = True)
 
-def retrieveGrade(data):
-    return data.find("div", {"class": "grade"}).get_text(strip = True)
+# def retrieveGrade(data):
+#     return data.find("div", {"class": "grade"}).get_text(strip = True)
 
-def retrievePower(data):
-    return data.find("div", {"class": "power"}).get_text(strip = True)
+# def retrievePower(data):
+#     return data.find("div", {"class": "power"}).get_text(strip = True)
 
-def retrieveCritical(data):
-    return data.find("div", {"class": "critical"}).get_text(strip = True)
+# def retrieveCritical(data):
+#     return data.find("div", {"class": "critical"}).get_text(strip = True)
 
-def retrieveShield(data):
-    return data.find("div", {"class": "shield"}).get_text(strip = True)
+# def retrieveShield(data):
+#     return data.find("div", {"class": "shield"}).get_text(strip = True)
 
-def retrieveSkill(data):
-    return data.find("div", {"class": "skill"}).get_text(strip = True)
+# def retrieveSkill(data):
+#     return data.find("div", {"class": "skill"}).get_text(strip = True)
 
-def retrieveGift(data):
-    return data.find("div", {"class": "gift"}).get_text(strip = True)  
+# def retrieveGift(data):
+#     return data.find("div", {"class": "gift"}).get_text(strip = True)  
 
-def retrieveRegulation(data):
-    return data.find("div", {"class": "regulation"}).get_text(strip = True)  
+# def retrieveRegulation(data):
+#     return data.find("div", {"class": "regulation"}).get_text(strip = True)  
 
-def retrieveNumber(data):
-    return data.find("div", {"class": "number"}).get_text(strip = True)  
+# def retrieveNumber(data):
+#     return data.find("div", {"class": "number"}).get_text(strip = True)  
 
-def retrieveRarity(data):
-    return data.find("div", {"class": "rarity"}).get_text(strip = True)  
+# def retrieveRarity(data):
+#     return data.find("div", {"class": "rarity"}).get_text(strip = True)  
 
-def retrieveEffect(data):
-    return data.find("div", {"class": "effect"}).get_text(strip = True)  
+# def retrieveEffect(data):
+#     return data.find("div", {"class": "effect"}).get_text(strip = True)  
 
-def retrieveFlavor(data):
-    return data.find("div", {"class": "flavor"}).get_text(strip = True)  
+# def retrieveFlavor(data):
+#     return data.find("div", {"class": "flavor"}).get_text(strip = True)  
+
+def retrieveData(data, className):
+    return data.find("div", {"class": className}).get_text(strip = True)  
 
 def retrieveImageLink(data):
     sourcePath = data.find("div", {"class": "main"}).find("img").get("src")
     return "https://en.cf-vanguard.com" + sourcePath
 
 def cfvReadCard(pageURL):
-    cardPageData = readPage(pageURL)
-    print(retrieveName(cardPageData))
-    print(retrieveType(cardPageData))
-    print(retrieveNation(cardPageData))
-    print(retrieveClan(cardPageData))
-    print(retrieveRace(cardPageData))
-    print(retrieveGrade(cardPageData))
-    print(retrievePower(cardPageData))
-    print(retrieveCritical(cardPageData))
-    print(retrieveShield(cardPageData))
-    print(retrieveSkill(cardPageData))
-    print(retrieveGift(cardPageData))
-    print(retrieveRegulation(cardPageData))
-    print(retrieveNumber(cardPageData))
-    print(retrieveRarity(cardPageData))
-    print(retrieveEffect(cardPageData))
-    print(retrieveFlavor(cardPageData))
-    print(retrieveImageLink(cardPageData))
+    pageData = readPage(pageURL)
 
-cfvReadCard("https://en.cf-vanguard.com/cardlist/?cardno=BT01/002EN&expansion=5&view=image")
-# cfvReadCard("https://en.cf-vanguard.com/cardlist/?cardno=DZ-BT02/004EN&expansion=222&view=image")
+    cardDetailData = pageData.find("div", {"class": "data"})
+    cardAttributes = cardDetailData.find_all("div", class_ = True)
+
+    # print(cardAttributes)
+
+    for div in cardAttributes:
+        className = div.get("class")[0]
+
+        if (className != "text-list"):
+            print(className + ": ", end = "")
+            print(retrieveData(cardDetailData, className))
+
+# cfvReadCard("https://en.cf-vanguard.com/cardlist/?cardno=BT01/002EN&expansion=5&view=image")
+cfvReadCard("https://en.cf-vanguard.com/cardlist/?cardno=DZ-BT02/004EN&expansion=222&view=image")
 
 # PREVIOUS WORK FOR REFERENCE
 
